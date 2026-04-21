@@ -188,8 +188,13 @@
   gap: 0;
 }
 .day__rail {
+  /* Rail bisects the pins horizontally. Pin is 44px tall, so its
+     center sits at y=22px from the top of the step. Rail is below
+     the pin in z-order (pins have z-index 2), so the pin dots ride
+     over the rail — industry-standard timeline look. Previously the
+     rail sat at y=62 which crossed the .day__time text below. */
   position: absolute;
-  top: 62px; left: 8%; right: 8%; height: 2px;
+  top: 22px; left: 8%; right: 8%; height: 2px;
   background: linear-gradient(90deg,
     var(--terracotta-soft) 0%, var(--terracotta) 20%,
     var(--mustard) 50%, var(--moss) 80%, var(--moss-soft) 100%);
@@ -454,13 +459,12 @@
   letter-spacing: -0.01em;
 }
 .founder__quote::before { content: '\201C'; font-family: var(--font-display); font-size: 2em; line-height: 0; color: var(--terracotta); margin-right: 4px; vertical-align: -0.4em; }
-.founder__sign { display: flex; align-items: center; gap: 14px; margin-top: 32px; }
+.founder__sign { display: flex; align-items: baseline; gap: 14px; margin-top: 32px; flex-wrap: wrap; }
 .founder__sig {
   font-family: 'Fraunces', serif; font-style: italic; font-weight: 500;
   font-size: 26px; color: var(--ink); line-height: 1;
 }
-.founder__name { font-size: 14px; font-weight: 500; color: var(--ink); }
-.founder__role { font-size: 13px; color: var(--ink-3); margin-top: 2px; }
+.founder__role { font-size: 13px; color: var(--ink-3); }
 
 @media (max-width: 720px) { .founder__grid { grid-template-columns: 1fr; gap: 36px; } .founder__photo { max-width: 300px; margin: 0 auto; } }
 
