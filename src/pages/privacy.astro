@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/legal.css';
+---
+
+<BaseLayout
+  title="Privacy Policy — Attic"
+  description="How Attic collects, uses, and protects your information. Colorado consumer privacy rights included."
+  ogTitle="Privacy Policy — Attic"
+  ogDescription="What we collect, why, and how we keep it safe."
+>
+
+<header class="legal-hero"><div class="wrap">
+<p class="eyebrow">Legal</p>
+<h1>Privacy Policy</h1>
+<p>Last updated April 21, 2026 · Effective immediately</p>
+</div></header>
+
+<section class="legal"><div class="wrap">
+<div class="legal__grid">
+<aside class="legal__toc">
+<h4>Contents</h4>
+<a href="#overview">Overview</a>
+<a href="#what">What we collect</a>
+<a href="#why">Why we collect it</a>
+<a href="#share">Who we share with</a>
+<a href="#choices">Your choices</a>
+<a href="#retention">Retention</a>
+<a href="#security">Security</a>
+<a href="#children">Children</a>
+<a href="#changes">Changes</a>
+<a href="#contact">Contact</a>
+</aside>
+
+<div class="legal__body">
+<h2 id="overview">Overview</h2>
+<p>Attic Inc. ("Attic", "we", "us") operates a personal storage service in Denver, Colorado. This policy describes what information we collect when you use attic.it.com, app.attic.it.com, or our driver and warehouse apps — and what we do with it.</p>
+<p>The short version: we collect what we need to pick up, store, and return your things — plus what's necessary to run the business. We don't sell personal data and we never share the contents of your bins.</p>
+
+<h2 id="what">What we collect</h2>
+<h3>You give us</h3>
+<ul>
+<li>Name, email, phone, billing address, and service address.</li>
+<li>Payment card details, handled by our PCI-compliant payment processor (Stripe). We don't store card numbers on our servers.</li>
+<li>Bin labels, descriptions, and optional photos you attach to bins in the app.</li>
+<li>Messages you send to support.</li>
+</ul>
+
+<h3>We collect automatically</h3>
+<ul>
+<li>Device info (OS, browser, IP address) and app analytics events.</li>
+<li>Chain-of-custody records: QR scans of bins at pickup, arrival, shelf placement, and return.</li>
+<li>Approximate location when tracking an active delivery (drivers only while on a route).</li>
+</ul>
+
+<h2 id="why">Why we collect it</h2>
+<ul>
+<li><strong>To provide the service:</strong> schedule pickups, deliver bins, show you where your stuff is.</li>
+<li><strong>To bill you:</strong> apply the flat $12/bin/month and handle refunds.</li>
+<li><strong>To keep things safe:</strong> investigate any claim, loss, or dispute.</li>
+<li><strong>To improve the product:</strong> understand which features help and which don't.</li>
+</ul>
+
+<h2 id="share">Who we share with</h2>
+<p>We share personal information only with:</p>
+<ul>
+<li><strong>Service providers</strong> who help us run the business: Stripe (payments), Twilio (SMS notifications), HarperDB (database), Vercel (hosting), Sentry (error tracking).</li>
+<li><strong>Authorities</strong> if legally required, and only the minimum necessary.</li>
+</ul>
+<p>We never sell your data or share it for advertising.</p>
+
+<h2 id="choices">Your choices</h2>
+<ul>
+<li>You can access, correct, or delete your account data by emailing <a href="mailto:privacy@attic.it.com">privacy@attic.it.com</a>.</li>
+<li>You can opt out of non-essential notifications in the app settings.</li>
+<li>Colorado residents have additional rights under the Colorado Privacy Act — we honor all of them.</li>
+</ul>
+
+<h2 id="retention">Retention</h2>
+<p>We keep account data for as long as you're a customer, plus three years after you close your account (to satisfy tax and legal obligations). Chain-of-custody scan records are retained for seven years. Bin photos you upload are deleted 90 days after a bin is returned or removed.</p>
+
+<h2 id="security">Security</h2>
+<p>We encrypt data in transit (TLS 1.3) and at rest. Access to customer data inside Attic is role-based and audit-logged. Drivers and warehouse staff see only the information they need to do their job — never your billing details or bin contents beyond what you've labeled.</p>
+
+<h2 id="children">Children</h2>
+<p>Attic isn't for children. We don't knowingly collect information from anyone under 13. If you think a child has signed up, email us and we'll remove the account.</p>
+
+<h2 id="changes">Changes</h2>
+<p>If we change this policy in a material way, we'll email account holders at least 14 days before it takes effect.</p>
+
+<h2 id="contact">Contact</h2>
+<p>Questions? <a href="mailto:privacy@attic.it.com">privacy@attic.it.com</a> — a real human at Attic reads these.</p>
+</div>
+</div>
+</div></section>
+
+</BaseLayout>

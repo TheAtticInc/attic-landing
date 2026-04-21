@@ -1,0 +1,136 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/landing.css';
+import '../styles/denver.css';
+---
+
+<BaseLayout
+  title="Denver — Attic"
+  description="Attic is Denver's on-demand personal storage service. Climate-controlled facility near I-25, next-day delivery across Highland, RiNo, Cap Hill, Wash Park, Cherry Creek, and beyond."
+  ogTitle="Attic — Storage at Denver pace"
+  ogDescription="Colorado built. Next-day returns across the metro."
+>
+
+<header class="dv-hero">
+  <div class="wrap">
+    <div class="dv-hero__grid">
+      <div>
+        <p class="eyebrow">Denver &amp; the Front Range</p>
+        <h1>Storage,<br/><em>at Denver pace.</em></h1>
+        <p class="lede">Colorado built. Colorado based. A next-day return from our climate-controlled facility near I-25 to any doorstep in the metro.</p>
+        <div class="hero__cta">
+          <a class="btn btn-primary btn-lg" href="/#waitlist">Request an invite</a>
+          <a class="btn btn-ghost btn-lg" href="#neighborhoods">Check your neighborhood →</a>
+        </div>
+      </div>
+      <div aria-hidden="true">
+        <svg viewBox="0 0 500 440" style="width:100%;height:auto;border-radius:22px;box-shadow:var(--sh-2);">
+          <defs>
+            <radialGradient id="mg" cx="50%" cy="50%"><stop offset="0%" stop-color="#F9DFC8"/><stop offset="100%" stop-color="#F5EADB"/></radialGradient>
+          </defs>
+          <rect width="500" height="440" fill="url(#mg)" rx="22"/>
+          <g fill="#8C7A68" opacity="0.25"><path d="M 0 80 L 60 40 L 120 70 L 180 30 L 240 60 L 300 20 L 360 50 L 420 35 L 500 70 L 500 100 L 0 100 Z"/></g>
+          <g stroke="#D4C3A4" stroke-width="2" fill="none" opacity="0.8">
+            <path d="M 0 220 L 500 200"/><path d="M 0 300 L 500 290"/><path d="M 0 380 L 500 370"/>
+            <path d="M 140 100 L 160 440"/><path d="M 260 100 L 280 440"/><path d="M 380 100 L 400 440"/>
+          </g>
+          <path d="M 150 100 Q 200 220 180 440" stroke="#C65D3C" stroke-width="3" fill="none" stroke-dasharray="6 4" opacity="0.6"/>
+          <g font-family="'Inter',sans-serif" font-size="11" font-weight="500" fill="#5A4A3C">
+            <g><circle cx="180" cy="240" r="6" fill="#C65D3C"/><text x="195" y="244">Highland</text></g>
+            <g><circle cx="260" cy="220" r="6" fill="#C65D3C"/><text x="275" y="224">RiNo</text></g>
+            <g><circle cx="270" cy="280" r="6" fill="#C65D3C"/><text x="285" y="284">Cap Hill</text></g>
+            <g><circle cx="240" cy="340" r="6" fill="#C65D3C"/><text x="255" y="344">Wash Park</text></g>
+            <g><circle cx="360" cy="300" r="6" fill="#C65D3C"/><text x="375" y="304">Cherry Creek</text></g>
+            <g><circle cx="160" cy="180" r="6" fill="#C65D3C"/><text x="175" y="184">Berkeley</text></g>
+            <g><circle cx="130" cy="320" r="6" fill="#C65D3C"/><text x="145" y="324">Sunnyside</text></g>
+            <g><circle cx="330" cy="360" r="6" fill="#C65D3C"/><text x="345" y="364">Platt Park</text></g>
+          </g>
+          <g transform="translate(310 240)">
+            <circle r="14" fill="#E8B84A" opacity="0.3"/><circle r="9" fill="#E8B84A"/>
+            <path d="M -4 -3 L 0 -7 L 4 -3 L 4 4 L -4 4 Z" fill="#23180F"/>
+            <text y="30" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="600" fill="#23180F" text-anchor="middle" letter-spacing="0.5">ATTIC HQ</text>
+          </g>
+        </svg>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="stripe stripe--paper">
+  <div class="wrap">
+    <div style="max-width:680px;margin-bottom:40px;">
+      <p class="eyebrow">The numbers</p>
+      <h2 class="h2">Denver, by the <em>bin.</em></h2>
+    </div>
+    <div class="dv-stats">
+      <div class="dv-stats__cell"><div class="dv-stats__num">1,284</div><div class="dv-stats__label">Bins stored for Denver households</div></div>
+      <div class="dv-stats__cell"><div class="dv-stats__num">8</div><div class="dv-stats__label">Denver neighborhoods served</div></div>
+      <div class="dv-stats__cell"><div class="dv-stats__num">99.7%</div><div class="dv-stats__label">On-time delivery this month</div></div>
+      <div class="dv-stats__cell"><div class="dv-stats__num">23 min</div><div class="dv-stats__label">Average warehouse-to-door</div></div>
+    </div>
+  </div>
+</section>
+
+<section id="neighborhoods" class="stripe">
+  <div class="wrap">
+    <div style="max-width:680px;margin-bottom:40px;">
+      <p class="eyebrow">Neighborhoods</p>
+      <h2 class="h2">Where we're<br/><em>driving today.</em></h2>
+      <p class="body-lg" style="margin-top:16px;">Typical next-day windows below. Same-day available on request.</p>
+    </div>
+    <div class="dv-nbh">
+      <div class="dv-nbh__tile"><p class="dv-nbh__name">Highland</p><p class="dv-nbh__stat">80211 · 80212</p><p class="dv-nbh__eta">Next-day · Mon–Sat</p></div>
+      <div class="dv-nbh__tile"><p class="dv-nbh__name">RiNo</p><p class="dv-nbh__stat">80205</p><p class="dv-nbh__eta">Next-day · Mon–Sat</p></div>
+      <div class="dv-nbh__tile"><p class="dv-nbh__name">Capitol Hill</p><p class="dv-nbh__stat">80203 · 80218</p><p class="dv-nbh__eta">Next-day · Mon–Sat</p></div>
+      <div class="dv-nbh__tile"><p class="dv-nbh__name">Washington Park</p><p class="dv-nbh__stat">80210 · 80209</p><p class="dv-nbh__eta">Next-day · Mon–Sat</p></div>
+      <div class="dv-nbh__tile"><p class="dv-nbh__name">Cherry Creek</p><p class="dv-nbh__stat">80206</p><p class="dv-nbh__eta">Next-day · Mon–Sat</p></div>
+      <div class="dv-nbh__tile"><p class="dv-nbh__name">Berkeley</p><p class="dv-nbh__stat">80212 · 80221</p><p class="dv-nbh__eta">Next-day · Mon–Sat</p></div>
+      <div class="dv-nbh__tile"><p class="dv-nbh__name">Sunnyside</p><p class="dv-nbh__stat">80211</p><p class="dv-nbh__eta">Next-day · Mon–Sat</p></div>
+      <div class="dv-nbh__tile"><p class="dv-nbh__name">Platt Park</p><p class="dv-nbh__stat">80210</p><p class="dv-nbh__eta">Next-day · Mon–Sat</p></div>
+    </div>
+    <p class="body" style="margin-top:32px;">Coming soon: Aurora, Lakewood, Englewood, and Boulder. <a href="mailto:hi@attic.it.com?subject=Denver%20expansion">Ping us</a> to jump the line in your area.</p>
+  </div>
+</section>
+
+<section class="stripe stripe--cream">
+  <div class="wrap">
+    <div style="max-width:680px;margin-bottom:40px;">
+      <p class="eyebrow">Denver stories</p>
+      <h2 class="h2">From <em>neighbors</em> already storing.</h2>
+    </div>
+    <div class="dv-quotes">
+      <div class="dv-quote">
+        <p>"My garage is a garage again. I didn't realize how much mental space those bins were taking up until they weren't here anymore."</p>
+        <div class="dv-quote__who"><div class="dv-quote__avatar">M</div><div><div class="dv-quote__name">Maya R.</div><div class="dv-quote__nbh">Highland · 6 bins</div></div></div>
+      </div>
+      <div class="dv-quote">
+        <p>"Called a bin back on a Tuesday afternoon. It was on my porch before dinner Wednesday. My husband thought I was joking."</p>
+        <div class="dv-quote__who"><div class="dv-quote__avatar">J</div><div><div class="dv-quote__name">Jess &amp; Tom</div><div class="dv-quote__nbh">Wash Park · 12 bins</div></div></div>
+      </div>
+      <div class="dv-quote">
+        <p>"I love that they scan everything. I can see exactly where bin #19 is sitting right now. It's weirdly satisfying."</p>
+        <div class="dv-quote__who"><div class="dv-quote__avatar">D</div><div><div class="dv-quote__name">Derek L.</div><div class="dv-quote__nbh">Cap Hill · 4 bins</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-final">
+  <div class="wrap-narrow">
+    <h2>Ready to get some <em>space back?</em></h2>
+    <p class="sub">If you're in Denver, you can be tucking bins in next week.</p>
+    <form class="email-form" data-email-form novalidate>
+      <div class="email-form__fields" data-email-fields>
+        <input type="email" placeholder="you@email.com" required aria-label="Email address" />
+        <button type="submit">Request invite</button>
+      </div>
+      <div class="email-form__success" data-email-success role="status">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>You're on the list. Check your inbox.</span>
+      </div>
+      <p class="email-form__fine">No marketing. We email you once, when your invite's ready.</p>
+    </form>
+  </div>
+</section>
+
+</BaseLayout>
