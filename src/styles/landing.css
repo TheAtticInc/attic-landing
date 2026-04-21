@@ -230,8 +230,19 @@
       var(--terracotta-soft) 0%, var(--terracotta) 20%,
       var(--mustard) 50%, var(--moss) 80%, var(--moss-soft) 100%);
   }
-  .day__step { display: grid; grid-template-columns: 60px 1fr; gap: 16px; text-align: left; padding: 0; }
-  .day__pin { margin: 0; }
+  /* Grid has 4 direct children (pin + time + h3 + p). Pin anchors column 1
+     for all three rows; time, h3, p flow into column 2 stacked vertically.
+     Without this, auto-placement zig-zags the h3 back into column 1 and
+     squishes it into a 60px-wide slot ("labels squished on the left"). */
+  .day__step {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    gap: 4px 16px;
+    text-align: left;
+    padding: 0;
+    align-items: start;
+  }
+  .day__pin { margin: 0; grid-row: 1 / span 3; align-self: start; }
 }
 
 /* =========================================================
@@ -486,6 +497,18 @@
 }
 .faq details[open] summary::after { transform: translateY(-50%) rotate(180deg); background-size: 100% 2px, 0 100%; }
 .faq p { margin: 14px 0 0; color: var(--ink-2); font-size: 15.5px; line-height: 1.65; max-width: 680px; }
+
+/* The FAQ section wraps its content in a 2-col grid via inline style on
+   .wrap. That's fine on desktop, bad on mobile — the questions get
+   squished into a ~150px track and break out of the viewport width.
+   Collapse to single column on mobile. */
+@media (max-width: 840px) {
+  section.faq > .wrap {
+    display: block !important;
+    grid-template-columns: 1fr !important;
+  }
+  .faq__grid { margin-top: 32px; }
+}
 
 /* =========================================================
    FINAL CTA — waitlist capture
