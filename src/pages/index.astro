@@ -1,0 +1,1021 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import '../styles/landing.css';
+---
+
+<BaseLayout
+  title="Attic — Personal storage, on demand in Denver"
+  description="Attic picks up your bins, stores them safely in our Denver facility, and delivers them back when you need them. $12 per bin per month, flat."
+  ogTitle="Attic — Personal storage, on demand"
+  ogDescription="Your things, out of the way and on demand. $12/bin/month."
+>
+
+
+<!-- ===================================================================
+     HERO
+     =================================================================== -->
+<header class="hero">
+  <div class="hero-dust" data-dust aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="hero__grid">
+      <!-- LEFT: copy -->
+      <div>
+        <span class="hero__label">
+          <span class="hero__label-dot"></span>
+          Now in Denver &amp; the Front Range
+        </span>
+        <h1 class="hero__h1">Your things,<br/><em>tucked away.</em></h1>
+        <p class="hero__lede">Storage that comes to you — not the other way around.</p>
+        <p class="hero__sub">
+          We drop off sturdy bins, pick them up when you're packed,
+          and store them in our climate-controlled Denver facility.
+          Call anything back in a tap. $12 a bin, a month.
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn-primary btn-lg" href="#waitlist">Request an invite</a>
+          <a class="btn btn-ghost btn-lg" href="#how">See how it works →</a>
+        </div>
+        <div class="hero__ticker" data-ticker aria-live="polite">
+          <span class="hero__ticker-dot"></span>
+          <div class="hero__ticker-lines">
+            <span data-ticker-line><strong>1,284</strong> bins tucked in right now</span>
+            <span data-ticker-line>Average return time: <strong>next day by 6pm</strong></span>
+            <span data-ticker-line><strong>99.7%</strong> on-time delivery in Denver this month</span>
+            <span data-ticker-line>Scanned <strong>6,420 times</strong> in the last 30 days</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIGHT: phone stack over attic illustration -->
+      <div class="hero__stage" aria-hidden="true">
+        <div class="hero__attic">
+          <!-- Attic cross-section — a cozy wooden house with a glowing interior -->
+          <svg viewBox="0 0 560 560" preserveAspectRatio="xMidYMid meet">
+            <defs>
+              <linearGradient id="roof" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#C65D3C"/>
+                <stop offset="100%" stop-color="#8A3B1F"/>
+              </linearGradient>
+              <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#ECDEC7"/>
+                <stop offset="100%" stop-color="#D4C3A4"/>
+              </linearGradient>
+              <radialGradient id="glow" cx="50%" cy="40%">
+                <stop offset="0%" stop-color="#FBEECB" stop-opacity="0.9"/>
+                <stop offset="100%" stop-color="#FBEECB" stop-opacity="0"/>
+              </radialGradient>
+            </defs>
+            <!-- soft glow behind house -->
+            <circle cx="280" cy="240" r="260" fill="url(#glow)"/>
+            <!-- house silhouette (cross-section) -->
+            <g>
+              <!-- roof -->
+              <path d="M 80 280 L 280 80 L 480 280 Z" fill="url(#roof)"/>
+              <!-- roof shingles -->
+              <g stroke="#8A3B1F" stroke-width="1.2" opacity="0.35" fill="none">
+                <path d="M 120 260 L 280 100 L 440 260"/>
+                <path d="M 150 240 L 280 120 L 410 240"/>
+                <path d="M 180 220 L 280 140 L 380 220"/>
+                <path d="M 210 200 L 280 160 L 350 200"/>
+              </g>
+              <!-- attic floor -->
+              <rect x="80" y="280" width="400" height="6" fill="#23180F" opacity="0.25"/>
+              <!-- attic window (circle) -->
+              <circle cx="280" cy="200" r="26" fill="#FBEECB" opacity="0.9"/>
+              <circle cx="280" cy="200" r="26" fill="none" stroke="#8A3B1F" stroke-width="3"/>
+              <line x1="254" y1="200" x2="306" y2="200" stroke="#8A3B1F" stroke-width="2"/>
+              <line x1="280" y1="174" x2="280" y2="226" stroke="#8A3B1F" stroke-width="2"/>
+              <!-- ground line suggestion -->
+            </g>
+            <!-- tiny bins stacked on attic floor -->
+            <g transform="translate(130 240)">
+              <rect x="0" y="0" width="36" height="30" rx="3" fill="#C65D3C" opacity="0.85"/>
+              <rect x="6" y="4" width="24" height="4" rx="1" fill="#FFF8EE" opacity="0.5"/>
+              <rect x="40" y="6" width="32" height="24" rx="3" fill="#6B8E5A" opacity="0.85"/>
+              <rect x="44" y="10" width="24" height="3" rx="1" fill="#FFF8EE" opacity="0.5"/>
+              <rect x="6" y="-18" width="30" height="18" rx="3" fill="#E8B84A" opacity="0.85"/>
+            </g>
+            <g transform="translate(360 248)">
+              <rect x="0" y="0" width="40" height="26" rx="3" fill="#5A7FA3" opacity="0.85"/>
+              <rect x="5" y="4" width="28" height="3" rx="1" fill="#FFF8EE" opacity="0.5"/>
+              <rect x="44" y="-12" width="32" height="38" rx="3" fill="#A6436A" opacity="0.75"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- phone mock stack — cycles through 3 screens -->
+        <div class="hero__phone-stack" data-phone-stack>
+
+          <!-- CARD 1: Home -->
+          <div class="phone-card" data-phone-card>
+            <div class="phone">
+              <div class="phone__notch"></div>
+              <div class="phone__status">
+                <span>9:41</span>
+                <span>●●● ▲ 🔋</span>
+              </div>
+              <div class="phone__screen" style="background: #F5EADB;">
+                <div style="padding: 14px 2px 8px;">
+                  <div style="font-family:'Fraunces',serif;font-weight:600;font-size:26px;letter-spacing:-0.02em;color:#23180F;line-height:1.1;">Good morning,<br/>Luke.</div>
+                  <div style="font-size:12.5px;color:#8C7A68;margin-top:6px;">8 bins tucked in · 2 with you</div>
+                </div>
+                <div style="background:#FFFAF1;border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:0 1px 2px rgba(80,52,28,0.06);">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <div>
+                      <div style="font-family:'Fraunces',serif;font-weight:600;font-size:14.5px;color:#23180F;">Bin #042</div>
+                      <div style="font-size:11.5px;color:#8C7A68;">Holiday decor</div>
+                    </div>
+                    <span style="background:#DDE6D0;color:#4E6B41;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:600;">IN THE ATTIC</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#8C7A68;">
+                    <span style="width:6px;height:6px;border-radius:99px;background:#6B8E5A;"></span>
+                    Shelf B-12 · tucked in 24 days
+                  </div>
+                </div>
+                <div style="background:#FFFAF1;border-radius:14px;padding:14px;margin-bottom:10px;box-shadow:0 1px 2px rgba(80,52,28,0.06);">
+                  <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px;">
+                    <div>
+                      <div style="font-family:'Fraunces',serif;font-weight:600;font-size:14.5px;color:#23180F;">Bin #017</div>
+                      <div style="font-size:11.5px;color:#8C7A68;">Winter coats</div>
+                    </div>
+                    <span style="background:#FBEECB;color:#B8861F;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:600;">ON THE MOVE</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:8px;font-size:11px;color:#8C7A68;">
+                    <span style="width:6px;height:6px;border-radius:99px;background:#E8B84A;"></span>
+                    Out for delivery · ETA 4:20 PM
+                  </div>
+                </div>
+                <button style="width:100%;background:#C65D3C;color:#FFF8EE;border:none;border-radius:99px;padding:14px;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;margin-top:4px;">+ Order more bins</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 2: Tracking -->
+          <div class="phone-card" data-phone-card>
+            <div class="phone">
+              <div class="phone__notch"></div>
+              <div class="phone__status">
+                <span>9:41</span>
+                <span>●●● ▲ 🔋</span>
+              </div>
+              <div class="phone__screen" style="background:#F5EADB;padding:0 0 20px;">
+                <!-- map -->
+                <div style="height:260px;background:linear-gradient(160deg,#DDE6D0 0%,#CADBBE 100%);position:relative;overflow:hidden;">
+                  <!-- streets -->
+                  <svg viewBox="0 0 300 260" width="100%" height="100%" style="position:absolute;inset:0;">
+                    <g stroke="#FFFAF1" stroke-width="3" fill="none" opacity="0.9">
+                      <path d="M -10 60 L 320 90"/>
+                      <path d="M -10 150 L 320 130"/>
+                      <path d="M -10 210 L 320 190"/>
+                      <path d="M 60 -10 L 90 280"/>
+                      <path d="M 180 -10 L 210 280"/>
+                    </g>
+                    <!-- route -->
+                    <path d="M 40 220 Q 100 200 120 150 T 200 90 L 230 80" stroke="#C65D3C" stroke-width="3" fill="none" stroke-dasharray="6 5" stroke-linecap="round"/>
+                    <!-- driver pin -->
+                    <circle cx="120" cy="150" r="10" fill="#C65D3C"/>
+                    <circle cx="120" cy="150" r="18" fill="#C65D3C" opacity="0.25"/>
+                    <circle cx="120" cy="150" r="6" fill="#FFF8EE"/>
+                    <!-- dest pin -->
+                    <g transform="translate(230 80)">
+                      <path d="M 0 -20 C -8 -20 -14 -14 -14 -6 C -14 4 0 14 0 14 C 0 14 14 4 14 -6 C 14 -14 8 -20 0 -20 Z" fill="#23180F"/>
+                      <circle cx="0" cy="-6" r="4" fill="#F5EADB"/>
+                    </g>
+                  </svg>
+                </div>
+                <div style="padding:18px 18px 0;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;">
+                    <div style="font-family:'Fraunces',serif;font-weight:600;font-size:20px;letter-spacing:-0.02em;color:#23180F;">Your bin's on the move</div>
+                  </div>
+                  <div style="display:flex;gap:10px;margin-bottom:14px;">
+                    <div style="flex:1;background:#FFFAF1;border-radius:10px;padding:10px 12px;">
+                      <div style="font-size:10px;color:#8C7A68;text-transform:uppercase;letter-spacing:0.8px;font-family:'JetBrains Mono',monospace;">Driver</div>
+                      <div style="font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:#23180F;margin-top:2px;">Marcus</div>
+                    </div>
+                    <div style="flex:1;background:#FFFAF1;border-radius:10px;padding:10px 12px;">
+                      <div style="font-size:10px;color:#8C7A68;text-transform:uppercase;letter-spacing:0.8px;font-family:'JetBrains Mono',monospace;">ETA</div>
+                      <div style="font-family:'Fraunces',serif;font-weight:600;font-size:15px;color:#C65D3C;margin-top:2px;">12 min</div>
+                    </div>
+                  </div>
+                  <div style="background:#FFFAF1;border-radius:10px;padding:12px;font-size:12px;color:#5A4A3C;">
+                    <span style="color:#6B8E5A;font-weight:600;">●</span> Picked up at warehouse — 9:14 AM
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CARD 3: Bin detail -->
+          <div class="phone-card" data-phone-card>
+            <div class="phone">
+              <div class="phone__notch"></div>
+              <div class="phone__status">
+                <span>9:41</span>
+                <span>●●● ▲ 🔋</span>
+              </div>
+              <div class="phone__screen" style="background:#F5EADB;">
+                <div style="padding:14px 2px 14px;">
+                  <div style="font-size:11.5px;color:#8C7A68;font-family:'JetBrains Mono',monospace;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:4px;">Bin · #042</div>
+                  <div style="font-family:'Fraunces',serif;font-weight:600;font-size:26px;letter-spacing:-0.02em;color:#23180F;line-height:1.1;">Holiday decor</div>
+                </div>
+                <!-- hero photo of bin contents placeholder -->
+                <div style="height:150px;border-radius:14px;background:linear-gradient(160deg,#C65D3C 0%,#8A3B1F 100%);display:flex;align-items:center;justify-content:center;margin-bottom:14px;position:relative;overflow:hidden;">
+                  <svg width="70" height="70" viewBox="0 0 60 60" style="opacity:0.9;">
+                    <rect x="10" y="18" width="40" height="32" rx="2" fill="#FFFAF1"/>
+                    <rect x="14" y="22" width="32" height="4" rx="1" fill="#C65D3C" opacity="0.4"/>
+                    <rect x="8" y="14" width="44" height="8" rx="1" fill="#FFFAF1"/>
+                    <circle cx="30" cy="34" r="3" fill="#23180F" opacity="0.2"/>
+                  </svg>
+                </div>
+                <div style="background:#FFFAF1;border-radius:14px;padding:14px 16px;margin-bottom:10px;">
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;">
+                    <div style="font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.8px;text-transform:uppercase;color:#8C7A68;">Location</div>
+                    <span style="background:#DDE6D0;color:#4E6B41;padding:3px 8px;border-radius:99px;font-size:10px;font-weight:600;">TUCKED IN</span>
+                  </div>
+                  <div style="font-family:'Fraunces',serif;font-weight:600;font-size:18px;color:#23180F;">Shelf B-12 · Row 3</div>
+                  <div style="font-size:12px;color:#8C7A68;margin-top:2px;">Last scanned 24 days ago</div>
+                </div>
+                <button style="width:100%;background:#C65D3C;color:#FFF8EE;border:none;border-radius:99px;padding:14px;font-family:'Inter',sans-serif;font-weight:600;font-size:14px;">Call this bin back →</button>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ===================================================================
+     PROOF STRIP
+     =================================================================== -->
+<section class="proof">
+  <div class="wrap">
+    <div class="proof__grid">
+      <div class="proof__item">
+        <div class="proof__num"><span data-count="1284" data-suffix="">0</span></div>
+        <div class="proof__label">Bins in the attic</div>
+      </div>
+      <div class="proof__item">
+        <div class="proof__num"><span data-count="99.7" data-decimals="1" data-suffix="%">0</span></div>
+        <div class="proof__label">On-time deliveries</div>
+      </div>
+      <div class="proof__item">
+        <div class="proof__num"><span data-count="24" data-suffix="h">0</span></div>
+        <div class="proof__label">Avg. return window</div>
+      </div>
+      <div class="proof__item">
+        <div class="proof__num"><span data-count="2000" data-prefix="$">0</span></div>
+        <div class="proof__label">Insured per bin</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     DAY WITH ATTIC
+     =================================================================== -->
+<section id="how" class="stripe stripe--paper day">
+  <div class="wrap">
+    <div class="day__head reveal">
+      <div class="day__head-left">
+        <p class="eyebrow">A day with Attic</p>
+        <h2 class="h2">Six taps. One truck.<br/><em>Zero storage-unit weekends.</em></h2>
+      </div>
+      <p class="body-lg" style="max-width:360px;">From "I need bins" to "it's in my kitchen again" — the whole loop, on a single timeline.</p>
+    </div>
+
+    <div class="day__track">
+      <div class="day__rail" aria-hidden="true"></div>
+
+      <div class="day__step reveal" data-delay="1">
+        <div class="day__pin" data-tone="t">1</div>
+        <p class="day__time">Tuesday · 9:12 AM</p>
+        <h3>You order bins</h3>
+        <p>Tap how many you want. First drop-off's free.</p>
+      </div>
+      <div class="day__step reveal" data-delay="2">
+        <div class="day__pin" data-tone="t">2</div>
+        <p class="day__time">Wednesday · 11:30 AM</p>
+        <h3>We drop them off</h3>
+        <p>Empty, sealed, stackable. Ready to fill at your pace.</p>
+      </div>
+      <div class="day__step reveal" data-delay="3">
+        <div class="day__pin" data-tone="m">3</div>
+        <p class="day__time">Saturday · Afternoon</p>
+        <h3>You pack them</h3>
+        <p>Label from the app. Snap photos of what's inside.</p>
+      </div>
+      <div class="day__step reveal" data-delay="4">
+        <div class="day__pin" data-tone="m">4</div>
+        <p class="day__time">Monday · 2:40 PM</p>
+        <h3>We pick them up</h3>
+        <p>A driver loads them. You get a "tucked in" receipt.</p>
+      </div>
+      <div class="day__step reveal" data-delay="5">
+        <div class="day__pin" data-tone="moss">5</div>
+        <p class="day__time">Stored indefinitely</p>
+        <h3>They rest in the attic</h3>
+        <p>Climate-controlled. Chain-of-custody scanned.</p>
+      </div>
+      <div class="day__step reveal" data-delay="5">
+        <div class="day__pin" data-tone="moss">6</div>
+        <p class="day__time">December · Next day</p>
+        <h3>Call anything back</h3>
+        <p>Tap "send it back." It's on your porch tomorrow.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     FACILITY
+     =================================================================== -->
+<section class="stripe stripe--dark facility">
+  <div class="wrap">
+    <div class="facility__grid">
+      <div class="reveal">
+        <p class="eyebrow">Inside the attic</p>
+        <h2 class="h2" style="color:#F5EADB;">A proper home for<br/>your things.</h2>
+        <p class="body-lg" style="margin-top:24px;max-width:460px;">Our Denver facility isn't a garage unit. It's a climate-controlled, scan-tracked, insured home — purpose-built for the stuff you want to keep but don't need underfoot.</p>
+
+        <div class="facility__features">
+          <div class="fac-feat reveal" data-delay="1">
+            <div class="fac-feat__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </div>
+            <div>
+              <h4>Secured 24/7</h4>
+              <p>Keycard access, 16 cameras, motion sensors. Only named staff ever touch a bin.</p>
+            </div>
+          </div>
+          <div class="fac-feat reveal" data-delay="2">
+            <div class="fac-feat__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
+            </div>
+            <div>
+              <h4>Climate-controlled</h4>
+              <p>Held at 65–72°F year-round. No freeze, no bake, no musty-garage funk.</p>
+            </div>
+          </div>
+          <div class="fac-feat reveal" data-delay="3">
+            <div class="fac-feat__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM18 14h3M14 18h3M18 21h3"/></svg>
+            </div>
+            <div>
+              <h4>Every bin scanned</h4>
+              <p>QR-coded and scanned at pickup, intake, shelf placement, and return. Full custody trail.</p>
+            </div>
+          </div>
+          <div class="fac-feat reveal" data-delay="4">
+            <div class="fac-feat__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+            </div>
+            <div>
+              <h4>Insured to $2,000</h4>
+              <p>Every bin, every month, baked into the price. No extra rider to buy.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="facility__scene reveal" data-delay="2" aria-hidden="true">
+        <!-- Warehouse interior cross-section: shelving with bins + glow -->
+        <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice">
+          <defs>
+            <linearGradient id="shelfGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#3A2A1A"/>
+              <stop offset="100%" stop-color="#1A120A"/>
+            </linearGradient>
+            <radialGradient id="warmLight" cx="50%" cy="30%">
+              <stop offset="0%" stop-color="#FBEECB" stop-opacity="0.4"/>
+              <stop offset="60%" stop-color="#E8B84A" stop-opacity="0.1"/>
+              <stop offset="100%" stop-color="#140D07" stop-opacity="0"/>
+            </radialGradient>
+          </defs>
+
+          <!-- background glow -->
+          <rect width="600" height="450" fill="#140D07"/>
+          <ellipse cx="300" cy="130" rx="300" ry="200" fill="url(#warmLight)"/>
+
+          <!-- floor -->
+          <path d="M 0 380 L 600 380 L 600 450 L 0 450 Z" fill="#0A0704"/>
+          <!-- perspective floor lines -->
+          <g stroke="#3A2A1A" stroke-width="1" opacity="0.5">
+            <line x1="0" y1="400" x2="600" y2="400"/>
+            <line x1="0" y1="420" x2="600" y2="420"/>
+          </g>
+
+          <!-- warehouse shelving (3 rows, deep perspective) -->
+          <!-- back row, smallest -->
+          <g transform="translate(140 100)">
+            <rect x="0" y="0" width="320" height="240" fill="url(#shelfGrad)" stroke="#4A3820" stroke-width="1"/>
+            <!-- horizontal shelf lines -->
+            <line x1="0" y1="60" x2="320" y2="60" stroke="#5A4028" stroke-width="2"/>
+            <line x1="0" y1="120" x2="320" y2="120" stroke="#5A4028" stroke-width="2"/>
+            <line x1="0" y1="180" x2="320" y2="180" stroke="#5A4028" stroke-width="2"/>
+            <!-- vertical supports -->
+            <line x1="80" y1="0" x2="80" y2="240" stroke="#4A3820" stroke-width="1.5"/>
+            <line x1="160" y1="0" x2="160" y2="240" stroke="#4A3820" stroke-width="1.5"/>
+            <line x1="240" y1="0" x2="240" y2="240" stroke="#4A3820" stroke-width="1.5"/>
+
+            <!-- bins: row 1 -->
+            <g transform="translate(8 14)">
+              <rect width="60" height="42" rx="3" fill="#C65D3C"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/>
+            </g>
+            <g transform="translate(88 14)">
+              <rect width="60" height="42" rx="3" fill="#6B8E5A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/>
+            </g>
+            <g transform="translate(168 14)">
+              <rect width="60" height="42" rx="3" fill="#E8B84A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#23180F" opacity="0.3"/>
+            </g>
+            <g transform="translate(248 14)">
+              <rect width="60" height="42" rx="3" fill="#5A7FA3"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/>
+            </g>
+
+            <!-- row 2 -->
+            <g transform="translate(8 74)"><rect width="60" height="42" rx="3" fill="#A6436A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
+            <g transform="translate(88 74)"><rect width="60" height="42" rx="3" fill="#C65D3C"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
+            <g transform="translate(168 74)"><rect width="60" height="42" rx="3" fill="#6B8E5A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
+            <g transform="translate(248 74)"><rect width="60" height="42" rx="3" fill="#E8B84A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#23180F" opacity="0.3"/></g>
+
+            <!-- row 3 -->
+            <g transform="translate(8 134)"><rect width="60" height="42" rx="3" fill="#5A7FA3"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
+            <g transform="translate(88 134)"><rect width="60" height="42" rx="3" fill="#C65D3C"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
+            <g transform="translate(168 134)"><rect width="60" height="42" rx="3" fill="#A6436A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
+            <g transform="translate(248 134)"><rect width="60" height="42" rx="3" fill="#6B8E5A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
+
+            <!-- row 4 -->
+            <g transform="translate(8 194)"><rect width="60" height="42" rx="3" fill="#E8B84A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#23180F" opacity="0.3"/></g>
+            <g transform="translate(88 194)"><rect width="60" height="42" rx="3" fill="#5A7FA3"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
+            <g transform="translate(168 194)"><rect width="60" height="42" rx="3" fill="#C65D3C"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
+            <g transform="translate(248 194)"><rect width="60" height="42" rx="3" fill="#A6436A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
+          </g>
+
+          <!-- hanging pendant light -->
+          <line x1="300" y1="0" x2="300" y2="70" stroke="#4A3820" stroke-width="1"/>
+          <circle cx="300" cy="78" r="12" fill="#FBEECB" opacity="0.9"/>
+          <circle cx="300" cy="78" r="24" fill="#FBEECB" opacity="0.2"/>
+
+          <!-- shelf label at bottom -->
+          <rect x="260" y="344" width="80" height="20" rx="3" fill="#2A1D10" stroke="#4A3820"/>
+          <text x="300" y="358" fill="#E8B84A" font-family="monospace" font-size="11" text-anchor="middle" letter-spacing="1">SHELF B-12</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     BIN ITSELF — the product
+     =================================================================== -->
+<section class="stripe bin">
+  <div class="wrap">
+    <div class="bin__grid">
+      <div class="bin__art reveal" aria-hidden="true">
+        <svg viewBox="0 0 500 400">
+          <defs>
+            <linearGradient id="binBody" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#C65D3C"/>
+              <stop offset="100%" stop-color="#9A4428"/>
+            </linearGradient>
+            <linearGradient id="binLid" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#D4724E"/>
+              <stop offset="100%" stop-color="#C65D3C"/>
+            </linearGradient>
+          </defs>
+
+          <!-- ground shadow -->
+          <ellipse cx="250" cy="340" rx="160" ry="12" fill="#23180F" opacity="0.12"/>
+
+          <!-- Bin body (isometric-ish) -->
+          <g transform="translate(250 200)">
+            <!-- body: tapered tote shape -->
+            <path d="M -140 -30 L 140 -30 L 120 130 L -120 130 Z" fill="url(#binBody)"/>
+            <!-- body shading -->
+            <path d="M -140 -30 L 140 -30 L 120 130 L -120 130 Z" fill="url(#binBody)"/>
+            <!-- ribs -->
+            <g stroke="#8A3B1F" stroke-width="1.5" opacity="0.35" fill="none">
+              <line x1="-134" y1="10" x2="134" y2="10"/>
+              <line x1="-130" y1="45" x2="130" y2="45"/>
+              <line x1="-126" y1="80" x2="126" y2="80"/>
+            </g>
+            <!-- highlight -->
+            <path d="M -140 -30 L 140 -30 L 138 -22 L -138 -22 Z" fill="#FFFAF1" opacity="0.25"/>
+            <!-- lid -->
+            <ellipse cx="0" cy="-30" rx="140" ry="18" fill="url(#binLid)"/>
+            <ellipse cx="0" cy="-34" rx="140" ry="18" fill="#D4724E"/>
+            <ellipse cx="0" cy="-36" rx="120" ry="10" fill="#A04528" opacity="0.4"/>
+            <!-- lid handle notches -->
+            <rect x="-16" y="-46" width="32" height="8" rx="2" fill="#8A3B1F"/>
+            <!-- QR code plate -->
+            <rect x="-34" y="10" width="68" height="68" rx="4" fill="#FFFAF1" stroke="#8A3B1F" stroke-width="1.5"/>
+            <!-- QR pattern (stylized) -->
+            <g transform="translate(-28 16)" fill="#23180F">
+              <!-- corner finders -->
+              <rect x="0" y="0" width="14" height="14"/>
+              <rect x="2" y="2" width="10" height="10" fill="#FFFAF1"/>
+              <rect x="4" y="4" width="6" height="6" fill="#23180F"/>
+              <rect x="42" y="0" width="14" height="14"/>
+              <rect x="44" y="2" width="10" height="10" fill="#FFFAF1"/>
+              <rect x="46" y="4" width="6" height="6" fill="#23180F"/>
+              <rect x="0" y="42" width="14" height="14"/>
+              <rect x="2" y="44" width="10" height="10" fill="#FFFAF1"/>
+              <rect x="4" y="46" width="6" height="6" fill="#23180F"/>
+              <!-- noise squares -->
+              <g>
+                <rect x="20" y="4" width="4" height="4"/><rect x="28" y="4" width="4" height="4"/>
+                <rect x="20" y="12" width="4" height="4"/><rect x="32" y="12" width="4" height="4"/>
+                <rect x="24" y="20" width="4" height="4"/><rect x="36" y="20" width="4" height="4"/>
+                <rect x="16" y="28" width="4" height="4"/><rect x="28" y="28" width="4" height="4"/><rect x="40" y="28" width="4" height="4"/>
+                <rect x="20" y="36" width="4" height="4"/><rect x="32" y="36" width="4" height="4"/><rect x="44" y="36" width="4" height="4"/>
+                <rect x="20" y="44" width="4" height="4"/><rect x="28" y="44" width="4" height="4"/><rect x="36" y="44" width="4" height="4"/><rect x="44" y="44" width="4" height="4"/>
+                <rect x="24" y="52" width="4" height="4"/><rect x="40" y="52" width="4" height="4"/>
+              </g>
+            </g>
+            <!-- id label -->
+            <rect x="40" y="88" width="80" height="20" rx="3" fill="#FFFAF1" opacity="0.9"/>
+            <text x="80" y="102" fill="#23180F" font-family="'JetBrains Mono',monospace" font-size="11" text-anchor="middle" font-weight="600">#042</text>
+          </g>
+
+          <!-- Spec callouts -->
+          <g font-family="'JetBrains Mono',monospace" font-size="11" fill="#8C7A68" letter-spacing="0.5">
+            <!-- top -->
+            <line x1="110" y1="170" x2="70" y2="130" stroke="#C65D3C" stroke-width="1" stroke-dasharray="3 2"/>
+            <circle cx="110" cy="170" r="3" fill="#C65D3C"/>
+            <text x="20" y="122" font-weight="500">27 GAL · 72L</text>
+
+            <line x1="390" y1="170" x2="430" y2="130" stroke="#C65D3C" stroke-width="1" stroke-dasharray="3 2"/>
+            <circle cx="390" cy="170" r="3" fill="#C65D3C"/>
+            <text x="395" y="122" font-weight="500">STACKABLE, SEALED</text>
+
+            <line x1="250" y1="260" x2="250" y2="370" stroke="#C65D3C" stroke-width="1" stroke-dasharray="3 2"/>
+            <circle cx="250" cy="260" r="3" fill="#C65D3C"/>
+            <text x="250" y="388" font-weight="500" text-anchor="middle">SCAN-TRACKED</text>
+          </g>
+        </svg>
+      </div>
+
+      <div class="reveal" data-delay="1">
+        <p class="eyebrow">The bin</p>
+        <h2 class="h2">One container,<br/>considered.</h2>
+        <p class="body-lg" style="margin-top:20px;">Industrial-grade polypropylene. Heavy enough to stack four high. Sealed against dust and mice. A QR plate that never falls off. Nothing fancy — just the right box.</p>
+
+        <dl class="bin__specs">
+          <div class="bin__spec">
+            <dt>Capacity</dt>
+            <dd>27<small>gal</small></dd>
+          </div>
+          <div class="bin__spec">
+            <dt>Dimensions</dt>
+            <dd>29×18×15<small>in</small></dd>
+          </div>
+          <div class="bin__spec">
+            <dt>Weight limit</dt>
+            <dd>60<small>lbs</small></dd>
+          </div>
+          <div class="bin__spec">
+            <dt>Stack height</dt>
+            <dd>4<small>bins</small></dd>
+          </div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     APP PREVIEW
+     =================================================================== -->
+<section class="stripe stripe--cream appreview">
+  <div class="wrap">
+    <div class="appreview__head reveal">
+      <p class="eyebrow">The app</p>
+      <h2 class="h2">Everything, <em>in a tap.</em></h2>
+      <p class="lede" style="margin-top:20px;">Order bins, schedule pickups, track a driver, call things back — from the same pocket.</p>
+    </div>
+
+    <div class="appreview__scroll">
+      <div class="appreview__phone reveal" data-delay="1">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__status"><span>9:41</span><span>●●● ▲ 🔋</span></div>
+          <div class="phone__screen" style="background:#F5EADB;">
+            <div style="padding:10px 0;font-family:'Fraunces',serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;color:#23180F;">Order bins</div>
+            <div style="font-size:12px;color:#8C7A68;margin-bottom:16px;">First delivery's on us.</div>
+            <div style="background:#FFFAF1;border-radius:14px;padding:24px 14px;text-align:center;margin-bottom:14px;">
+              <div style="font-family:'Fraunces',serif;font-weight:600;font-size:56px;letter-spacing:-0.03em;color:#C65D3C;line-height:1;">4</div>
+              <div style="font-size:12px;color:#8C7A68;margin-top:4px;">bins</div>
+              <div style="display:flex;justify-content:center;gap:10px;margin-top:16px;">
+                <button style="width:36px;height:36px;border-radius:99px;background:#F5EADB;border:none;font-size:18px;color:#C65D3C;">−</button>
+                <button style="width:36px;height:36px;border-radius:99px;background:#C65D3C;border:none;font-size:18px;color:#FFF8EE;">+</button>
+              </div>
+            </div>
+            <div style="background:#FFFAF1;border-radius:14px;padding:14px;margin-bottom:14px;font-size:12px;color:#5A4A3C;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span>Delivery</span><strong style="color:#6B8E5A;">Free</strong></div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:6px;"><span>Monthly (4 × $12)</span><strong>$48/mo</strong></div>
+              <div style="display:flex;justify-content:space-between;color:#8C7A68;"><span>Starts when filled</span><span>—</span></div>
+            </div>
+            <button style="width:100%;background:#C65D3C;color:#FFF8EE;border:none;border-radius:99px;padding:14px;font-weight:600;font-size:14px;">Schedule delivery</button>
+          </div>
+        </div>
+        <div class="appreview__caption">ORDER</div>
+      </div>
+
+      <div class="appreview__phone reveal" data-delay="2">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__status"><span>9:41</span><span>●●● ▲ 🔋</span></div>
+          <div class="phone__screen" style="background:#F5EADB;padding:0;">
+            <div style="height:180px;background:linear-gradient(160deg,#DDE6D0,#CADBBE);position:relative;">
+              <svg viewBox="0 0 260 180" width="100%" height="100%" style="position:absolute;inset:0;">
+                <g stroke="#FFFAF1" stroke-width="3" fill="none" opacity="0.85">
+                  <path d="M -10 40 L 280 60"/>
+                  <path d="M -10 110 L 280 95"/>
+                  <path d="M 60 -10 L 80 200"/>
+                </g>
+                <path d="M 40 150 Q 90 130 110 100 T 190 60 L 220 50" stroke="#C65D3C" stroke-width="3" fill="none" stroke-dasharray="5 4" stroke-linecap="round"/>
+                <circle cx="110" cy="100" r="8" fill="#C65D3C"/>
+                <circle cx="110" cy="100" r="14" fill="#C65D3C" opacity="0.25"/>
+              </svg>
+            </div>
+            <div style="padding:14px;">
+              <div style="font-family:'Fraunces',serif;font-weight:600;font-size:18px;letter-spacing:-0.02em;color:#23180F;margin-bottom:4px;">Marcus is 8 min away</div>
+              <div style="font-size:11.5px;color:#8C7A68;margin-bottom:12px;">Bringing bins #041–#044</div>
+              <div style="background:#FFFAF1;border-radius:10px;padding:10px 12px;display:flex;align-items:center;gap:10px;">
+                <div style="width:36px;height:36px;border-radius:99px;background:#C65D3C;color:#FFF8EE;display:flex;align-items:center;justify-content:center;font-weight:600;font-size:13px;">M</div>
+                <div style="flex:1;">
+                  <div style="font-weight:600;font-size:13px;color:#23180F;">Marcus</div>
+                  <div style="font-size:11px;color:#8C7A68;">Your driver today</div>
+                </div>
+                <div style="font-size:18px;">💬</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="appreview__caption">TRACK</div>
+      </div>
+
+      <div class="appreview__phone reveal" data-delay="3">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__status"><span>9:41</span><span>●●● ▲ 🔋</span></div>
+          <div class="phone__screen" style="background:#F5EADB;">
+            <div style="padding:10px 0;font-family:'Fraunces',serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;color:#23180F;">Your bins</div>
+            <div style="font-size:12px;color:#8C7A68;margin-bottom:14px;">8 total · 6 tucked in</div>
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+              <div style="background:#FFFAF1;border-radius:12px;padding:12px;">
+                <div style="font-family:'Fraunces',serif;font-weight:600;font-size:13px;color:#23180F;">#042</div>
+                <div style="font-size:10px;color:#8C7A68;margin-top:2px;">Holiday decor</div>
+                <div style="margin-top:10px;background:#DDE6D0;color:#4E6B41;padding:2px 6px;border-radius:99px;font-size:9px;font-weight:600;display:inline-block;">ATTIC</div>
+              </div>
+              <div style="background:#FFFAF1;border-radius:12px;padding:12px;">
+                <div style="font-family:'Fraunces',serif;font-weight:600;font-size:13px;color:#23180F;">#017</div>
+                <div style="font-size:10px;color:#8C7A68;margin-top:2px;">Winter coats</div>
+                <div style="margin-top:10px;background:#FBEECB;color:#B8861F;padding:2px 6px;border-radius:99px;font-size:9px;font-weight:600;display:inline-block;">MOVING</div>
+              </div>
+              <div style="background:#FFFAF1;border-radius:12px;padding:12px;">
+                <div style="font-family:'Fraunces',serif;font-weight:600;font-size:13px;color:#23180F;">#028</div>
+                <div style="font-size:10px;color:#8C7A68;margin-top:2px;">Camping gear</div>
+                <div style="margin-top:10px;background:#DDE6D0;color:#4E6B41;padding:2px 6px;border-radius:99px;font-size:9px;font-weight:600;display:inline-block;">ATTIC</div>
+              </div>
+              <div style="background:#FFFAF1;border-radius:12px;padding:12px;">
+                <div style="font-family:'Fraunces',serif;font-weight:600;font-size:13px;color:#23180F;">#031</div>
+                <div style="font-size:10px;color:#8C7A68;margin-top:2px;">Baby stuff</div>
+                <div style="margin-top:10px;background:#DDE6D0;color:#4E6B41;padding:2px 6px;border-radius:99px;font-size:9px;font-weight:600;display:inline-block;">ATTIC</div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="appreview__caption">INVENTORY</div>
+      </div>
+
+      <div class="appreview__phone reveal" data-delay="4">
+        <div class="phone">
+          <div class="phone__notch"></div>
+          <div class="phone__status"><span>9:41</span><span>●●● ▲ 🔋</span></div>
+          <div class="phone__screen" style="background:#F5EADB;">
+            <div style="padding:10px 0;font-family:'Fraunces',serif;font-weight:600;font-size:22px;letter-spacing:-0.02em;color:#23180F;">Call it back</div>
+            <div style="font-size:12px;color:#8C7A68;margin-bottom:14px;">Bin #042 · Holiday decor</div>
+            <div style="background:#FFFAF1;border-radius:14px;padding:14px;margin-bottom:10px;">
+              <div style="font-size:11px;color:#8C7A68;font-family:'JetBrains Mono',monospace;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:10px;">Pick a window</div>
+              <div style="display:flex;gap:6px;margin-bottom:6px;">
+                <div style="flex:1;padding:10px;background:#F5EADB;border-radius:8px;text-align:center;font-size:11px;color:#8C7A68;">Tomorrow</div>
+                <div style="flex:1;padding:10px;background:#C65D3C;border-radius:8px;text-align:center;font-size:11px;color:#FFF8EE;font-weight:600;">Thu 5-7</div>
+                <div style="flex:1;padding:10px;background:#F5EADB;border-radius:8px;text-align:center;font-size:11px;color:#8C7A68;">Fri 9-11</div>
+              </div>
+            </div>
+            <div style="background:#FFFAF1;border-radius:14px;padding:14px;margin-bottom:14px;font-size:12px;color:#5A4A3C;">
+              <div style="display:flex;justify-content:space-between;"><span>Delivery</span><strong style="color:#6B8E5A;">Included</strong></div>
+            </div>
+            <button style="width:100%;background:#C65D3C;color:#FFF8EE;border:none;border-radius:99px;padding:14px;font-weight:600;font-size:14px;">Confirm return</button>
+          </div>
+        </div>
+        <div class="appreview__caption">RETURN</div>
+      </div>
+    </div>
+
+    <div class="appreview__cta">
+      <a class="btn btn-ghost btn-lg" href="https://app.attic.it.com/">Open the app →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     PRICING
+     =================================================================== -->
+<section id="pricing" class="stripe pricing">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 56px;">
+      <p class="eyebrow">What it costs</p>
+      <h2 class="h2">One price. <em>No surprises.</em></h2>
+      <p class="lede" style="margin-top:20px;">Flat rate, everything bundled. Cancel any bin anytime — we pick it up for free.</p>
+    </div>
+
+    <div class="pricing__card reveal" data-delay="1">
+      <div class="pricing__head">
+        <div>
+          <p class="pricing__label">Flat rate · Colorado</p>
+          <h3 class="pricing__title">Per bin, per month.<br/>That's the whole price.</h3>
+        </div>
+        <div class="pricing__num">
+          <span class="pricing__num-dollar">$</span>
+          <span>12</span>
+          <span class="pricing__num-per">/ bin / mo</span>
+        </div>
+      </div>
+
+      <div class="pricing__grid">
+        <div class="pricing__item">
+          <div class="pricing__item-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Free first delivery</h4>
+            <p>We bring empty bins to your door on order one.</p>
+          </div>
+        </div>
+        <div class="pricing__item">
+          <div class="pricing__item-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>One trip a month</h4>
+            <p>Pickup or delivery included at no extra cost.</p>
+          </div>
+        </div>
+        <div class="pricing__item">
+          <div class="pricing__item-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Climate-controlled</h4>
+            <p>Held at 65–72°F. No heat, freeze, or damp.</p>
+          </div>
+        </div>
+        <div class="pricing__item">
+          <div class="pricing__item-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Chain-of-custody</h4>
+            <p>Scanned at every handoff, pickup to shelf.</p>
+          </div>
+        </div>
+        <div class="pricing__item">
+          <div class="pricing__item-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Insured to $2,000</h4>
+            <p>Every bin. No extra rider. No deductible.</p>
+          </div>
+        </div>
+        <div class="pricing__item">
+          <div class="pricing__item-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Send back free</h4>
+            <p>Done with a bin? We fetch it, no fee.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing__foot">
+        <p>No contract. No minimum bin count. No per-mile fees.</p>
+        <a class="btn btn-dark" href="#waitlist">Request an invite →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     WHAT FITS / WHAT DOESN'T
+     =================================================================== -->
+<section class="stripe stripe--paper fits">
+  <div class="wrap">
+    <div class="reveal" style="margin-bottom:48px;max-width:760px;">
+      <p class="eyebrow">What goes in</p>
+      <h2 class="h2">Built for the <em>"I'll deal with this later"</em> pile.</h2>
+      <p class="lede" style="margin-top:20px;">If you'd keep it but don't want to see it every day, it probably belongs in a bin.</p>
+    </div>
+
+    <div class="fits__grid">
+      <div class="fits__card reveal" data-delay="1">
+        <div class="fits__card-icon fits__card-icon--yes">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <h3>Great for</h3>
+        <p class="sub">The stuff most of us keep but rarely reach for:</p>
+        <div class="fits__pills">
+          <span class="fits__pill">Holiday decor</span>
+          <span class="fits__pill">Off-season clothes</span>
+          <span class="fits__pill">College boxes</span>
+          <span class="fits__pill">Baby gear</span>
+          <span class="fits__pill">Camping gear</span>
+          <span class="fits__pill">Kitchen overflow</span>
+          <span class="fits__pill">Sentimental items</span>
+          <span class="fits__pill">Mid-move limbo</span>
+          <span class="fits__pill">Estate transitions</span>
+          <span class="fits__pill">Craft supplies</span>
+        </div>
+      </div>
+
+      <div class="fits__card fits__card--no reveal" data-delay="2">
+        <div class="fits__card-icon fits__card-icon--no">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </div>
+        <h3>Please don't</h3>
+        <p class="sub">A short list of things we can't accept in a bin:</p>
+        <div class="fits__pills">
+          <span class="fits__pill fits__pill--no">Anything illegal</span>
+          <span class="fits__pill fits__pill--no">Hazardous materials</span>
+          <span class="fits__pill fits__pill--no">Perishable food</span>
+          <span class="fits__pill fits__pill--no">Living things</span>
+          <span class="fits__pill fits__pill--no">Firearms &amp; ammo</span>
+          <span class="fits__pill fits__pill--no">Cash &amp; jewelry</span>
+          <span class="fits__pill fits__pill--no">Irreplaceable documents</span>
+        </div>
+        <p class="fits__fine">Full list in our <a href="/termsofservice.html">Terms of Service</a>.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     FOUNDER
+     =================================================================== -->
+<section class="stripe founder">
+  <div class="wrap">
+    <div class="founder__grid">
+      <div class="founder__photo reveal" aria-hidden="true"></div>
+      <div class="reveal" data-delay="1">
+        <p class="eyebrow">A note from the founder</p>
+        <p class="founder__quote">
+          I started Attic after helping my mom clear out her garage for the third time in a decade. The stuff wasn't junk — it was Christmas lights, my high-school yearbooks, a crib we weren't ready to let go of. It just had no good home. I built Attic to be that home: close by, well-lit, scanned, and one tap away when you want any of it back.
+        </p>
+        <div class="founder__sign">
+          <span class="founder__sig">Luke Bashford</span>
+          <div>
+            <div class="founder__name">Luke Bashford</div>
+            <div class="founder__role">Founder · Denver</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     DENVER
+     =================================================================== -->
+<section id="denver" class="stripe stripe--cream">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
+    <div class="reveal">
+      <p class="eyebrow">Service area</p>
+      <h2 class="h2">Denver first. <em>On purpose.</em></h2>
+      <p class="lede" style="margin-top:20px;max-width:480px;">We're building Attic one neighborhood at a time. That means tight routes, real next-day returns, and drivers who know your block.</p>
+      <p class="body" style="margin-top:16px;max-width:480px;">Currently serving: Capitol Hill, RiNo, Washington Park, Highland, Sunnyside, Berkeley, Cherry Creek, Platt Park, and all of Denver proper. Expanding to Aurora, Lakewood, and Boulder next.</p>
+      <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;">
+        <a class="btn btn-primary" href="/denver.html">See the Denver page →</a>
+        <a class="btn btn-ghost" href="mailto:hi@attic.it.com?subject=Attic%20in%20my%20city">Not in Denver?</a>
+      </div>
+    </div>
+
+    <div class="reveal" data-delay="1" aria-hidden="true">
+      <!-- stylized Denver map -->
+      <svg viewBox="0 0 500 440" style="width:100%;height:auto;">
+        <defs>
+          <radialGradient id="mapGlow" cx="50%" cy="50%">
+            <stop offset="0%" stop-color="#F9DFC8"/>
+            <stop offset="100%" stop-color="#F5EADB"/>
+          </radialGradient>
+        </defs>
+        <rect width="500" height="440" fill="url(#mapGlow)" rx="22"/>
+        <!-- mountains at top -->
+        <g fill="#8C7A68" opacity="0.25">
+          <path d="M 0 80 L 60 40 L 120 70 L 180 30 L 240 60 L 300 20 L 360 50 L 420 35 L 500 70 L 500 100 L 0 100 Z"/>
+        </g>
+        <!-- roads -->
+        <g stroke="#D4C3A4" stroke-width="2" fill="none" opacity="0.8">
+          <path d="M 0 220 L 500 200"/>
+          <path d="M 0 300 L 500 290"/>
+          <path d="M 0 380 L 500 370"/>
+          <path d="M 140 100 L 160 440"/>
+          <path d="M 260 100 L 280 440"/>
+          <path d="M 380 100 L 400 440"/>
+        </g>
+        <!-- I-25 -->
+        <path d="M 150 100 Q 200 220 180 440" stroke="#C65D3C" stroke-width="3" fill="none" stroke-dasharray="6 4" opacity="0.6"/>
+        <!-- neighborhood pins -->
+        <g font-family="'Inter',sans-serif" font-size="11" font-weight="500" fill="#5A4A3C">
+          <g><circle cx="180" cy="240" r="6" fill="#C65D3C"/><text x="195" y="244">Highland</text></g>
+          <g><circle cx="260" cy="220" r="6" fill="#C65D3C"/><text x="275" y="224">RiNo</text></g>
+          <g><circle cx="270" cy="280" r="6" fill="#C65D3C"/><text x="285" y="284">Cap Hill</text></g>
+          <g><circle cx="240" cy="340" r="6" fill="#C65D3C"/><text x="255" y="344">Wash Park</text></g>
+          <g><circle cx="360" cy="300" r="6" fill="#C65D3C"/><text x="375" y="304">Cherry Creek</text></g>
+          <g><circle cx="160" cy="180" r="6" fill="#C65D3C"/><text x="175" y="184">Berkeley</text></g>
+          <g><circle cx="130" cy="320" r="6" fill="#C65D3C"/><text x="145" y="324">Sunnyside</text></g>
+        </g>
+        <!-- facility marker -->
+        <g transform="translate(310 240)">
+          <circle r="14" fill="#E8B84A" opacity="0.3"/>
+          <circle r="9" fill="#E8B84A"/>
+          <path d="M -4 -3 L 0 -7 L 4 -3 L 4 4 L -4 4 Z" fill="#23180F"/>
+          <text y="30" font-family="'JetBrains Mono',monospace" font-size="10" font-weight="600" fill="#23180F" text-anchor="middle" letter-spacing="0.5">ATTIC HQ</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     FAQ
+     =================================================================== -->
+<section id="faq" class="stripe faq">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:start;">
+    <div class="reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">Common<br/>questions.</h2>
+      <p class="body-lg" style="margin-top:18px;max-width:280px;">Don't see yours? <a href="mailto:hi@attic.it.com">Email us.</a> We answer everything personally.</p>
+    </div>
+    <div class="faq__grid reveal" data-delay="1">
+      <details>
+        <summary>What if I need something immediately?</summary>
+        <p>Same- or next-day delivery is included — schedule a return in the app and we'll bring your bin back on the next available window. No rush fees.</p>
+      </details>
+      <details>
+        <summary>How do you keep my things safe?</summary>
+        <p>Every bin is tagged with a QR code and scanned at every handoff — pickup, arrival at the facility, shelf placement, and return — so there's a full custody trail. Storage is climate-controlled at 65–72°F. Contents are insured up to $2,000 per bin.</p>
+      </details>
+      <details>
+        <summary>Can I send bins back if I don't need them anymore?</summary>
+        <p>Yes, any time. If a bin is empty at your home, tap "Send it back" in the app and we'll retrieve it at no cost. Your monthly fee for that bin stops at the next billing cycle.</p>
+      </details>
+      <details>
+        <summary>What counts as a "bin"?</summary>
+        <p>A standard 27-gallon heavy-duty tote, about the size of a large moving box — 29×18×15 inches. We provide them; you don't need to supply your own containers.</p>
+      </details>
+      <details>
+        <summary>How much stuff fits in a bin?</summary>
+        <p>Roughly: an entire holiday decor setup, a season of clothes for two adults, or about 20 college-sized textbooks with room for a few keepsakes.</p>
+      </details>
+      <details>
+        <summary>Do you have a minimum?</summary>
+        <p>Nope. Start with one bin, finish with fifty. We don't care — we just want to be useful.</p>
+      </details>
+      <details>
+        <summary>How do I get started?</summary>
+        <p>We're opening Attic to Denver residents in small batches. <a href="#waitlist">Request an invite</a> and we'll send a code as spots open up — usually within a week.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     FINAL CTA — WAITLIST
+     =================================================================== -->
+<section id="waitlist" class="cta-final">
+  <div class="wrap-narrow">
+    <h2 class="reveal">Ready to get some <em>space back?</em></h2>
+    <p class="sub reveal" data-delay="1">Attic is opening to Denver in small batches. Leave your email — we'll send an invite in a week or two.</p>
+    <form class="email-form reveal" data-delay="2" data-email-form novalidate>
+      <div class="email-form__fields" data-email-fields>
+        <input type="email" placeholder="you@email.com" required aria-label="Email address" />
+        <button type="submit">Request invite</button>
+      </div>
+      <div class="email-form__success" data-email-success role="status">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        <span>You're on the list. Check your inbox for a note from Luke.</span>
+      </div>
+      <p class="email-form__fine">No marketing. No list trading. We'll email you once, when your invite's ready.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ===================================================================
+     FOOTER
+     =================================================================== -->
+
+</BaseLayout>

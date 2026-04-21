@@ -1,0 +1,93 @@
+---
+// BaseLayout — <html>/<head>/<body> scaffold. Every page wraps in this or
+// a layout that extends it. Loads fonts, design tokens, JSON-LD, and the
+// motion script. Nav + Footer are slotted in here so pages only render
+// their own content.
+import Nav from '../components/Nav.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogImage?: string;
+  canonical?: string;
+  /** Extra <link rel="stylesheet"> hrefs to inject. Page-specific CSS. */
+  stylesheets?: string[];
+}
+
+// Default canonical strips `.html` so we advertise clean URLs like
+// https://attic.it.com/privacy instead of /privacy.html. Vercel serves both.
+function cleanCanonical(pathname: string): string {
+  const stripped = pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
+  return new URL(stripped || '/', 'https://attic.it.com').toString();
+}
+
+const {
+  title,
+  description,
+  ogTitle = title,
+  ogDescription = description,
+  ogImage = 'https://attic.it.com/og-image.png',
+  canonical = cleanCanonical(Astro.url.pathname),
+  stylesheets = [],
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#C65D3C" />
+  <meta name="robots" content="index, follow" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <meta property="og:site_name" content="Attic" />
+  <meta property="og:title" content={ogTitle} />
+  <meta property="og:description" content={ogDescription} />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={ogTitle} />
+  <meta name="twitter:description" content={ogDescription} />
+  <meta name="twitter:image" content={ogImage} />
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
+
+  <!-- Fonts: Google Fonts CDN for now. TODO self-host with @fontsource. -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  {stylesheets.map((href) => <link rel="stylesheet" href={href} />)}
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: 'Attic',
+    description: 'Personal storage service with on-demand pickup and delivery. $12 per bin per month, flat.',
+    url: 'https://attic.it.com/',
+    areaServed: { '@type': 'State', name: 'Colorado' },
+    address: { '@type': 'PostalAddress', addressRegion: 'CO', addressCountry: 'US' },
+    priceRange: '$12/bin/mo',
+  })}></script>
+</head>
+<body>
+  <Nav />
+  <slot />
+  <Footer />
+  <script src="/scripts/motion.js" is:inline></script>
+</body>
+</html>
