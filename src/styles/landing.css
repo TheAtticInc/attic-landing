@@ -147,6 +147,15 @@
   .hero__stage { order: -1; max-width: 360px; aspect-ratio: 4 / 5; }
   .hero__phone-stack { transform: rotate(-3deg) scale(0.85); }
 }
+@media (max-width: 640px) {
+  /* On phones, skip the attic + phone stack illustration entirely — it
+     was showing first (order: -1), pushing the real hero copy below
+     the fold. The page reads faster and the pitch lands sooner with
+     text-only at the top. */
+  .hero__stage { display: none; }
+  .hero { padding: 32px 0 48px; }
+  .hero__grid { min-height: 0; gap: 0; }
+}
 
 /* =========================================================
    PROOF STRIP (under hero, subtle)
