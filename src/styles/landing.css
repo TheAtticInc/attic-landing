@@ -505,13 +505,18 @@
 /* The FAQ section wraps its content in a 2-col grid via inline style on
    .wrap. That's fine on desktop, bad on mobile — the questions get
    squished into a ~150px track and break out of the viewport width.
-   Collapse to single column on mobile. */
+   Collapse to single column on mobile. Same fix for the "Service area"
+   section (section#denver), which has the same inline 1fr/1fr grid. */
 @media (max-width: 840px) {
-  section.faq > .wrap {
+  section.faq > .wrap,
+  section#denver > .wrap {
     display: block !important;
     grid-template-columns: 1fr !important;
   }
   .faq__grid { margin-top: 32px; }
+  /* Hide the Service area map on phones — the Denver page has a larger
+     version of the same map a click away; no point squishing it in here. */
+  section#denver > .wrap > div[aria-hidden] { display: none; }
 }
 
 /* =========================================================
