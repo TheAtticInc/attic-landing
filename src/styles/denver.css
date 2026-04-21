@@ -36,5 +36,8 @@
       .dv-nbh, .dv-stats, .dv-quotes { grid-template-columns:1fr 1fr; }
     }
     @media (max-width:640px) {
+      .dv-hero { padding: 40px 0 56px; }
+      .dv-hero__grid { gap: 28px; }
+      .dv-hero h1 { margin: 16px 0; }
       .dv-nbh, .dv-stats, .dv-quotes { grid-template-columns:1fr; }
     }
