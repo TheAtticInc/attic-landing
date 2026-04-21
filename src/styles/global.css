@@ -158,6 +158,15 @@ a:hover { color: var(--terracotta-deep); }
 @media (max-width: 720px) {
   .nav__links { display: none; }
 }
+@media (max-width: 640px) {
+  /* Default .wrap padding is 28px — on narrow phones the brand and
+     sign-in pill end up visually butted against the viewport edge.
+     Add extra inset specifically for the nav row. */
+  .nav .nav__inner {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+}
 
 /* =========================================================
    BUTTONS

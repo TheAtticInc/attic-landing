@@ -19,7 +19,7 @@
     .dv-stats__num { font-family:var(--font-display);font-weight:600;font-size:48px;letter-spacing:-0.03em;color:var(--ink);line-height:1; }
     .dv-stats__label { font-size:13px;color:var(--ink-3);margin-top:8px; }
 
-    .dv-quotes { display:grid;grid-template-columns:repeat(3,1fr);gap:24px; }
+    .dv-quotes { display:grid;grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));gap:24px; }
     .dv-quote {
       background:var(--surface);border:1px solid var(--border);border-radius:var(--r-md);padding:28px 24px;
     }
@@ -39,5 +39,9 @@
       .dv-hero { padding: 40px 0 56px; }
       .dv-hero__grid { gap: 28px; }
       .dv-hero h1 { margin: 16px 0; }
+      /* Hide the map illustration on phones — takes up too much space
+         below the hero copy and doesn't add info you couldn't read
+         in the neighborhoods grid a few scrolls later. */
+      .dv-hero__grid > div[aria-hidden] { display: none; }
       .dv-nbh, .dv-stats, .dv-quotes { grid-template-columns:1fr; }
     }
