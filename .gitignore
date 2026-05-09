@@ -24,3 +24,6 @@ pnpm-debug.log*
 !.vscode/extensions.json
 !.vscode/settings.json
 .idea/
+
+# Claude Code — personal settings (allowlist overrides, etc.)
+.claude/settings.local.json

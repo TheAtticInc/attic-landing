@@ -1,14 +1,25 @@
 # attic-landing
 
-Marketing landing page served at [attic.it.com](https://attic.it.com).
+Marketing site served at [attic.it.com](https://attic.it.com). The app itself lives at [app.attic.it.com](https://app.attic.it.com).
 
-- Pure static HTML + CSS. No build step, no JS runtime dependencies beyond Google Fonts.
+- Built with [Astro](https://astro.build) — `.astro` pages compile to static HTML.
 - Deployed to Vercel automatically on push to `main`.
-- Legal pages (`/privacypolicy`, `/termsofservice`) live on the app domain `app.attic.it.com` — linked from the footer.
+- Pages: `/` (landing), `/denver`, `/privacy`, `/termsofservice`.
 
 ## Editing
 
-Edit `index.html` directly. Vercel builds = copying the files as-is.
+- `src/pages/index.astro` — landing page
+- `src/pages/denver.astro` — Denver service-area page
+- `src/components/Nav.astro` and `Footer.astro` — shared chrome
+- `src/layouts/BaseLayout.astro` — `<head>` / SEO / JSON-LD
+- `src/styles/*.css` — global tokens + page-scoped CSS
+- `public/scripts/motion.js` — vanilla JS for reveal-on-scroll, ticker, phone-stack cycle, email form
+
+```sh
+npm install
+npm run dev      # local at http://localhost:4321
+npm run build    # outputs to dist/
+```
 
 ## Related
 
