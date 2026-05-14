@@ -28,7 +28,15 @@ const repoRoot = dirname(__dirname);
 
 // --- Config ----------------------------------------------------------------
 
-const REVISION = '2024-10-15';
+// 2025-10-15 is the first revision that supports POST /flows/. The runtime
+// (api/_lib.ts) is pinned to 2024-10-15 because it only does profile + list
+// operations, which are stable on the older revision.
+const REVISION = '2025-10-15';
+
+// Klaviyo creates a per-flow draft email with this from address by default;
+// keep it consistent across the 3 flows so they look like one sender.
+const FROM_EMAIL = 'lukebashford@attic.it.com';
+const FROM_LABEL = 'Attic';
 
 const LIST_NAMES = {
   unconfirmed: 'Waitlist - Unconfirmed',
@@ -41,6 +49,20 @@ const TEMPLATE_NAMES = {
   referral:          'Attic Waitlist — Referral Nudge',
   neighborhoodReady: 'Attic Waitlist — Neighborhood Ready',
 };
+
+// Flow names: our canonical ones + any prior names we know to clean up on
+// rebuild (so an old run's mis-wired flows don't shadow the new ones).
+const FLOW_NAMES = {
+  confirm:  'Attic Waitlist · Confirm',
+  welcome:  'Attic Waitlist · Welcome',
+  referral: 'Attic Waitlist · Referral Nudge',
+};
+const FLOW_NAMES_TO_WIPE = new Set([
+  ...Object.values(FLOW_NAMES),
+  'Confirmation email',
+  'Welcome (post-confirmation)',
+  'Referral nudge',
+]);
 
 // --- Env -------------------------------------------------------------------
 
@@ -138,6 +160,125 @@ async function findOrCreateTemplate(name, html, subject) {
     },
   });
   return { id: created.data.id, created: true, subject };
+}
+
+// --- Flow lifecycle -------------------------------------------------------
+
+async function wipeWaitlistFlows() {
+  // Klaviyo caps page[size] at 50; paginate via the cursor link.
+  const all = [];
+  let next = '/flows/?page[size]=50';
+  while (next) {
+    const page = await klaviyo(next);
+    all.push(...(page.data || []));
+    const nextLink = page.links?.next;
+    if (!nextLink) break;
+    // links.next is a fully-qualified URL — slice off the host to keep klaviyo()'s path-relative API.
+    next = nextLink.replace(/^https?:\/\/[^/]+\/api/, '');
+  }
+  const matches = all.filter((f) => FLOW_NAMES_TO_WIPE.has(f.attributes?.name ?? ''));
+  const deleted = [];
+  for (const f of matches) {
+    // Klaviyo may reject DELETE on a live flow — flip to draft first.
+    if (f.attributes?.status === 'live') {
+      try {
+        await klaviyo(`/flows/${f.id}/`, {
+          method: 'PATCH',
+          body: { data: { type: 'flow', id: f.id, attributes: { status: 'draft' } } },
+        });
+      } catch { /* fall through to delete; if it still fails we'll surface */ }
+    }
+    try {
+      await klaviyo(`/flows/${f.id}/`, { method: 'DELETE' });
+      deleted.push({ id: f.id, name: f.attributes?.name });
+    } catch (err) {
+      console.warn(`  (couldn't delete flow ${f.id} "${f.attributes?.name}": ${err.message})`);
+    }
+  }
+  return deleted;
+}
+
+/**
+ * Build the action list for a flow. If delayHours > 0, prepends a time-delay
+ * action wired to the send-email action. Klaviyo wants `temporary_id`s for
+ * each action and an `entry_action_id` pointing at the first one.
+ */
+function buildActions({ template, subject, delayHours }) {
+  const emailAction = {
+    temporary_id: 'email',
+    type: 'send-email',
+    data: {
+      status: 'live',
+      message: {
+        from_email: FROM_EMAIL,
+        from_label: FROM_LABEL,
+        subject_line: subject,
+        preview_text: '',
+        template_id: template.id,
+        smart_sending_enabled: true,
+        transactional: false,
+        name: 'Email #1',
+      },
+    },
+    links: { next: null },
+  };
+
+  if (!delayHours || delayHours <= 0) {
+    return { actions: [emailAction], entry: 'email' };
+  }
+
+  const delayAction = {
+    temporary_id: 'delay',
+    type: 'time-delay',
+    data: { value: delayHours, unit: 'hours' },
+    links: { next: 'email' },
+  };
+  return { actions: [delayAction, emailAction], entry: 'delay' };
+}
+
+async function createFlow({ name, triggerListId, template, delayHours }) {
+  const { actions, entry } = buildActions({
+    template,
+    subject: template.subject,
+    delayHours,
+  });
+
+  const created = await klaviyo('/flows/', {
+    method: 'POST',
+    body: {
+      data: {
+        type: 'flow',
+        attributes: {
+          name,
+          definition: {
+            triggers: [{ type: 'list', id: triggerListId }],
+            profile_filter: null,
+            entry_action_id: entry,
+            actions,
+          },
+        },
+      },
+    },
+  });
+
+  const id = created.data.id;
+
+  // Flows are born in draft. Try to flip live; if Klaviyo rejects (e.g.
+  // missing-info validation that's specific to live state), keep it as draft
+  // and surface the reason so the operator can fix it in the UI.
+  let activated = false;
+  let activationError = null;
+  try {
+    await klaviyo(`/flows/${id}/`, {
+      method: 'PATCH',
+      body: { data: { type: 'flow', id, attributes: { status: 'live' } } },
+    });
+    activated = true;
+  } catch (err) {
+    activationError = err.message;
+  }
+
+  return { id, activated, activationError };
 }
 
 // --- Email HTML templates -------------------------------------------------
@@ -241,7 +382,9 @@ async function main() {
     `KLAVIYO_API_KEY=${KLAVIYO_API_KEY}`,
     `KLAVIYO_UNCONFIRMED_LIST_ID=${results.list_unconfirmed.id}`,
     `KLAVIYO_CONFIRMED_LIST_ID=${results.list_confirmed.id}`,
-    `KLAVIYO_API_REVISION=${REVISION}`,
+    // Runtime (api/_lib.ts) only does profile + list ops; pin to the stable
+    // revision rather than the flow-create one used by this script.
+    `KLAVIYO_API_REVISION=2024-10-15`,
     `MARKETING_SITE_URL=https://attic.it.com`,
   ];
   for (const l of lines) console.log(l);
@@ -252,22 +395,51 @@ async function main() {
     console.log(`vercel env add ${k} production`);
   }
 
-  console.log('\n--- Manual flow wiring (Klaviyo UI — ~5 min) ---\n');
-  console.log('Create each flow under Flows → Create Flow → From scratch, set the trigger, then in the email step click "Use existing template" and pick the matching template below:\n');
-  const flows = [
-    { trigger: `List-triggered: ${LIST_NAMES.unconfirmed}`, template: results.tpl_confirm,           delay: 'send immediately' },
-    { trigger: `List-triggered: ${LIST_NAMES.confirmed}`,   template: results.tpl_welcome,           delay: 'send immediately' },
-    { trigger: `List-triggered: ${LIST_NAMES.confirmed}`,   template: results.tpl_referral,          delay: 'wait 48 hours, then send' },
-    { trigger: `Segment-triggered (create later)`,          template: results.tpl_neighborhoodReady, delay: 'send when added to segment' },
+  // -- Flow rebuild --------------------------------------------------------
+  // Flow create requires API revision 2025-10-15+. We always wipe the 3
+  // known waitlist flows by name and recreate from scratch — flows are
+  // cheap to rebuild, and prior runs may have left them mis-wired.
+  console.log('\n--- Flow rebuild (delete + recreate the 3 waitlist flows) ---');
+  const wiped = await wipeWaitlistFlows();
+  for (const w of wiped) console.log(`- deleted flow:  ${w.name}  (${w.id})`);
+  if (wiped.length === 0) console.log('(no existing waitlist flows found to delete)');
+
+  const flowSpecs = [
+    {
+      key: 'confirm',
+      name: FLOW_NAMES.confirm,
+      triggerListId: results.list_unconfirmed.id,
+      template: results.tpl_confirm,
+      delayHours: 0,
+    },
+    {
+      key: 'welcome',
+      name: FLOW_NAMES.welcome,
+      triggerListId: results.list_confirmed.id,
+      template: results.tpl_welcome,
+      delayHours: 0,
+    },
+    {
+      key: 'referral',
+      name: FLOW_NAMES.referral,
+      triggerListId: results.list_confirmed.id,
+      template: results.tpl_referral,
+      delayHours: 48,
+    },
   ];
-  for (const f of flows) {
-    console.log(`• ${f.trigger}`);
-    console.log(`    Template:  ${f.template.name}  (id ${f.template.id})`);
-    console.log(`    Subject:   ${f.template.subject}`);
-    console.log(`    Timing:    ${f.delay}`);
-    console.log('');
+
+  for (const spec of flowSpecs) {
+    const created = await createFlow(spec);
+    results[`flow_${spec.key}`] = created;
+    const activation = created.activated ? 'LIVE' : `draft (couldn't auto-activate: ${created.activationError})`;
+    console.log(`+ created flow:  ${spec.name}  →  ${created.id}  [${activation}]`);
   }
-  console.log('All four templates are pre-styled with the Attic brand. Tweak in Klaviyo if needed; re-running this script will not overwrite existing templates.');
+
+  console.log('\n--- Neighborhood-ready (skipped — segment-triggered) ---');
+  console.log(`Template ready for when you want it: ${results.tpl_neighborhoodReady.name} (id ${results.tpl_neighborhoodReady.id}).`);
+  console.log('Create the segment in Klaviyo (e.g. "Confirmed + zip in [launching zips]") then build a segment-triggered flow using this template.');
+
+  console.log('\nDone. Test by submitting the form at https://www.attic.it.com/#waitlist .');
 }
 
 main().catch((err) => {
