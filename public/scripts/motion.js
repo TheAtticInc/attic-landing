@@ -77,21 +77,93 @@
     });
   }
 
-  // ---------- email capture form ----------
+  // ---------- waitlist form ----------
+  // Posts { email, zip, _h } to /api/waitlist (Vercel edge function).
+  // The function writes the Harper WaitlistSignup row + upserts a Klaviyo
+  // profile. The double-opt-in email goes out from Klaviyo; the success
+  // state we show here is "we sent you a confirm link," not "you're done."
   document.querySelectorAll('[data-email-form]').forEach(form => {
-    form.addEventListener('submit', (e) => {
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const input = form.querySelector('input[type="email"]');
+
+      const emailInput = form.querySelector('input[type="email"]');
+      const zipInput = form.querySelector('input[name="zip"]');
+      const honeypot = form.querySelector('input[name="_h"]');
       const submit = form.querySelector('button[type="submit"]');
       const success = form.querySelector('[data-email-success]');
-      if (!input.value.trim()) return;
+      const errorBox = form.querySelector('[data-email-error]');
+      const fields = form.querySelector('[data-email-fields]');
+
+      const email = (emailInput?.value || '').trim();
+      const zip = (zipInput?.value || '').trim();
+
+      function showError(msg) {
+        if (!errorBox) return;
+        errorBox.textContent = msg;
+        errorBox.classList.add('is-visible');
+      }
+      function clearError() {
+        if (!errorBox) return;
+        errorBox.textContent = '';
+        errorBox.classList.remove('is-visible');
+      }
+
+      clearError();
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        showError('Please enter a valid email address.');
+        emailInput?.focus();
+        return;
+      }
+      if (!/^\d{5}$/.test(zip)) {
+        showError('ZIP code should be 5 digits.');
+        zipInput?.focus();
+        return;
+      }
+
+      const originalLabel = submit.textContent;
       submit.disabled = true;
       submit.textContent = 'Saving…';
-      // No backend — just show the confirmation state.
-      setTimeout(() => {
-        form.querySelector('[data-email-fields]').style.display = 'none';
-        if (success) success.style.display = 'flex';
-      }, 600);
+
+      try {
+        const res = await fetch('/api/waitlist', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            zip,
+            _h: honeypot?.value || '',
+            source: 'attic.it.com',
+          }),
+        });
+
+        if (!res.ok) {
+          let msg = 'Something went wrong — please try again.';
+          try {
+            const body = await res.json();
+            if (body?.error === 'invalid_email') msg = 'That email doesn\'t look right.';
+            else if (body?.error === 'invalid_zip') msg = 'ZIP code should be 5 digits.';
+          } catch { /* fall through to default */ }
+          showError(msg);
+          submit.disabled = false;
+          submit.textContent = originalLabel;
+          return;
+        }
+
+        const body = await res.json().catch(() => ({}));
+        if (fields) fields.style.display = 'none';
+        if (success) {
+          if (body.already_confirmed) {
+            const span = success.querySelector('span');
+            if (span) span.textContent = "You're already on the list — we'll be in touch as Denver opens up.";
+          }
+          success.style.display = 'flex';
+        }
+      } catch (err) {
+        showError('Network hiccup — please try again.');
+        submit.disabled = false;
+        submit.textContent = originalLabel;
+      }
     });
   });
 
