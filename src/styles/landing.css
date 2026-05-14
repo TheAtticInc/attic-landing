@@ -554,30 +554,62 @@
 .email-form {
   max-width: 460px; margin: 0 auto;
 }
-.email-form__fields {
-  display: flex; gap: 8px;
-  background: rgba(245, 234, 219, 0.06);
-  border: 1px solid rgba(245, 234, 219, 0.18);
+
+/* Each row is its own pill so the email field can't get visually buried
+   next to the zip + button. Resting contrast bumped against the dark
+   .cta-final bg so the field boundaries read at a glance. */
+.email-form__row {
+  display: flex; gap: 10px;
+  background: rgba(245, 234, 219, 0.10);
+  border: 1.5px solid rgba(245, 234, 219, 0.32);
   border-radius: var(--r-pill);
-  padding: 6px 6px 6px 20px;
-  transition: border-color 200ms var(--ease), background 200ms var(--ease);
+  padding: 6px 6px 6px 22px;
+  transition: border-color 180ms var(--ease), background 180ms var(--ease), box-shadow 180ms var(--ease);
 }
-.email-form__fields:focus-within { border-color: var(--mustard); background: rgba(245, 234, 219, 0.1); }
-.email-form__fields input {
-  flex: 1; background: transparent; border: none; outline: none;
-  font-family: var(--font-body); font-size: 15.5px;
-  color: #F5EADB; padding: 12px 0;
+.email-form__row + .email-form__row { margin-top: 12px; }
+.email-form__row:hover { border-color: rgba(245, 234, 219, 0.5); background: rgba(245, 234, 219, 0.14); }
+.email-form__row:focus-within {
+  border-color: var(--mustard);
+  background: rgba(245, 234, 219, 0.16);
+  box-shadow: 0 0 0 3px rgba(232, 184, 74, 0.18);
 }
-.email-form__fields input::placeholder { color: #8C7A68; }
-.email-form__fields button {
+
+/* Action row holds the zip + submit button — tighter left padding so the
+   zip input sits flush against the inner edge of the pill. */
+.email-form__row--action { padding-left: 6px; }
+
+.email-form__input {
+  flex: 1 1 auto; min-width: 0;
+  background: transparent; border: none; outline: none;
+  font-family: var(--font-body); font-size: 16px;
+  color: #F5EADB; padding: 14px 0;
+  text-align: left;
+}
+.email-form__input::placeholder {
+  color: #B5A28C; /* lighter than the prior #8C7A68 — placeholder no longer fades into the bg */
+  opacity: 1;     /* Firefox defaults to lower opacity */
+}
+
+.email-form__zip {
+  flex: 0 0 110px;
+  padding-left: 16px;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}
+
+.email-form__submit {
+  flex: 0 0 auto;
+  white-space: nowrap;       /* never wrap "Request invite" to 2 lines */
   background: var(--mustard); color: var(--ink);
   border-radius: var(--r-pill); border: none;
-  padding: 12px 22px; font-family: var(--font-body); font-weight: 600;
+  padding: 14px 28px;
+  font-family: var(--font-body); font-weight: 600;
   font-size: 14.5px; cursor: pointer;
   transition: background 180ms var(--ease), transform 180ms var(--ease);
 }
-.email-form__fields button:hover:not(:disabled) { background: #F5CB5F; transform: translateY(-1px); }
-.email-form__fields button:disabled { opacity: 0.7; cursor: wait; }
+.email-form__submit:hover:not(:disabled) { background: #F5CB5F; transform: translateY(-1px); }
+.email-form__submit:disabled { opacity: 0.7; cursor: wait; }
+
 .email-form__success {
   display: none; align-items: center; justify-content: center; gap: 12px;
   padding: 16px 24px;
@@ -587,31 +619,14 @@
   font-weight: 500;
 }
 .email-form__success svg { color: var(--moss); flex-shrink: 0; }
-.email-form__fine { margin-top: 16px; font-size: 13px; color: #8C7A68; }
-
-/* Zip + divider live inside the same pill as the email input. The divider
-   is a subtle vertical hairline; on narrow screens the pill keeps its shape
-   because the zip input is fixed-width. */
-.email-form__zip {
-  flex: 0 0 86px;
-  text-align: center;
-  font-variant-numeric: tabular-nums;
-  letter-spacing: 0.5px;
-}
-.email-form__divider {
-  flex: 0 0 1px;
-  align-self: stretch;
-  margin: 8px 4px;
-  background: rgba(245, 234, 219, 0.18);
-}
+.email-form__fine { margin-top: 18px; font-size: 13px; color: #A89580; }
 
 /* Honeypot — hidden from real users and assistive tech. Bots scribble in
    every text field they find; we drop submissions where this is non-empty. */
 .email-form__honeypot {
   position: absolute;
   left: -9999px;
-  width: 1px;
-  height: 1px;
+  width: 1px; height: 1px;
   opacity: 0;
   pointer-events: none;
 }
@@ -623,30 +638,18 @@
   margin-top: 14px;
   padding: 12px 18px;
   border-radius: var(--r-pill);
-  background: rgba(166, 67, 106, 0.15);
+  background: rgba(166, 67, 106, 0.18);
+  border: 1px solid rgba(240, 201, 216, 0.3);
   color: #F0C9D8;
   font-size: 13.5px;
   text-align: center;
 }
 .email-form__error.is-visible { display: block; }
 
-/* Mobile: stack the zip below the email so both have room to breathe. */
+/* Mobile: action row's button needs to flex to fill so the row balances. */
 @media (max-width: 480px) {
-  .email-form__fields {
-    flex-wrap: wrap;
-    border-radius: 18px;
-    padding: 8px;
-  }
-  .email-form__fields input[type="email"] {
-    flex: 1 1 100%;
-    padding-left: 12px;
-  }
-  .email-form__divider { display: none; }
-  .email-form__zip {
-    flex: 0 0 90px;
-    padding-left: 12px;
-  }
-  .email-form__fields button {
-    flex: 1 1 auto;
-  }
+  .email-form__row { padding-left: 18px; }
+  .email-form__row--action { padding-left: 6px; }
+  .email-form__zip { flex: 0 0 92px; padding-left: 14px; }
+  .email-form__submit { flex: 1 1 auto; padding: 14px 16px; }
 }
