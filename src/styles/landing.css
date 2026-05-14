@@ -588,3 +588,65 @@
 }
 .email-form__success svg { color: var(--moss); flex-shrink: 0; }
 .email-form__fine { margin-top: 16px; font-size: 13px; color: #8C7A68; }
+
+/* Zip + divider live inside the same pill as the email input. The divider
+   is a subtle vertical hairline; on narrow screens the pill keeps its shape
+   because the zip input is fixed-width. */
+.email-form__zip {
+  flex: 0 0 86px;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.5px;
+}
+.email-form__divider {
+  flex: 0 0 1px;
+  align-self: stretch;
+  margin: 8px 4px;
+  background: rgba(245, 234, 219, 0.18);
+}
+
+/* Honeypot — hidden from real users and assistive tech. Bots scribble in
+   every text field they find; we drop submissions where this is non-empty. */
+.email-form__honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Inline validation error — shown when the API or client-side check rejects
+   the input. Hidden by default; motion.js toggles the `is-visible` class. */
+.email-form__error {
+  display: none;
+  margin-top: 14px;
+  padding: 12px 18px;
+  border-radius: var(--r-pill);
+  background: rgba(166, 67, 106, 0.15);
+  color: #F0C9D8;
+  font-size: 13.5px;
+  text-align: center;
+}
+.email-form__error.is-visible { display: block; }
+
+/* Mobile: stack the zip below the email so both have room to breathe. */
+@media (max-width: 480px) {
+  .email-form__fields {
+    flex-wrap: wrap;
+    border-radius: 18px;
+    padding: 8px;
+  }
+  .email-form__fields input[type="email"] {
+    flex: 1 1 100%;
+    padding-left: 12px;
+  }
+  .email-form__divider { display: none; }
+  .email-form__zip {
+    flex: 0 0 90px;
+    padding-left: 12px;
+  }
+  .email-form__fields button {
+    flex: 1 1 auto;
+  }
+}

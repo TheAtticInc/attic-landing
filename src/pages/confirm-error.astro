@@ -1,0 +1,26 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Confirmation link issue — Attic"
+  description="That confirmation link didn't work. Try requesting an invite again, or email us."
+  ogTitle="Confirmation link issue — Attic"
+  ogDescription="That confirmation link didn't work."
+>
+
+<section class="cta-final" style="min-height:70vh;display:flex;align-items:center;">
+  <div class="wrap-narrow" style="text-align:center;">
+    <div style="display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;background:#F0D6DF;color:#A6436A;margin-bottom:24px;">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+    </div>
+    <h2 style="margin-bottom:18px;">That link didn't work.</h2>
+    <p class="sub" style="margin-bottom:14px;">It may have expired or already been used. No worries — try requesting an invite again from the homepage, or email us and we'll sort it out.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:24px;">
+      <a class="btn btn-primary btn-lg" href="/#waitlist">Request invite again</a>
+      <a class="btn btn-ghost btn-lg" href="mailto:hi@attic.it.com">Email support →</a>
+    </div>
+  </div>
+</section>
+
+</BaseLayout>
