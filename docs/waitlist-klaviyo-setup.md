@@ -2,118 +2,86 @@
 
 Step-by-step for wiring the marketing-site waitlist to Klaviyo. The code side
 (`api/waitlist.ts`, `api/confirm.ts`, `_lib.ts`) is already in place — this
-doc covers everything you have to do in the Klaviyo + Vercel UIs.
+doc covers the Klaviyo + Vercel UI work.
 
-## 1. Klaviyo account prep
+Most of it is automated by `scripts/setup-klaviyo.mjs`. The only manual step
+is wiring 4 flows in Klaviyo (their flow-create API is gated; ~5 min of
+clicking with the templates the script pre-builds).
 
-### a. Create the private API key
+## 1. Get the Klaviyo API key
+
 1. Klaviyo → **Account → Settings → API Keys**
 2. **Create Private API Key**
    - Name: `attic-landing (Vercel)`
-   - Permissions: enable `Profiles: Read/Write` and `Lists: Read/Write`
-3. Copy the `pk_...` value — you'll paste it into Vercel in step 3.
+   - Permissions: enable **Profiles: Read/Write**, **Lists: Read/Write**, **Templates: Read/Write**
+3. Save the `pk_...` value into `attic-landing/.env.local`:
+   ```
+   KLAVIYO_API_KEY=pk_...
+   ```
+   (That file is gitignored.)
 
-### b. Create the two lists
-Both lists need to exist before traffic hits `/api/waitlist`. The code adds
-profiles to them by ID, so the IDs are referenced as env vars.
+## 2. Run the setup script
 
-1. **Audience → Lists & Segments → Create List → List**
-   - Name: `Waitlist - Unconfirmed`
-   - Description: "Filled the form on attic.it.com; hasn't clicked the
-     double-opt-in link yet."
-2. Same for `Waitlist - Confirmed`.
-3. On each list page, copy the **List ID** from the URL or the list info
-   panel (looks like `WaXyZ1`). Save both — they go into Vercel.
+```sh
+cd attic-landing
+node scripts/setup-klaviyo.mjs
+```
 
-> Keep Klaviyo's built-in "single opt-in" setting on these lists. We do the
-> opt-in handshake ourselves via the confirm-token link so we can flip Harper
-> in lockstep with Klaviyo. Don't enable Klaviyo's built-in double opt-in or
-> it'll fight our flow.
+It will (idempotently — safe to re-run):
+- Create the two Lists: `Waitlist - Unconfirmed` and `Waitlist - Confirmed`
+- Create 4 branded email templates: Confirm, Welcome, Referral Nudge,
+  Neighborhood Ready
+- Print a Vercel env var block + per-flow wiring instructions
 
-## 2. Build the four flows
+Re-running won't overwrite existing items — if a list or template with the
+expected name is already there, it reuses the existing ID.
 
-All flows live under **Flows → Create Flow → From scratch**, then set the
-trigger as described. Each one has a single email (you can add more later).
-Match the brand: terracotta + sage, Fraunces for the heading, no mascot.
+## 3. Set the Vercel env vars
 
-### Flow 1 — Confirmation email
-- **Trigger:** *List-triggered* → `Waitlist - Unconfirmed`
-- **Filter:** none
-- **Email:**
-  - Subject: `One quick step — confirm your spot on the Attic waitlist`
-  - Preheader: `Tap the button below and you're in.`
-  - Single CTA button → `{{ person.waitlist_confirm_url }}`
-    - Button label: `Confirm my spot`
-  - Body copy idea (negative-space brand):
-    > You just reserved a spot for **{{ person.waitlist_zip }}**.
-    > Tap below to confirm it's really you and we'll let you know the
-    > minute Attic reaches your neighborhood.
-- **Delay:** send immediately on list-add.
+Copy the env block the script printed and paste into **Vercel → attic-landing
+→ Settings → Environment Variables**. Set them all to apply to *Production*
+and *Preview*. (Or use the `vercel env add ...` one-liners the script also
+printed — same outcome.)
 
-### Flow 2 — Welcome (post-confirmation)
-- **Trigger:** *List-triggered* → `Waitlist - Confirmed`
-- **Email:**
-  - Subject: `You're on the list. Here's what comes next.`
-  - Body: 2-3 paragraphs framing Attic as "what isn't there anymore" — no
-    clutter, no storage-unit trips, no hauling. Mention Denver rollout
-    cadence ("small batches, neighborhood by neighborhood"). End with a
-    soft referral nudge.
-- **Delay:** send immediately on list-add.
+After saving, redeploy so the functions pick up the new values.
 
-### Flow 3 — Referral nudge
-- **Trigger:** *List-triggered* → `Waitlist - Confirmed`
-- **Delay:** 48 hours
-- **Email:**
-  - Subject: `Know a neighbor? They jump the line — so do you.`
-  - Body: Explain that we route by neighborhood density, so referrals
-    from the same zip move *both* people up. Single share link:
-    `https://attic.it.com/?ref={{ person.waitlist_zip }}` (no actual ref
-    tracking yet — that's a future build).
+## 4. Wire the 4 flows in Klaviyo UI (~5 min)
 
-### Flow 4 — Neighborhood-ready (segment-triggered, optional for launch)
-- **Audience → Segments → Create Segment:**
-  - Properties about someone → `waitlist_zip` equals one of `<your zip list>`
-  - AND is in list `Waitlist - Confirmed`
-- **Flow trigger:** *Segment-triggered* → the segment above
-- **Email:** "We're opening in your zip — your invite is coming this week."
-- Use this when a zip crosses the threshold to launch. Manual today; can
-  automate by zip count later.
+The script doesn't build flows because Klaviyo's flow-create API is still
+gated. Each flow is ~30 seconds in their UI:
 
-## 3. Vercel environment variables
+1. **Flows → Create Flow → From scratch**
+2. Pick the trigger as noted in the script output (list-triggered for 3 of
+   them; the 4th is segment-triggered and optional for launch).
+3. Drag in an **Email** action.
+4. Inside the email step, click "**Drag & drop my email**" then choose
+   "**Use existing template**" and pick the matching template the script
+   created. Paste the subject line from the script's output.
+5. For Flow 3 (referral nudge), add a 48-hour **Time delay** before the email.
+6. Save + set the flow to **Live**.
 
-In the Vercel dashboard for `attic-landing` → **Settings → Environment
-Variables**, add the following (Production + Preview):
+Repeat for each flow. The script's "Manual flow wiring" output has the
+exact trigger + template ID + subject for each one.
 
-| Name | Value | Notes |
-|---|---|---|
-| `HARPER_BASE_URL` | `https://app.attic.it.com` | The waitlist Resources are at `/WaitlistSignup` and `/WaitlistConfirm` there. |
-| `KLAVIYO_API_KEY` | `pk_...` from step 1a | Private — never commit. |
-| `KLAVIYO_UNCONFIRMED_LIST_ID` | List ID from step 1b | e.g. `WaXyZ1`. |
-| `KLAVIYO_CONFIRMED_LIST_ID` | List ID from step 1b | |
-| `KLAVIYO_API_REVISION` | `2024-10-15` | Optional — defaults to this if unset. Bump deliberately when migrating. |
-| `MARKETING_SITE_URL` | `https://attic.it.com` | Used to construct the confirm URL written onto the Klaviyo profile. |
-
-After saving, redeploy (Settings → Deployments → ⋯ → Redeploy) so the
-functions pick up the new values.
-
-## 4. Smoke test
+## 5. Smoke test
 
 1. From `attic.it.com/#waitlist`, submit the form with a real email + a
    Denver zip.
-2. Check Harper admin → **/admin/waitlist** — the row should appear with
+2. Check `app.attic.it.com/admin/waitlist` — the row should appear with
    `status: pending_confirm`.
-3. Check the inbox for the confirmation email (Klaviyo flow 1).
+3. The confirmation email (Flow 1) should land in your inbox.
 4. Click the confirm link. You should land on `/confirmed`.
-5. Re-check `/admin/waitlist` — `status` should now be `confirmed` and
+5. Re-check `/admin/waitlist` — `status` should now be `confirmed`,
    `confirmed_at` populated.
-6. Welcome email (flow 2) should arrive within a minute.
-7. Submit again with the same email — the form should show the
-   "already on the list" success copy and no new Harper row should appear.
+6. Welcome email (Flow 2) should arrive within a minute.
+7. Submit again with the same email — form should show the
+   "already on the list" success copy, no new Harper row.
 
-## 5. Things to add later
+## 6. Things to add later
 
 - `?ref=` tracking on the share link (Harper column + attribution).
-- Density-based auto-trigger for Flow 4 (today: manual segment).
-- Out-of-Denver geographic auto-segment that sends a "we'll let you know
-  when we reach [city]" email so non-Denver zips don't get the launch flow.
-- Klaviyo Reviews / SMS once we're past free tier.
+- Density-based auto-trigger for Flow 4 (today: manual segment creation
+  when a zip crosses your threshold).
+- Out-of-Denver auto-segment for non-Denver zips → "we'll let you know when
+  we reach [city]" email so they don't get the launch flow.
+- SMS + reviews channels once we're past the Klaviyo free tier.
