@@ -12,13 +12,13 @@ import '../styles/landing.css';
 
 
 <!-- ===================================================================
-     HERO
+     HERO — value prop + inline waitlist form above the fold.
      =================================================================== -->
 <header class="hero">
   <div class="hero-dust" data-dust aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero__grid">
-      <!-- LEFT: copy -->
+      <!-- LEFT: copy + form -->
       <div>
         <span class="hero__label">
           <span class="hero__label-dot"></span>
@@ -31,6 +31,7 @@ import '../styles/landing.css';
           and tuck them away in climate-controlled Denver storage.
           Call anything back in a tap. $15 a crate, a month.
         </p>
+
         <div class="hero__cta">
           <a class="btn btn-primary btn-lg" href="#waitlist">Request an invite</a>
           <a class="btn btn-ghost btn-lg" href="#how">See how it works →</a>
@@ -49,8 +50,7 @@ import '../styles/landing.css';
       <!-- RIGHT: hero anchor figure. Placeholder for the post-Maddie
            lifestyle shoot. Until /images/hero.jpg exists, this renders as a
            brand-color composition with the attic-window motif; the <img>
-           picks up automatically when the photo is dropped in.
-           See public/images/README.md for the photo brief. -->
+           picks up automatically when the photo is dropped in. -->
       <div class="hero__stage" aria-hidden="true">
         <figure class="hero__figure">
           <img src="/images/hero.jpg" alt="" class="hero__img" loading="eager" decoding="async" onerror="this.style.display='none'"/>
@@ -63,45 +63,76 @@ import '../styles/landing.css';
           </span>
         </figure>
       </div>
-      <!-- LEGACY-REMOVED: cartoon attic-house SVG + cycling phone-card stack
-           removed 2026-05-14. See git history pre-c5af80e for the original
-           markup. Kept the brand-aligned attic-window motif above as the
-           one quiet visual gesture. -->
 
     </div>
   </div>
 </header>
 
 <!-- ===================================================================
-     PROOF STRIP
+     COMPARE — at-home vs self-storage vs Attic.
+     The "why this exists" beat. Frames Attic as the in-between option.
      =================================================================== -->
-<section class="proof">
+<section id="compare" class="stripe stripe--paper compare">
   <div class="wrap">
-    <div class="proof__grid">
-      <div class="proof__item">
-        <div class="proof__num">Climate</div>
-        <div class="proof__label">Held at 65–72°F year-round</div>
-      </div>
-      <div class="proof__item">
-        <div class="proof__num">Insured</div>
-        <div class="proof__label">Up to $2,000 per crate</div>
-      </div>
-      <div class="proof__item">
-        <div class="proof__num">Tracked</div>
-        <div class="proof__label">QR-scanned at every handoff</div>
-      </div>
-      <div class="proof__item">
-        <div class="proof__num">Denver</div>
-        <div class="proof__label">Built and based in Colorado</div>
-      </div>
+    <div class="compare__head reveal">
+      <p class="eyebrow">How it stacks up</p>
+      <h2 class="h2">Three ways to handle<br/><em>the things you keep around.</em></h2>
+      <p class="lede" style="margin-top:20px;">Keeping stuff at home costs you square footage. A storage unit costs you weekends. Attic costs $15 a crate — and brings the truck.</p>
+    </div>
+
+    <div class="compare__grid">
+
+      <!-- At home -->
+      <article class="compare__card reveal" data-delay="1">
+        <p class="compare__card-tag">Keep it at home</p>
+        <h3>The default</h3>
+        <p class="compare__card-price">$0<span class="per">/ month</span></p>
+        <ul class="compare__card-list">
+          <li>Lives in your closets, your garage, the spare room you wanted as an office.</li>
+          <li>You haul it, you organize it, you dig when you need something.</li>
+          <li>Takes up square footage you're already paying for.</li>
+          <li>Climate depends on your basement.</li>
+        </ul>
+        <p class="compare__card-closer">Cheapest on paper.<br/>Costs you space every day.</p>
+      </article>
+
+      <!-- Self-storage unit -->
+      <article class="compare__card reveal" data-delay="2">
+        <p class="compare__card-tag">Rent a storage unit</p>
+        <h3>The traditional fix</h3>
+        <p class="compare__card-price">$100+<span class="per">/ month</span></p>
+        <ul class="compare__card-list">
+          <li>Lives across town behind a chain-link fence.</li>
+          <li>You drive, you load, you unload — every visit.</li>
+          <li>Minimum unit size is bigger than what you actually need.</li>
+          <li>Access depends on gate hours.</li>
+        </ul>
+        <p class="compare__card-closer">Solves the space problem.<br/>Adds a commute.</p>
+      </article>
+
+      <!-- Attic -->
+      <article class="compare__card compare__card--featured reveal" data-delay="3">
+        <p class="compare__card-tag">The Attic way</p>
+        <h3>Best of both</h3>
+        <p class="compare__card-price">$15<span class="per">/ crate / month</span></p>
+        <ul class="compare__card-list">
+          <li>Lives in our climate-controlled Denver facility.</li>
+          <li>We pick up. We deliver. You decide what and when.</li>
+          <li>Pay for the crates you use — not a unit you don't fill.</li>
+          <li>Insured up to $2,000 per crate.</li>
+        </ul>
+        <p class="compare__card-closer">All the benefits of a unit.<br/>None of the haul.</p>
+      </article>
+
     </div>
   </div>
 </section>
 
 <!-- ===================================================================
-     DAY WITH ATTIC
+     HOW IT WORKS — four-step timeline. Anchor target for the nav.
+     Restored 2026-05-19 after an over-aggressive cut.
      =================================================================== -->
-<section id="how" class="stripe stripe--paper day">
+<section id="how" class="stripe day">
   <div class="wrap">
     <div class="day__head reveal">
       <div class="day__head-left">
@@ -143,198 +174,15 @@ import '../styles/landing.css';
 </section>
 
 <!-- ===================================================================
-     FACILITY
-     =================================================================== -->
-<section class="stripe stripe--dark facility">
-  <div class="wrap">
-    <div class="facility__grid">
-      <div class="reveal">
-        <p class="eyebrow">Inside the attic</p>
-        <h2 class="h2" style="color:#F5EADB;">A proper home for<br/>your things.</h2>
-        <p class="body-lg" style="margin-top:24px;max-width:460px;">Our Denver storage isn't a garage unit. It's climate-controlled, scan-tracked, and insured — purpose-built for the stuff you want to keep but don't need underfoot.</p>
-
-        <div class="facility__features">
-          <div class="fac-feat reveal" data-delay="1">
-            <div class="fac-feat__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </div>
-            <div>
-              <h4>Secured 24/7</h4>
-              <p>Keycard access, cameras, motion sensors. Only named staff ever touch a crate.</p>
-            </div>
-          </div>
-          <div class="fac-feat reveal" data-delay="2">
-            <div class="fac-feat__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 14.76V3.5a2.5 2.5 0 0 0-5 0v11.26a4.5 4.5 0 1 0 5 0z"/></svg>
-            </div>
-            <div>
-              <h4>Climate-controlled</h4>
-              <p>Held at 65–72°F year-round. No freeze, no bake, no musty-garage funk.</p>
-            </div>
-          </div>
-          <div class="fac-feat reveal" data-delay="3">
-            <div class="fac-feat__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><path d="M14 14h3v3h-3zM18 14h3M14 18h3M18 21h3"/></svg>
-            </div>
-            <div>
-              <h4>Every crate scanned</h4>
-              <p>QR-coded and scanned at pickup, intake, shelf placement, and return. Full custody trail.</p>
-            </div>
-          </div>
-          <div class="fac-feat reveal" data-delay="4">
-            <div class="fac-feat__icon">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </div>
-            <div>
-              <h4>Insured to $2,000</h4>
-              <p>Every crate, every month, baked into the price. No extra rider to buy.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="facility__scene reveal" data-delay="2" aria-hidden="true">
-        <!-- Warehouse interior cross-section: shelving with bins + glow -->
-        <svg viewBox="0 0 600 450" preserveAspectRatio="xMidYMid slice">
-          <defs>
-            <linearGradient id="shelfGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#3A2A1A"/>
-              <stop offset="100%" stop-color="#1A120A"/>
-            </linearGradient>
-            <radialGradient id="warmLight" cx="50%" cy="30%">
-              <stop offset="0%" stop-color="#FBEECB" stop-opacity="0.4"/>
-              <stop offset="60%" stop-color="#E8B84A" stop-opacity="0.1"/>
-              <stop offset="100%" stop-color="#140D07" stop-opacity="0"/>
-            </radialGradient>
-          </defs>
-
-          <!-- background glow -->
-          <rect width="600" height="450" fill="#140D07"/>
-          <ellipse cx="300" cy="130" rx="300" ry="200" fill="url(#warmLight)"/>
-
-          <!-- floor -->
-          <path d="M 0 380 L 600 380 L 600 450 L 0 450 Z" fill="#0A0704"/>
-          <!-- perspective floor lines -->
-          <g stroke="#3A2A1A" stroke-width="1" opacity="0.5">
-            <line x1="0" y1="400" x2="600" y2="400"/>
-            <line x1="0" y1="420" x2="600" y2="420"/>
-          </g>
-
-          <!-- warehouse shelving (3 rows, deep perspective) -->
-          <!-- back row, smallest -->
-          <g transform="translate(140 100)">
-            <rect x="0" y="0" width="320" height="240" fill="url(#shelfGrad)" stroke="#4A3820" stroke-width="1"/>
-            <!-- horizontal shelf lines -->
-            <line x1="0" y1="60" x2="320" y2="60" stroke="#5A4028" stroke-width="2"/>
-            <line x1="0" y1="120" x2="320" y2="120" stroke="#5A4028" stroke-width="2"/>
-            <line x1="0" y1="180" x2="320" y2="180" stroke="#5A4028" stroke-width="2"/>
-            <!-- vertical supports -->
-            <line x1="80" y1="0" x2="80" y2="240" stroke="#4A3820" stroke-width="1.5"/>
-            <line x1="160" y1="0" x2="160" y2="240" stroke="#4A3820" stroke-width="1.5"/>
-            <line x1="240" y1="0" x2="240" y2="240" stroke="#4A3820" stroke-width="1.5"/>
-
-            <!-- bins: row 1 -->
-            <g transform="translate(8 14)">
-              <rect width="60" height="42" rx="3" fill="#C65D3C"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/>
-            </g>
-            <g transform="translate(88 14)">
-              <rect width="60" height="42" rx="3" fill="#6B8E5A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/>
-            </g>
-            <g transform="translate(168 14)">
-              <rect width="60" height="42" rx="3" fill="#E8B84A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#23180F" opacity="0.3"/>
-            </g>
-            <g transform="translate(248 14)">
-              <rect width="60" height="42" rx="3" fill="#5A7FA3"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/>
-            </g>
-
-            <!-- row 2 -->
-            <g transform="translate(8 74)"><rect width="60" height="42" rx="3" fill="#A6436A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
-            <g transform="translate(88 74)"><rect width="60" height="42" rx="3" fill="#C65D3C"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
-            <g transform="translate(168 74)"><rect width="60" height="42" rx="3" fill="#6B8E5A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
-            <g transform="translate(248 74)"><rect width="60" height="42" rx="3" fill="#E8B84A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#23180F" opacity="0.3"/></g>
-
-            <!-- row 3 -->
-            <g transform="translate(8 134)"><rect width="60" height="42" rx="3" fill="#5A7FA3"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
-            <g transform="translate(88 134)"><rect width="60" height="42" rx="3" fill="#C65D3C"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
-            <g transform="translate(168 134)"><rect width="60" height="42" rx="3" fill="#A6436A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
-            <g transform="translate(248 134)"><rect width="60" height="42" rx="3" fill="#6B8E5A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
-
-            <!-- row 4 -->
-            <g transform="translate(8 194)"><rect width="60" height="42" rx="3" fill="#E8B84A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#23180F" opacity="0.3"/></g>
-            <g transform="translate(88 194)"><rect width="60" height="42" rx="3" fill="#5A7FA3"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
-            <g transform="translate(168 194)"><rect width="60" height="42" rx="3" fill="#C65D3C"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
-            <g transform="translate(248 194)"><rect width="60" height="42" rx="3" fill="#A6436A"/><rect x="6" y="6" width="48" height="3" rx="1" fill="#FFF8EE" opacity="0.4"/></g>
-          </g>
-
-          <!-- hanging pendant light -->
-          <line x1="300" y1="0" x2="300" y2="70" stroke="#4A3820" stroke-width="1"/>
-          <circle cx="300" cy="78" r="12" fill="#FBEECB" opacity="0.9"/>
-          <circle cx="300" cy="78" r="24" fill="#FBEECB" opacity="0.2"/>
-
-          <!-- shelf label at bottom -->
-          <rect x="260" y="344" width="80" height="20" rx="3" fill="#2A1D10" stroke="#4A3820"/>
-          <text x="300" y="358" fill="#E8B84A" font-family="monospace" font-size="11" text-anchor="middle" letter-spacing="1">SHELF B-12</text>
-        </svg>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================================================================
-     CRATE ITSELF — the product
-     =================================================================== -->
-<section class="stripe bin">
-  <div class="wrap">
-    <div class="bin__grid">
-      <div class="bin__art reveal" aria-hidden="true">
-        <!-- Crate product photo slot. When public/images/crate.jpg lands
-             the figure picks it up; until then renders the brand placeholder. -->
-        <figure class="bin__figure">
-          <img src="/images/crate.jpg" alt="" class="bin__img" loading="lazy" decoding="async" onerror="this.style.display='none'"/>
-        </figure>
-      </div>
-
-      <div class="reveal" data-delay="1">
-        <p class="eyebrow">The crate</p>
-        <h2 class="h2">One container,<br/>considered.</h2>
-        <p class="body-lg" style="margin-top:20px;">Heavy-grade polyethylene, made in the USA. Open-top with carry handles, zip-tie sealable for security. Stackable, nestable when empty. A QR plate that never falls off. Nothing fancy — just the right crate.</p>
-
-        <dl class="bin__specs">
-          <div class="bin__spec">
-            <dt>Capacity</dt>
-            <dd>19<small>gal</small></dd>
-          </div>
-          <div class="bin__spec">
-            <dt>Dimensions</dt>
-            <dd>27×17×12<small>in</small></dd>
-          </div>
-          <div class="bin__spec">
-            <dt>Pack limit</dt>
-            <dd>50<small>lbs</small></dd>
-          </div>
-          <div class="bin__spec">
-            <dt>Stack height</dt>
-            <dd>5<small>crates</small></dd>
-          </div>
-        </dl>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- APP PREVIEW section removed 2026-05-14 — the 4-phone mockup gallery
-     fought the negative-space brand direction and did not match the
-     actual app UI. See git history pre-c5af80e for the original markup. -->
-
-<!-- ===================================================================
-     PRICING
+     PRICING — transparent details. One big number + slim inclusion list.
+     Restored 2026-05-19 in a slimmer form (4 inclusions, not 9).
      =================================================================== -->
 <section id="pricing" class="stripe pricing">
   <div class="wrap">
     <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 56px;">
       <p class="eyebrow">What it costs</p>
       <h2 class="h2">One price. <em>No surprises.</em></h2>
-      <p class="lede" style="margin-top:20px;">Flat rate, everything bundled. Cancel any crate anytime — we pick it up for free.</p>
+      <p class="lede" style="margin-top:20px;">Flat rate per crate. Bundled service. Cancel any crate any time — we pick it up for free.</p>
     </div>
 
     <div class="pricing__card reveal" data-delay="1">
@@ -356,8 +204,8 @@ import '../styles/landing.css';
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div>
-            <h4>Free first delivery</h4>
-            <p>We bring empty crates to your door on order one.</p>
+            <h4>Empty crate delivery</h4>
+            <p>Free, on every order.</p>
           </div>
         </div>
         <div class="pricing__item">
@@ -365,8 +213,8 @@ import '../styles/landing.css';
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div>
-            <h4>One trip a month</h4>
-            <p>Pickup or delivery included at no extra cost.</p>
+            <h4>Free retrieval after 4 months</h4>
+            <p>Earlier than that, $15/crate flat.</p>
           </div>
         </div>
         <div class="pricing__item">
@@ -374,8 +222,8 @@ import '../styles/landing.css';
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div>
-            <h4>Climate-controlled</h4>
-            <p>Held at 65–72°F. No heat, freeze, or damp.</p>
+            <h4>Insured up to $2,000 per crate</h4>
+            <p>Climate-controlled. Scanned at every handoff.</p>
           </div>
         </div>
         <div class="pricing__item">
@@ -383,26 +231,8 @@ import '../styles/landing.css';
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div>
-            <h4>Chain-of-custody</h4>
-            <p>Scanned at every handoff, pickup to shelf.</p>
-          </div>
-        </div>
-        <div class="pricing__item">
-          <div class="pricing__item-check">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div>
-            <h4>Insured to $2,000</h4>
-            <p>Every crate. No extra rider. No deductible.</p>
-          </div>
-        </div>
-        <div class="pricing__item">
-          <div class="pricing__item-check">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div>
-            <h4>Send back free</h4>
-            <p>Done with a crate? We fetch it, no fee.</p>
+            <h4>Cancel any crate, any time</h4>
+            <p>Send empty crates back — no fee, no contract.</p>
           </div>
         </div>
       </div>
@@ -416,72 +246,23 @@ import '../styles/landing.css';
 </section>
 
 <!-- ===================================================================
-     WHAT FITS / WHAT DOESN'T
-     =================================================================== -->
-<section class="stripe stripe--paper fits">
-  <div class="wrap">
-    <div class="reveal" style="margin-bottom:48px;max-width:760px;">
-      <p class="eyebrow">What goes in</p>
-      <h2 class="h2">Built for the <em>"I'll deal with this later"</em> pile.</h2>
-      <p class="lede" style="margin-top:20px;">If you'd keep it but don't want to see it every day, it probably belongs in a crate.</p>
-    </div>
-
-    <div class="fits__grid">
-      <div class="fits__card reveal" data-delay="1">
-        <div class="fits__card-icon fits__card-icon--yes">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-        </div>
-        <h3>Great for</h3>
-        <p class="sub">The stuff most of us keep but rarely reach for:</p>
-        <div class="fits__pills">
-          <span class="fits__pill">Off-season clothes</span>
-          <span class="fits__pill">Holiday decor</span>
-          <span class="fits__pill">Sentimental boxes</span>
-          <span class="fits__pill">Mid-move limbo</span>
-          <span class="fits__pill">Last-apartment leftovers</span>
-          <span class="fits__pill">Craft supplies</span>
-          <span class="fits__pill">Camping &amp; ski gear</span>
-          <span class="fits__pill">Kitchen overflow</span>
-          <span class="fits__pill">College boxes</span>
-        </div>
-      </div>
-
-      <div class="fits__card fits__card--no reveal" data-delay="2">
-        <div class="fits__card-icon fits__card-icon--no">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-        </div>
-        <h3>Please don't</h3>
-        <p class="sub">A short list of things we can't accept in a crate:</p>
-        <div class="fits__pills">
-          <span class="fits__pill fits__pill--no">Anything illegal</span>
-          <span class="fits__pill fits__pill--no">Hazardous materials</span>
-          <span class="fits__pill fits__pill--no">Perishable food</span>
-          <span class="fits__pill fits__pill--no">Living things</span>
-          <span class="fits__pill fits__pill--no">Firearms &amp; ammo</span>
-          <span class="fits__pill fits__pill--no">Cash &amp; jewelry</span>
-          <span class="fits__pill fits__pill--no">Irreplaceable documents</span>
-        </div>
-        <p class="fits__fine">Full list in our <a href="/termsofservice.html">Terms of Service</a>.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================================================================
-     FOUNDER
+     FOUNDER — one trust beat between price and FAQ.
      =================================================================== -->
 <section class="stripe founder">
   <div class="wrap">
     <div class="founder__grid">
-      <div class="founder__photo reveal" aria-hidden="true"></div>
+      <figure class="founder__photo reveal">
+        <img src="/images/founder.jpg" alt="Luke Bashford, founder of Attic" class="founder__img" loading="lazy" decoding="async" onerror="this.style.display='none'"/>
+      </figure>
       <div class="reveal" data-delay="1">
-        <p class="eyebrow">A note from the founder</p>
-        <p class="founder__quote">
-          I started Attic after watching one too many friends shove holiday decor, off-season clothes, and the boxes from their last apartment into the corner of a small place — paying rent on square footage they were using to store stuff they didn't need that month. Storage units feel punishing for that. So I built Attic to be the answer: close by, climate-controlled, scanned, and one tap away when you want any of it back.
-        </p>
+        <p class="eyebrow">How Attic started</p>
+        <p class="founder__quote">Attic started with an idea from my cofounder Ali.</p>
+        <p class="founder__quote">She asked a simple question: if there's DoorDash for food, Uber for rides, and Amazon for just about everything else, why is storage still such a frustrating experience?</p>
+        <p class="founder__quote">That idea stuck with us. With my background in development and product building, we set out to create something better.</p>
+        <p class="founder__quote">We wanted storage to feel simple, instant, and invisible — not something that wastes your entire weekend. So we built Attic.</p>
         <div class="founder__sign">
           <span class="founder__sig">Luke Bashford</span>
-          <span class="founder__role">Founder · Denver</span>
+          <span class="founder__role">Co-founder · Denver</span>
         </div>
       </div>
     </div>
@@ -489,94 +270,48 @@ import '../styles/landing.css';
 </section>
 
 <!-- ===================================================================
-     DENVER
+     FAQ — four essential questions before the final CTA. Restored
+     2026-05-19, trimmed from five to four; the previous "What counts
+     as a crate" question moved into the inline pricing copy.
      =================================================================== -->
-<section id="denver" class="stripe stripe--cream">
-  <div class="wrap" style="display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;">
-    <div class="reveal">
-      <p class="eyebrow">Service area</p>
-      <h2 class="h2">Denver first. <em>On purpose.</em></h2>
-      <p class="lede" style="margin-top:20px;max-width:480px;">We're building Attic one neighborhood at a time. That means tight routes, real next-day returns, and drivers who know your block.</p>
-      <p class="body" style="margin-top:16px;max-width:480px;">Rolling out across Denver — Highland, RiNo, Capitol Hill, Wash Park, Cherry Creek, Berkeley, Sunnyside and beyond. Aurora, Lakewood, and Boulder coming next.</p>
-      <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap;">
-        <a class="btn btn-primary" href="/denver.html">See the Denver page →</a>
-        <a class="btn btn-ghost" href="mailto:hi@attic.it.com?subject=Attic%20in%20my%20city">Not in Denver?</a>
-      </div>
-    </div>
-
-    <div class="reveal denver__list" data-delay="1">
-      <div class="denver__list-card">
-        <p class="denver__list-heading">Now serving</p>
-        <ul class="denver__hoods denver__hoods--active">
-          <li><span class="denver__dot"></span>Highland</li>
-          <li><span class="denver__dot"></span>RiNo</li>
-          <li><span class="denver__dot"></span>Capitol Hill</li>
-          <li><span class="denver__dot"></span>Wash Park</li>
-          <li><span class="denver__dot"></span>Cherry Creek</li>
-          <li><span class="denver__dot"></span>Berkeley</li>
-          <li><span class="denver__dot"></span>Sunnyside</li>
-        </ul>
-        <p class="denver__list-heading denver__list-heading--soon">Coming soon</p>
-        <ul class="denver__hoods denver__hoods--soon">
-          <li><span class="denver__dot denver__dot--soon"></span>Aurora</li>
-          <li><span class="denver__dot denver__dot--soon"></span>Lakewood</li>
-          <li><span class="denver__dot denver__dot--soon"></span>Boulder</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================================================================
-     FAQ
-     =================================================================== -->
-<section id="faq" class="stripe faq">
+<section id="faq" class="stripe stripe--paper faq">
   <div class="wrap" style="display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:start;">
     <div class="reveal">
       <p class="eyebrow">FAQ</p>
-      <h2 class="h2">Common<br/>questions.</h2>
-      <p class="body-lg" style="margin-top:18px;max-width:280px;">Don't see yours? <a href="mailto:hi@attic.it.com">Email us.</a> We answer everything personally.</p>
+      <h2 class="h2">The things<br/><em>people ask first.</em></h2>
     </div>
-    <div class="faq__grid reveal" data-delay="1">
+    <div class="reveal faq__list" data-delay="1">
       <details>
-        <summary>What if I need something immediately?</summary>
-        <p>Same- or next-day delivery is included — schedule a return in the app and we'll bring your crate back on the next available window. No rush fees.</p>
+        <summary>How does the pickup work?</summary>
+        <p>You schedule a window in the app. A driver comes to your door, scans each crate, and loads them onto the truck. You don't haul anything — no trips to a self-storage lot, no rented vans.</p>
+      </details>
+      <details>
+        <summary>What if I need something back fast?</summary>
+        <p>Tap "send it back" in the app. We bring the crate to your door the next available window — usually next day. Free after a crate has been stored for four months; $15 per crate flat before that.</p>
       </details>
       <details>
         <summary>How do you keep my things safe?</summary>
-        <p>Every crate is tagged with a QR code and scanned at every handoff — pickup, intake, shelf placement, and return — so there's a full custody trail. Storage is climate-controlled at 65–72°F. Contents are insured up to $2,000 per crate.</p>
+        <p>Every crate carries a QR plate that's scanned at pickup, on the way into the facility, when it's shelved, and on every return — so there's a full chain of custody. Storage is climate-controlled. Contents are insured up to $2,000 per crate.</p>
       </details>
       <details>
-        <summary>Can I send crates back if I don't need them anymore?</summary>
-        <p>Yes, any time. If a crate is empty at your home, tap "Send it back" in the app and we'll retrieve it at no cost. Your monthly fee for that crate stops at the next billing cycle.</p>
-      </details>
-      <details>
-        <summary>What counts as a "crate"?</summary>
-        <p>A heavy-duty 19-gallon milk crate — 27×17×12 inches, with carry handles and a zip-tie-friendly top. We provide them; you don't need to supply your own containers.</p>
-      </details>
-      <details>
-        <summary>How much stuff fits in a crate?</summary>
-        <p>Roughly: an entire holiday decor setup, a full season of off-season clothes, or about 20 books and the contents of one bathroom drawer. Most folks order three or four.</p>
-      </details>
-      <details>
-        <summary>Do you have a minimum?</summary>
-        <p>Nope. Start with one crate, finish with fifty. We don't care — we just want to be useful.</p>
-      </details>
-      <details>
-        <summary>How do I get started?</summary>
-        <p>We're opening Attic to Denver residents in small batches. <a href="#waitlist">Request an invite</a> and we'll send a code as spots open up — usually within a week.</p>
+        <summary>Do I have to commit?</summary>
+        <p>No. There's no contract, no minimum crate count, and no monthly subscription you can't escape. When a crate is empty at your place, tap "send it back" — we pick it up for free and that crate's monthly fee stops at the next billing cycle.</p>
       </details>
     </div>
   </div>
 </section>
 
 <!-- ===================================================================
-     FINAL CTA — WAITLIST
+     FINAL CTA — WAITLIST. Last conversion shot. Denver line + link
+     fold the geography pitch in without a separate section.
      =================================================================== -->
 <section id="waitlist" class="cta-final">
   <div class="wrap-narrow">
     <h2 class="reveal">Ready to get some <em>space back?</em></h2>
-    <p class="sub reveal" data-delay="1">Attic is opening Denver in small batches. Drop your email and zip — we'll send your invite when we reach your neighborhood.</p>
+    <p class="sub reveal" data-delay="1">
+      Attic is opening Denver in small batches — Highland to Cherry Creek and growing.
+      Drop your email and zip. We'll send your invite when we reach your neighborhood.
+    </p>
     <form class="email-form reveal" data-delay="2" data-email-form novalidate>
       <div data-email-fields>
         <div class="email-form__row">
@@ -614,11 +349,10 @@ import '../styles/landing.css';
       </div>
       <p class="email-form__fine">We'll email you when your invite's ready, and occasionally with launch updates. Unsubscribe anytime.</p>
     </form>
+    <p class="cta-final__denver reveal" data-delay="3">
+      <a href="/denver.html">See where we're open in Denver →</a>
+    </p>
   </div>
 </section>
-
-<!-- ===================================================================
-     FOOTER
-     =================================================================== -->
 
 </BaseLayout>
