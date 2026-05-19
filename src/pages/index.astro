@@ -32,23 +32,19 @@ import '../styles/landing.css';
           Call anything back in a tap. $15 a crate, a month.
         </p>
 
-        <form class="email-form hero__form" data-email-form novalidate>
-          <div data-email-fields>
-            <div class="email-form__row">
-              <input type="email" name="email" placeholder="you@email.com" required autocomplete="email" inputmode="email" aria-label="Email address" class="email-form__input" />
-              <span class="email-form__divider" aria-hidden="true"></span>
-              <input type="text" name="zip" placeholder="80210" required autocomplete="postal-code" inputmode="numeric" pattern="\d{5}" maxlength="5" aria-label="ZIP code" class="email-form__input email-form__zip" />
-            </div>
-            <button type="submit" class="email-form__submit">Request my invite</button>
+        <div class="hero__cta">
+          <a class="btn btn-primary btn-lg" href="#waitlist">Request an invite</a>
+          <a class="btn btn-ghost btn-lg" href="#how">See how it works →</a>
+        </div>
+        <div class="hero__ticker" data-ticker aria-live="polite">
+          <span class="hero__ticker-dot"></span>
+          <div class="hero__ticker-lines">
+            <span data-ticker-line>Climate-controlled Denver storage</span>
+            <span data-ticker-line>Insured up to <strong>$2,000</strong> per crate</span>
+            <span data-ticker-line>Scanned at <strong>every handoff</strong></span>
+            <span data-ticker-line>No contract. Cancel any crate any time.</span>
           </div>
-          <input type="text" name="_h" tabindex="-1" autocomplete="off" aria-hidden="true" class="email-form__honeypot" />
-          <div class="email-form__error" data-email-error role="alert"></div>
-          <div class="email-form__success" data-email-success role="status">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-            <span>You're on the list. Check your inbox to confirm.</span>
-          </div>
-          <p class="email-form__fine">Climate-controlled · Insured up to $2,000/crate · No contracts.</p>
-        </form>
+        </div>
       </div>
 
       <!-- RIGHT: hero anchor figure. Placeholder for the post-Maddie
