@@ -60,7 +60,7 @@
   max-width: 490px; margin: 0 0 36px;
 }
 
-.hero__cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
+.hero__cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: center; }
 
 /* ticker under CTA */
 .hero__ticker {
