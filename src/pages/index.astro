@@ -327,6 +327,69 @@ import '../styles/landing.css';
      actual app UI. See git history pre-c5af80e for the original markup. -->
 
 <!-- ===================================================================
+     COMPARE — at-home vs self-storage vs Attic
+     The honest three-way framing before the price reveal. Sets the
+     value of Attic in the customer's own comparison: keeping things at
+     home (free but costs square footage), a self-storage unit ($100+
+     and a commute), or Attic ($15/crate and we bring the truck).
+     =================================================================== -->
+<section id="compare" class="stripe stripe--paper compare">
+  <div class="wrap">
+    <div class="compare__head reveal">
+      <p class="eyebrow">How it stacks up</p>
+      <h2 class="h2">Three ways to handle<br/><em>the things you keep around.</em></h2>
+      <p class="lede" style="margin-top:20px;">Keeping stuff at home costs you square footage. A storage unit costs you weekends. Attic costs $15 a crate — and brings the truck.</p>
+    </div>
+
+    <div class="compare__grid">
+
+      <!-- At home -->
+      <article class="compare__card reveal" data-delay="1">
+        <p class="compare__card-tag">Keep it at home</p>
+        <h3>The default</h3>
+        <p class="compare__card-price">$0<span class="per">/ month</span></p>
+        <ul class="compare__card-list">
+          <li>Lives in your closets, your garage, the spare room you wanted as an office.</li>
+          <li>You haul it, you organize it, you dig when you need something.</li>
+          <li>Takes up square footage you're already paying for.</li>
+          <li>Climate depends on your basement.</li>
+        </ul>
+        <p class="compare__card-closer">Cheapest on paper.<br/>Costs you space every day.</p>
+      </article>
+
+      <!-- Self-storage unit -->
+      <article class="compare__card reveal" data-delay="2">
+        <p class="compare__card-tag">Rent a storage unit</p>
+        <h3>The traditional fix</h3>
+        <p class="compare__card-price">$100+<span class="per">/ month</span></p>
+        <ul class="compare__card-list">
+          <li>Lives across town behind a chain-link fence.</li>
+          <li>You drive, you load, you unload — every visit.</li>
+          <li>Minimum unit size is bigger than what you actually need.</li>
+          <li>Access depends on gate hours.</li>
+        </ul>
+        <p class="compare__card-closer">Solves the space problem.<br/>Adds a commute.</p>
+      </article>
+
+      <!-- Attic -->
+      <article class="compare__card compare__card--featured reveal" data-delay="3">
+        <p class="compare__card-tag">The Attic way</p>
+        <h3>Best of both</h3>
+        <p class="compare__card-price">$15<span class="per">/ crate / month</span></p>
+        <ul class="compare__card-list">
+          <li>Lives in our climate-controlled Denver facility.</li>
+          <li>We pick up. We deliver. You decide what and when.</li>
+          <li>Pay for the crates you use — not a unit you don't fill.</li>
+          <li>Insured up to $2,000 per crate.</li>
+        </ul>
+        <p class="compare__card-closer">All the benefits of a unit.<br/>None of the haul.</p>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
      PRICING
      =================================================================== -->
 <section id="pricing" class="stripe pricing">
