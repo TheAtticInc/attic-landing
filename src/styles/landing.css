@@ -62,6 +62,35 @@
 
 .hero__cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; }
 
+/* Inline waitlist form in the hero. Default .email-form styles assume a
+   dark .cta-final background; this block overrides colors for the cream
+   hero bg so input text + placeholders + dividers all read clearly. */
+.hero__form { max-width: 480px; margin-top: 40px; }
+.hero__form .email-form__row {
+  background: var(--surface);
+  border-color: rgba(35, 24, 15, 0.18);
+}
+.hero__form .email-form__row:hover {
+  background: var(--surface);
+  border-color: rgba(35, 24, 15, 0.32);
+}
+.hero__form .email-form__row:focus-within {
+  border-color: var(--mustard-deep, var(--terracotta));
+  background: var(--surface);
+  box-shadow: 0 0 0 3px rgba(232, 184, 74, 0.24);
+}
+.hero__form .email-form__input { color: var(--ink); }
+.hero__form .email-form__input::placeholder { color: var(--ink-3); }
+.hero__form .email-form__divider { background: rgba(35, 24, 15, 0.18); }
+.hero__form .email-form__fine { color: var(--ink-3); }
+.hero__form .email-form__success {
+  background: var(--moss-soft);
+  color: var(--moss-deep);
+}
+@media (max-width: 720px) {
+  .hero__form { margin-top: 28px; }
+}
+
 /* ticker under CTA */
 .hero__ticker {
   margin-top: 36px; display: flex; align-items: center; gap: 14px;
@@ -750,6 +779,23 @@
 }
 .cta-final h2 em { font-style: italic; color: var(--mustard); font-weight: 500; }
 .cta-final p.sub { font-size: 18px; color: #C8B9A1; max-width: 480px; margin: 0 auto 40px; }
+
+/* Denver fold-in link under the final form. Subtle — the form is the
+   primary action, this is the secondary path for "I want to see your
+   coverage area first" visitors. */
+.cta-final__denver {
+  margin: 32px auto 0;
+  font-size: 14px;
+  text-align: center;
+}
+.cta-final__denver a {
+  color: rgba(245, 234, 219, 0.72);
+  text-decoration: underline;
+  text-underline-offset: 5px;
+  text-decoration-thickness: 1px;
+  transition: color 160ms var(--ease);
+}
+.cta-final__denver a:hover { color: var(--mustard); }
 
 .email-form {
   max-width: 460px; margin: 0 auto;
