@@ -502,7 +502,10 @@
 .pricing {}
 .pricing__card {
   position: relative;
-  background: linear-gradient(135deg, #2D3A24 0%, #40513A 55%, #5A6E50 100%);
+  /* Evening-sky dusty navy. Replaces the prior moss-green gradient
+     (per Ali feedback 2026-05-19). Anchors to --sky #5A7FA3, darkened
+     to maintain the same contrast with cream text + mustard accents. */
+  background: linear-gradient(135deg, #1D2A3C 0%, #2D4159 55%, #42597A 100%);
   color: #F5EADB;
   border-radius: var(--r-xl);
   padding: 72px 56px;
