@@ -12,9 +12,7 @@ import '../styles/landing.css';
 
 
 <!-- ===================================================================
-     HERO — with inline waitlist form above the fold.
-     Sole conversion surface up top. Form duplicate at the bottom for
-     scroll-down converters.
+     HERO — value prop + inline waitlist form above the fold.
      =================================================================== -->
 <header class="hero">
   <div class="hero-dust" data-dust aria-hidden="true"></div>
@@ -56,8 +54,7 @@ import '../styles/landing.css';
       <!-- RIGHT: hero anchor figure. Placeholder for the post-Maddie
            lifestyle shoot. Until /images/hero.jpg exists, this renders as a
            brand-color composition with the attic-window motif; the <img>
-           picks up automatically when the photo is dropped in.
-           See public/images/README.md for the photo brief. -->
+           picks up automatically when the photo is dropped in. -->
       <div class="hero__stage" aria-hidden="true">
         <figure class="hero__figure">
           <img src="/images/hero.jpg" alt="" class="hero__img" loading="eager" decoding="async" onerror="this.style.display='none'"/>
@@ -76,10 +73,8 @@ import '../styles/landing.css';
 </header>
 
 <!-- ===================================================================
-     COMPARE — at-home vs self-storage vs Attic
-     The honest three-way framing. Single section now carries the entire
-     value pitch (replaces the prior Day / Facility / Bin / Pricing / Fits
-     sections, removed 2026-05-19 in the aggressive-cut pass).
+     COMPARE — at-home vs self-storage vs Attic.
+     The "why this exists" beat. Frames Attic as the in-between option.
      =================================================================== -->
 <section id="compare" class="stripe stripe--paper compare">
   <div class="wrap">
@@ -138,8 +133,124 @@ import '../styles/landing.css';
 </section>
 
 <!-- ===================================================================
-     FOUNDER — one trust beat between pitch and final CTA. Slimmed
-     2026-05-19 from a four-sentence paragraph to three short ones.
+     HOW IT WORKS — four-step timeline. Anchor target for the nav.
+     Restored 2026-05-19 after an over-aggressive cut.
+     =================================================================== -->
+<section id="how" class="stripe day">
+  <div class="wrap">
+    <div class="day__head reveal">
+      <div class="day__head-left">
+        <p class="eyebrow">A day with Attic</p>
+        <h2 class="h2">Four taps. One truck.<br/><em>Zero storage-unit weekends.</em></h2>
+      </div>
+      <p class="body-lg" style="max-width:360px;">From "I need crates" to "it's back in my closet" — the whole loop, on a single timeline.</p>
+    </div>
+
+    <div class="day__track">
+      <div class="day__rail" aria-hidden="true"></div>
+
+      <div class="day__step reveal" data-delay="1">
+        <div class="day__pin" data-tone="t">1</div>
+        <p class="day__time">Tuesday · evening</p>
+        <h3>Order, we drop off</h3>
+        <p>Pick how many you need. Sturdy, stackable crates land at your door tomorrow — first delivery's on us.</p>
+      </div>
+      <div class="day__step reveal" data-delay="2">
+        <div class="day__pin" data-tone="m">2</div>
+        <p class="day__time">Saturday · whenever</p>
+        <h3>You pack them</h3>
+        <p>Fill them at your pace. Label and snap a photo of what's inside from the app, so future-you can find it.</p>
+      </div>
+      <div class="day__step reveal" data-delay="3">
+        <div class="day__pin" data-tone="m">3</div>
+        <p class="day__time">Monday · afternoon</p>
+        <h3>We pick them up</h3>
+        <p>A driver scans each one and loads them up. You get a "tucked in" note when they land on the shelf.</p>
+      </div>
+      <div class="day__step reveal" data-delay="4">
+        <div class="day__pin" data-tone="moss">4</div>
+        <p class="day__time">Months later · next day</p>
+        <h3>Call anything back</h3>
+        <p>Tap "send it back." It's on your porch tomorrow — same flat rate, no fetch fee.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     PRICING — transparent details. One big number + slim inclusion list.
+     Restored 2026-05-19 in a slimmer form (4 inclusions, not 9).
+     =================================================================== -->
+<section id="pricing" class="stripe pricing">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 56px;">
+      <p class="eyebrow">What it costs</p>
+      <h2 class="h2">One price. <em>No surprises.</em></h2>
+      <p class="lede" style="margin-top:20px;">Flat rate per crate. Bundled service. Cancel any crate any time — we pick it up for free.</p>
+    </div>
+
+    <div class="pricing__card reveal" data-delay="1">
+      <div class="pricing__head">
+        <div>
+          <p class="pricing__label">Flat rate · Colorado</p>
+          <h3 class="pricing__title">Per crate, per month.<br/>That's the whole price.</h3>
+        </div>
+        <div class="pricing__num">
+          <span class="pricing__num-dollar">$</span>
+          <span>15</span>
+          <span class="pricing__num-per">/ crate / mo</span>
+        </div>
+      </div>
+
+      <div class="pricing__grid">
+        <div class="pricing__item">
+          <div class="pricing__item-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Empty crate delivery</h4>
+            <p>Free, on every order.</p>
+          </div>
+        </div>
+        <div class="pricing__item">
+          <div class="pricing__item-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Free retrieval after 4 months</h4>
+            <p>Earlier than that, $15/crate flat.</p>
+          </div>
+        </div>
+        <div class="pricing__item">
+          <div class="pricing__item-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Insured up to $2,000 per crate</h4>
+            <p>Climate-controlled. Scanned at every handoff.</p>
+          </div>
+        </div>
+        <div class="pricing__item">
+          <div class="pricing__item-check">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          </div>
+          <div>
+            <h4>Cancel any crate, any time</h4>
+            <p>Send empty crates back — no fee, no contract.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="pricing__foot">
+        <p>No contract. No minimum crate count. No per-mile fees.</p>
+        <a class="btn btn-dark" href="#waitlist">Request an invite →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     FOUNDER — one trust beat between price and FAQ.
      =================================================================== -->
 <section class="stripe founder">
   <div class="wrap">
@@ -160,16 +271,47 @@ import '../styles/landing.css';
 </section>
 
 <!-- ===================================================================
-     FINAL CTA — WAITLIST.
-     Denver mention folded in here (the standalone Denver section was
-     removed 2026-05-19; full neighborhood list lives on /denver).
+     FAQ — four essential questions before the final CTA. Restored
+     2026-05-19, trimmed from five to four; the previous "What counts
+     as a crate" question moved into the inline pricing copy.
+     =================================================================== -->
+<section id="faq" class="stripe stripe--paper faq">
+  <div class="wrap" style="display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:start;">
+    <div class="reveal">
+      <p class="eyebrow">FAQ</p>
+      <h2 class="h2">The things<br/><em>people ask first.</em></h2>
+    </div>
+    <div class="reveal faq__list" data-delay="1">
+      <details>
+        <summary>How does the pickup work?</summary>
+        <p>You schedule a window in the app. A driver comes to your door, scans each crate, and loads them onto the truck. You don't haul anything — no trips to a self-storage lot, no rented vans.</p>
+      </details>
+      <details>
+        <summary>What if I need something back fast?</summary>
+        <p>Tap "send it back" in the app. We bring the crate to your door the next available window — usually next day. Free after a crate has been stored for four months; $15 per crate flat before that.</p>
+      </details>
+      <details>
+        <summary>How do you keep my things safe?</summary>
+        <p>Every crate carries a QR plate that's scanned at pickup, on the way into the facility, when it's shelved, and on every return — so there's a full chain of custody. Storage is climate-controlled. Contents are insured up to $2,000 per crate.</p>
+      </details>
+      <details>
+        <summary>Do I have to commit?</summary>
+        <p>No. There's no contract, no minimum crate count, and no monthly subscription you can't escape. When a crate is empty at your place, tap "send it back" — we pick it up for free and that crate's monthly fee stops at the next billing cycle.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     FINAL CTA — WAITLIST. Last conversion shot. Denver line + link
+     fold the geography pitch in without a separate section.
      =================================================================== -->
 <section id="waitlist" class="cta-final">
   <div class="wrap-narrow">
     <h2 class="reveal">Ready to get some <em>space back?</em></h2>
     <p class="sub reveal" data-delay="1">
       Attic is opening Denver in small batches — Highland to Cherry Creek and growing.
-      Drop your email and zip — we'll send your invite when we reach your neighborhood.
+      Drop your email and zip. We'll send your invite when we reach your neighborhood.
     </p>
     <form class="email-form reveal" data-delay="2" data-email-form novalidate>
       <div data-email-fields>
