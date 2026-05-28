@@ -17,7 +17,6 @@
   grid-template-columns: 1.1fr 0.9fr;
   gap: 60px;
   align-items: center;
-  min-height: calc(92vh - 80px);
 }
 .hero__label {
   display: inline-flex; align-items: center; gap: 8px;
