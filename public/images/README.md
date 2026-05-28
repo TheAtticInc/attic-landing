@@ -35,6 +35,8 @@ imagery.
 - Color: terracotta + sage palette ideal. Warm-cream-leaning if not.
 - File size: under 300 KB after compression.
 
+**Current asset (trial):** `hero.jpg` — photo by Brooke Cagle (Unsplash `6zW91JT0IZc`), downscaled to 1280×1920, ~277 KB. Trial placement; revisit after the Maddie shoot.
+
 **Unsplash search starters (Luke to curate):**
 - `https://unsplash.com/s/photos/empty-apartment-morning-light`
 - `https://unsplash.com/s/photos/minimal-interior-warm`
