@@ -349,7 +349,7 @@
   display: flex; align-items: flex-start; gap: 6px;
 }
 .pricing__num-dollar { font-size: 0.5em; opacity: 0.7; margin-top: 0.2em; }
-.pricing__num-per { font-family: var(--font-body); font-weight: 400; font-size: 16px; opacity: 0.75; align-self: flex-end; padding-bottom: 14px; }
+.pricing__num-per { font-family: var(--font-body); font-weight: 400; font-size: 16px; opacity: 0.75; align-self: flex-end; padding-bottom: 14px; white-space: nowrap; flex-shrink: 0; }
 .pricing__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 40px; margin-top: 48px; position: relative; }
 .pricing__item { display: flex; gap: 14px; }
 .pricing__item-check {
