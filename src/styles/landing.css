@@ -86,7 +86,7 @@
 }
 .hero__figure {
   position: relative;
-  width: 100%; aspect-ratio: 4 / 5;
+  width: 100%; padding-top: 125%; /* 4:5 box — reliable height from width, no aspect-ratio dependency */
   margin: 0;
   border-radius: 28px;
   overflow: hidden;
@@ -136,7 +136,7 @@
 
 @media (max-width: 900px) {
   .hero__grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero__stage { order: -1; max-width: 360px; aspect-ratio: 4 / 5; }
+  .hero__stage { order: -1; max-width: 360px; }
 }
 @media (max-width: 640px) {
   /* On phones, skip the attic + phone stack illustration entirely — it
