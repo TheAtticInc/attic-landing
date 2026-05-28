@@ -6,6 +6,12 @@
 /* =========================================================
    HERO
    ========================================================= */
+/* Section reorder: the pricing card shows before the compare section.
+   Hero stays a <header> before <main>; everything else is a flex child
+   of <main>, and #pricing is pulled to the front with order. */
+main { display: flex; flex-direction: column; }
+#pricing { order: -1; }
+
 .hero {
   position: relative;
   padding: 48px 0 72px;
