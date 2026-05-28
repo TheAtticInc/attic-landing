@@ -65,7 +65,7 @@ main { display: flex; flex-direction: column; }
   max-width: 490px; margin: 0 0 36px;
 }
 
-.hero__cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: center; }
+.hero__cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: flex-start; }
 
 /* ticker under CTA */
 .hero__ticker {
@@ -140,12 +140,10 @@ main { display: flex; flex-direction: column; }
 
 @media (max-width: 900px) {
   .hero__grid { grid-template-columns: 1fr; gap: 48px; }
-  .hero__stage { order: -1; max-width: 360px; }
+  /* Hero photo is desktop-only — hidden on the stacked mobile/tablet layout. */
+  .hero__stage { display: none; }
 }
 @media (max-width: 640px) {
-  /* Hero image shows BELOW the copy on phones (order: 0) at a modest size,
-     so the pitch copy still leads above the fold. */
-  .hero__stage { order: 0; max-width: 300px; margin: 16px auto 0; }
   .hero { padding: 32px 0 48px; }
   .hero__grid { min-height: 0; gap: 0; }
   /* Keep the two hero CTAs side by side instead of wrapping to a stack. */
