@@ -86,7 +86,7 @@
 }
 .hero__figure {
   position: relative;
-  width: 100%; padding-top: 125%; /* 4:5 box — reliable height from width, no aspect-ratio dependency */
+  width: 100%; aspect-ratio: 4 / 5;
   margin: 0;
   border-radius: 28px;
   overflow: hidden;
@@ -101,11 +101,10 @@
     0 24px 60px -20px rgba(80,52,28,0.25);
 }
 .hero__img {
-  position: absolute; inset: 0;
+  position: relative; z-index: 1;
+  display: block;
   width: 100%; height: 100%;
   object-fit: cover;
-  display: block;
-  z-index: 1;
 }
 /* attic-window mark — the one quiet brand gesture that stays in placeholder
    mode. Hidden once a real photo loads (the img will sit on top). */
