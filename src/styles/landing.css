@@ -137,13 +137,14 @@
   .hero__stage { order: -1; max-width: 360px; }
 }
 @media (max-width: 640px) {
-  /* On phones, skip the attic + phone stack illustration entirely — it
-     was showing first (order: -1), pushing the real hero copy below
-     the fold. The page reads faster and the pitch lands sooner with
-     text-only at the top. */
-  .hero__stage { display: none; }
+  /* Hero image shows BELOW the copy on phones (order: 0) at a modest size,
+     so the pitch copy still leads above the fold. */
+  .hero__stage { order: 0; max-width: 300px; margin: 16px auto 0; }
   .hero { padding: 32px 0 48px; }
   .hero__grid { min-height: 0; gap: 0; }
+  /* Keep the two hero CTAs side by side instead of wrapping to a stack. */
+  .hero__cta { flex-wrap: nowrap; gap: 10px; }
+  .hero__cta .btn { flex: 1 1 0; min-width: 0; padding: 14px 14px; font-size: 13.5px; white-space: nowrap; }
 }
 
 /* =========================================================
@@ -271,11 +272,11 @@
 .compare__card-price {
   font-family: var(--font-display);
   font-weight: 600;
-  font-size: 36px;
-  letter-spacing: -0.025em;
+  font-size: 22px;
+  letter-spacing: -0.01em;
   color: var(--ink);
   margin: 0 0 24px;
-  line-height: 1;
+  line-height: 1.1;
 }
 .compare__card-price .per {
   font-family: var(--font-body);
@@ -324,7 +325,7 @@
 @media (max-width: 900px) {
   .compare__grid { grid-template-columns: 1fr; gap: 20px; }
   .compare__card { padding: 28px 24px; }
-  .compare__card--featured { transform: none; }
+  .compare__card--featured { transform: none; order: -1; }
   .compare__card--featured:hover { transform: translateY(-2px); }
 }
 
