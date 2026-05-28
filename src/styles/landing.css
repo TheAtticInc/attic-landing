@@ -34,7 +34,7 @@
 
 .hero__h1 {
   font-family: var(--font-display); font-weight: 600;
-  font-size: clamp(64px, 11.5vw, 176px);
+  font-size: clamp(44px, 7.5vw, 88px);
   letter-spacing: -0.055em;
   line-height: 0.88;
   margin: 0 0 28px;
@@ -155,33 +155,36 @@
 .day__head-left { max-width: 620px; }
 .day__track {
   position: relative;
+  display: flex;
+  flex-direction: column;
+}
+/* Full-width stacked rows replace the old horizontal rail timeline. */
+.day__rail { display: none; }
+.day__step {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 0;
+  grid-template-columns: 56px minmax(190px, 260px) 1fr;
+  grid-template-areas:
+    "pin time  desc"
+    "pin title desc";
+  align-items: center;
+  column-gap: 32px;
+  row-gap: 2px;
+  text-align: left;
+  padding: 26px 0;
+  border-top: 1px solid var(--border);
+  position: relative;
+  z-index: 1;
 }
-.day__rail {
-  /* Rail bisects the pins horizontally. Pin is 44px tall, so its
-     center sits at y=22px from the top of the step. Rail is below
-     the pin in z-order (pins have z-index 2), so the pin dots ride
-     over the rail — industry-standard timeline look. Previously the
-     rail sat at y=62 which crossed the .day__time text below. */
-  position: absolute;
-  top: 22px; left: 8%; right: 8%; height: 2px;
-  background: linear-gradient(90deg,
-    var(--terracotta-soft) 0%, var(--terracotta) 20%,
-    var(--mustard) 50%, var(--moss) 80%, var(--moss-soft) 100%);
-  z-index: 0;
-}
-.day__step { position: relative; padding: 0 12px; text-align: center; z-index: 1; }
+.day__step:first-child { border-top: none; padding-top: 0; }
 .day__pin {
+  grid-area: pin;
   width: 44px; height: 44px;
-  margin: 0 auto 14px;
+  margin: 0;
   background: var(--surface);
   border: 2px solid currentColor;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
   font-family: var(--font-display); font-weight: 600; font-size: 16px;
-  position: relative; z-index: 2;
   box-shadow: var(--sh-1);
 }
 .day__pin[data-tone="t"] { color: var(--terracotta); }
@@ -189,37 +192,37 @@
 .day__pin[data-tone="moss"] { color: var(--moss-deep); }
 .day__pin[data-tone="sky"] { color: var(--sky); }
 .day__time {
+  grid-area: time;
+  align-self: end;
+  white-space: nowrap;
   font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.8px;
-  color: var(--ink-3); text-transform: uppercase; margin: 0 0 6px;
+  color: var(--ink-3); text-transform: uppercase; margin: 0;
 }
 .day__step h3 {
-  font-family: var(--font-display); font-weight: 600; font-size: 17px;
-  letter-spacing: -0.01em; margin: 0 0 6px; color: var(--ink);
+  grid-area: title;
+  align-self: start;
+  font-family: var(--font-display); font-weight: 600; font-size: 19px;
+  letter-spacing: -0.01em; margin: 0; color: var(--ink);
 }
-.day__step p { font-size: 13.5px; line-height: 1.5; color: var(--ink-2); margin: 0; }
+.day__step p:not(.day__time) {
+  grid-area: desc;
+  font-size: 14.5px; line-height: 1.55; color: var(--ink-2); margin: 0;
+}
 
-@media (max-width: 900px) {
-  .day__track { grid-template-columns: 1fr; gap: 24px; }
-  .day__rail {
-    top: 0; bottom: 0; height: auto; width: 2px;
-    left: 30px; right: auto;
-    background: linear-gradient(180deg,
-      var(--terracotta-soft) 0%, var(--terracotta) 20%,
-      var(--mustard) 50%, var(--moss) 80%, var(--moss-soft) 100%);
-  }
-  /* Grid has 4 direct children (pin + time + h3 + p). Pin anchors column 1
-     for all three rows; time, h3, p flow into column 2 stacked vertically.
-     Without this, auto-placement zig-zags the h3 back into column 1 and
-     squishes it into a 60px-wide slot ("labels squished on the left"). */
+@media (max-width: 760px) {
   .day__step {
-    display: grid;
-    grid-template-columns: 60px 1fr;
-    gap: 4px 16px;
-    text-align: left;
-    padding: 0;
+    grid-template-columns: 44px 1fr;
+    grid-template-areas:
+      "pin time"
+      "pin title"
+      "pin desc";
+    column-gap: 16px;
+    row-gap: 4px;
+    padding: 20px 0;
     align-items: start;
   }
-  .day__pin { margin: 0; grid-row: 1 / span 3; align-self: start; }
+  .day__pin { width: 40px; height: 40px; font-size: 15px; }
+  .day__time { align-self: start; }
 }
 
 /* =========================================================
@@ -244,6 +247,11 @@
 }
 .stripe--paper .compare__card { background: var(--bg); }
 .compare__card:hover { transform: translateY(-2px); box-shadow: var(--sh-2); }
+.compare__card-icon { color: var(--ink-3); margin-bottom: 18px; line-height: 0; }
+.compare__card-icon svg { width: 40px; height: 40px; display: block; }
+.compare__card--featured .compare__card-icon { color: var(--terracotta); }
+.compare__card:nth-child(1) { order: 1; }
+.compare__card:nth-child(2) { order: 3; }
 .compare__card-tag {
   font-family: var(--font-mono);
   font-size: 11.5px;
@@ -299,10 +307,13 @@
   border-top: 1px solid var(--border);
 }
 .compare__card--featured {
-  border: 1.5px solid var(--terracotta);
-  box-shadow: var(--sh-2);
+  order: 2;
+  border: 2.5px solid var(--terracotta);
+  box-shadow: var(--sh-3);
+  transform: scale(1.05);
+  z-index: 1;
 }
-.compare__card--featured:hover { box-shadow: var(--sh-3); }
+.compare__card--featured:hover { transform: scale(1.05) translateY(-2px); box-shadow: var(--sh-4); }
 .compare__card--featured .compare__card-tag {
   color: var(--terracotta-deep);
   font-weight: 600;
@@ -314,6 +325,8 @@
 @media (max-width: 900px) {
   .compare__grid { grid-template-columns: 1fr; gap: 20px; }
   .compare__card { padding: 28px 24px; }
+  .compare__card--featured { transform: none; }
+  .compare__card--featured:hover { transform: translateY(-2px); }
 }
 
 /* =========================================================
@@ -391,8 +404,8 @@
 }
 .founder__quote {
   font-family: var(--font-display); font-weight: 400;
-  font-size: clamp(22px, 2.6vw, 30px);
-  line-height: 1.4; color: var(--ink);
+  font-size: clamp(17px, 1.7vw, 20px);
+  line-height: 1.5; color: var(--ink);
   margin: 0 0 24px;
   letter-spacing: -0.01em;
 }
