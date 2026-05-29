@@ -34,7 +34,7 @@ import '../styles/landing.css';
 
         <div class="hero__cta">
           <a class="btn btn-primary btn-lg" href="#waitlist">Request an invite</a>
-          <a class="btn btn-ghost btn-lg" href="#how">See how it works →</a>
+          <a class="btn btn-ghost btn-lg" href="#life">See what you get →</a>
         </div>
         <div class="hero__ticker" data-ticker aria-live="polite">
           <span class="hero__ticker-dot"></span>
@@ -71,116 +71,8 @@ import '../styles/landing.css';
 <main>
 
 <!-- ===================================================================
-     COMPARE — at-home vs self-storage vs Attic.
-     The "why this exists" beat. Frames Attic as the in-between option.
-     =================================================================== -->
-<section id="compare" class="stripe compare">
-  <div class="wrap">
-    <div class="compare__head reveal">
-      <p class="eyebrow">How it stacks up</p>
-      <h2 class="h2">Three ways to handle<br/><em>the things you keep around.</em></h2>
-      <p class="lede" style="margin-top:20px;">Cram it in the closet and lose the square footage. Keep buying bins and lose the weekends. Or let Attic come get it — and bring it back the second you want it.</p>
-    </div>
-
-    <div class="compare__grid">
-
-      <!-- At home -->
-      <article class="compare__card reveal" data-delay="1">
-        <div class="compare__card-icon"><svg viewBox="0 0 48 48" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 21 L24 7 L41 21"/><path d="M10 19 V41 H38 V19"/><rect x="15" y="29" width="9" height="9"/><rect x="25" y="31" width="7" height="7"/><rect x="18" y="23" width="6" height="6"/></svg></div>
-        <p class="compare__card-tag">Keep it at home</p>
-        <h3>The default</h3>
-        <p class="compare__card-price">Costs you space</p>
-        <ul class="compare__card-list">
-          <li>Lives in your closets, your garage, the spare room you wanted as an office.</li>
-          <li>You haul it, you organize it, you dig when you need something.</li>
-          <li>Takes up square footage you're already paying for.</li>
-          <li>Climate depends on your basement.</li>
-        </ul>
-        <p class="compare__card-closer">Cheapest on paper.<br/>Costs you space every day.</p>
-      </article>
-
-      <!-- Buy more bins (the DIY pile) -->
-      <article class="compare__card reveal" data-delay="2">
-        <div class="compare__card-icon"><svg viewBox="0 0 48 48" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="17" y="8" width="14" height="9" rx="1"/><rect x="14" y="18" width="20" height="10" rx="1"/><line x1="14" y1="22" x2="34" y2="22"/><rect x="11" y="29" width="26" height="11" rx="1"/><line x1="11" y1="33" x2="37" y2="33"/></svg></div>
-        <p class="compare__card-tag">Buy more bins</p>
-        <h3>The DIY pile</h3>
-        <p class="compare__card-price">Costs you weekends</p>
-        <ul class="compare__card-list">
-          <li>Lives under the stairs, on the closet shelf, in the garage you can't park in.</li>
-          <li>Another Costco run, another stack of totes to trip over.</li>
-          <li>You still pack it, label it, and dig for it later.</li>
-          <li>And the pile only ever grows.</li>
-        </ul>
-        <p class="compare__card-closer">Buys you bins.<br/>Never buys back your space.</p>
-      </article>
-
-      <!-- Attic -->
-      <article class="compare__card compare__card--featured reveal" data-delay="3">
-        <div class="compare__card-icon"><svg viewBox="0 0 48 48" width="40" height="40" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 21 L24 7 L41 21"/><path d="M10 19 V41 H38 V19"/><path d="M24 25 C24.8 30 26 31.2 31 32 C26 32.8 24.8 34 24 39 C23.2 34 22 32.8 17 32 C22 31.2 23.2 30 24 25 Z"/></svg></div>
-        <p class="compare__card-tag">The Attic way</p>
-        <h3>The easy way</h3>
-        <p class="compare__card-price">Costs you a tap</p>
-        <ul class="compare__card-list">
-          <li>Lives safe in our Denver facility — out of your space, not your life.</li>
-          <li>We pick up. We deliver. You decide what and when.</li>
-          <li>Pay for the crates you use — nothing you don't.</li>
-          <li>Every crate insured.</li>
-        </ul>
-        <p class="compare__card-closer">Your space back.<br/>None of the haul.</p>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ===================================================================
-     HOW IT WORKS — four-step timeline. Anchor target for the nav.
-     Restored 2026-05-19 after an over-aggressive cut.
-     =================================================================== -->
-<section id="how" class="stripe stripe--paper day">
-  <div class="wrap">
-    <div class="day__head reveal">
-      <div class="day__head-left">
-        <p class="eyebrow">A day with Attic</p>
-        <h2 class="h2">Four taps. One truck.<br/><em>Zero weekend hauls.</em></h2>
-      </div>
-      <p class="body-lg" style="max-width:360px;">From "I need crates" to "it's back in my closet" — the whole loop, on a single timeline.</p>
-    </div>
-
-    <div class="day__track">
-      <div class="day__rail" aria-hidden="true"></div>
-
-      <div class="day__step reveal" data-delay="1">
-        <div class="day__pin" data-tone="t">1</div>
-        <p class="day__time">Tuesday · evening</p>
-        <h3>Order, we drop off</h3>
-        <p>Pick how many you need. Sturdy, stackable crates land at your door tomorrow — first delivery's on us.</p>
-      </div>
-      <div class="day__step reveal" data-delay="2">
-        <div class="day__pin" data-tone="m">2</div>
-        <p class="day__time">Saturday · whenever</p>
-        <h3>You pack them</h3>
-        <p>Fill them at your pace. Label and snap a photo of what's inside from the app, so future-you can find it.</p>
-      </div>
-      <div class="day__step reveal" data-delay="3">
-        <div class="day__pin" data-tone="m">3</div>
-        <p class="day__time">Monday · afternoon</p>
-        <h3>We pick them up</h3>
-        <p>A driver scans each one and loads them up. You get a "tucked in" note when they land on the shelf.</p>
-      </div>
-      <div class="day__step reveal" data-delay="4">
-        <div class="day__pin" data-tone="moss">4</div>
-        <p class="day__time">Months later · next day</p>
-        <h3>Call anything back</h3>
-        <p>Tap "send it back." It's on your porch tomorrow — same flat rate, no fetch fee.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================================================================
      PRICING — transparent details. One big number + slim inclusion list.
-     Restored 2026-05-19 in a slimmer form (4 inclusions, not 9).
+     Sits right under the hero: the flat $15 crate price is itself a hook.
      =================================================================== -->
 <section id="pricing" class="stripe stripe--paper pricing">
   <div class="wrap">
@@ -251,7 +143,83 @@ import '../styles/landing.css';
 </section>
 
 <!-- ===================================================================
-     FOUNDER — one trust beat between price and FAQ.
+     VALUE — "What Attic does for you." Lifestyle benefits, negative-space
+     framing. Replaces the old 3-card compare section + the standalone
+     day-with-Attic timeline (folded into the slim three-beat loop). The
+     payoff, not the comparison — people draw the comparison themselves.
+     Built 2026-05-28.
+     =================================================================== -->
+<section id="life" class="stripe value">
+  <div class="wrap">
+    <div class="value__head reveal">
+      <p class="eyebrow">What Attic does for you</p>
+      <h2 class="h2">Less to deal with.<br/><em>More room to live.</em></h2>
+      <p class="lede" style="margin-top:20px;">Attic isn't one more thing to manage — it's the clutter, the hauling, and the worry, gone. Here's what you actually get back.</p>
+    </div>
+
+    <!-- the day-with-Attic loop, slimmed to three beats -->
+    <div class="value__loop reveal" data-delay="1">
+      <span class="value__loop-step">We come to you</span>
+      <span class="value__loop-arrow" aria-hidden="true">→</span>
+      <span class="value__loop-step">Stored safe in Denver</span>
+      <span class="value__loop-arrow" aria-hidden="true">→</span>
+      <span class="value__loop-step">Back in a tap</span>
+    </div>
+
+    <div class="value__grid">
+      <article class="value__card reveal" data-delay="1" data-tone="t">
+        <div class="value__card-icon"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 16 V9 H16"/><path d="M39 16 V9 H32"/><path d="M9 32 V39 H16"/><path d="M39 32 V39 H32"/></svg></div>
+        <h3>Your space, back</h3>
+        <p>The spare room becomes the office. The closet shuts. The garage fits the car again.</p>
+      </article>
+
+      <article class="value__card reveal" data-delay="2" data-tone="m">
+        <div class="value__card-icon"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="8"/><path d="M24 5 V10"/><path d="M24 38 V43"/><path d="M5 24 H10"/><path d="M38 24 H43"/><path d="M10.5 10.5 L14 14"/><path d="M34 34 L37.5 37.5"/><path d="M37.5 10.5 L34 14"/><path d="M10.5 37.5 L14 34"/></svg></div>
+        <h3>Your weekends, back</h3>
+        <p>No Costco tote runs, no rented vans, no Saturday lost to hauling.</p>
+      </article>
+
+      <article class="value__card reveal" data-delay="3" data-tone="sky">
+        <div class="value__card-icon"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="17" y="7" width="14" height="34" rx="3"/><line x1="21" y1="37" x2="27" y2="37"/></svg></div>
+        <h3>Out of sight, one tap away</h3>
+        <p>Stored safe across town — not stacked in your hall. Back on your porch tomorrow.</p>
+      </article>
+
+      <article class="value__card reveal" data-delay="1" data-tone="moss">
+        <div class="value__card-icon"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6 L39 12 V23 C39 33 32 39 24 42 C16 39 9 33 9 23 V12 Z"/><polyline points="18 24 22 28 30 18"/></svg></div>
+        <h3>Nothing to worry about</h3>
+        <p>Climate-controlled, insured, and scanned at every handoff. We've got it from here.</p>
+      </article>
+
+      <article class="value__card reveal" data-delay="2" data-tone="t">
+        <div class="value__card-icon"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="12" y="27" width="22" height="12" rx="1.5"/><rect x="16" y="15" width="14" height="11" rx="1.5"/><line x1="38" y1="10" x2="38" y2="18"/><line x1="34" y1="14" x2="42" y2="14"/></svg></div>
+        <h3>Only what you use</h3>
+        <p>Pay by the crate. Send some back, add a few more. No contract, ever.</p>
+      </article>
+
+      <article class="value__card reveal" data-delay="3" data-tone="moss">
+        <div class="value__card-icon"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 34 C14 20 25 12 37 12 C37 25 26 35 14 34 Z"/><path d="M16 32 L31 17"/></svg></div>
+        <h3>A lighter home</h3>
+        <p>Less to trip over, less to manage, less on your mind.</p>
+      </article>
+    </div>
+
+    <div class="value__gone reveal" data-delay="2">
+      <p class="value__gone-label">And here's what goes with it</p>
+      <ul class="value__gone-list">
+        <li>The weekend haul</li>
+        <li>The Costco tote run</li>
+        <li>Digging through the closet</li>
+        <li>Square footage you can't use</li>
+        <li>The low-grade mental clutter</li>
+      </ul>
+      <p class="value__gone-closer">Gone. <em>That's the whole idea.</em></p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     FOUNDER — one trust beat between value and FAQ.
      =================================================================== -->
 <section class="stripe founder">
   <div class="wrap">
@@ -275,9 +243,7 @@ import '../styles/landing.css';
 </section>
 
 <!-- ===================================================================
-     FAQ — four essential questions before the final CTA. Restored
-     2026-05-19, trimmed from five to four; the previous "What counts
-     as a crate" question moved into the inline pricing copy.
+     FAQ — four essential questions before the final CTA.
      =================================================================== -->
 <section id="faq" class="stripe stripe--paper faq">
   <div class="wrap" style="display:grid;grid-template-columns:1fr 1.3fr;gap:60px;align-items:start;">
