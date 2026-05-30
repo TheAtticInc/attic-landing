@@ -133,13 +133,21 @@
 }
 
 @media (max-width: 900px) {
-  .hero__grid { grid-template-columns: 1fr; gap: 48px; }
-  /* Hero photo is desktop-only — hidden on the stacked mobile/tablet layout. */
-  .hero__stage { display: none; }
+  .hero__grid { grid-template-columns: 1fr; gap: 36px; }
+  /* Stacked layout: the figure follows the copy + CTA so the primary action
+     stays high on the fold, and re-crops from the tall 4:5 portrait to a
+     calmer landscape banner so the visual anchors without dominating. */
+  .hero__stage { max-width: 560px; margin: 4px auto 0; }
+  .hero__figure { aspect-ratio: 16 / 10; border-radius: 22px; }
 }
 @media (max-width: 640px) {
-  .hero { padding: 32px 0 48px; }
-  .hero__grid { min-height: 0; gap: 0; }
+  .hero { padding: 28px 0 44px; }
+  .hero__grid { min-height: 0; gap: 26px; }
+  /* The location pill runs off the right edge at phone widths — shrink the
+     mono type + letter-spacing so the full line fits inside the viewport. */
+  .hero__label { font-size: 10px; letter-spacing: 0.4px; padding: 5px 11px 5px 8px; margin-bottom: 22px; max-width: 100%; }
+  .hero__figure { aspect-ratio: 3 / 2; border-radius: 18px; }
+  .hero__figure-mark svg { width: 56px; height: 56px; }
   /* Keep the two hero CTAs side by side instead of wrapping to a stack. */
   .hero__cta { flex-wrap: nowrap; gap: 10px; }
   .hero__cta .btn { flex: 1 1 0; min-width: 0; padding: 14px 14px; font-size: 13.5px; white-space: nowrap; }
@@ -273,8 +281,21 @@
 .pricing__foot p { font-size: 14px; color: rgba(245, 234, 219, 0.85); margin: 0; }
 
 @media (max-width: 720px) {
-  .pricing__card { padding: 48px 28px; }
-  .pricing__grid { grid-template-columns: 1fr; gap: 24px; }
+  .pricing__card { padding: 40px 26px; }
+  /* Two-up inclusion grid keeps the card from running long on phones. */
+  .pricing__grid { grid-template-columns: 1fr 1fr; gap: 22px 20px; margin-top: 32px; }
+  .pricing__head { gap: 20px; }
+  .pricing__foot { margin-top: 32px; padding-top: 24px; }
+}
+@media (max-width: 480px) {
+  .pricing__card { padding: 32px 22px; }
+  .pricing__grid { gap: 20px 16px; }
+  /* Trim the headline number so it still reads bold without towering. */
+  .pricing__num { font-size: clamp(60px, 19vw, 84px); }
+  .pricing__item { gap: 11px; }
+  .pricing__item-check { width: 24px; height: 24px; }
+  .pricing__item h4 { font-size: 14.5px; }
+  .pricing__item p { font-size: 12.5px; }
 }
 
 /* =========================================================
@@ -358,6 +379,13 @@
     grid-template-columns: 1fr !important;
   }
   .faq__list { margin-top: 32px; }
+}
+/* Scale FAQ type + padding down on phones — the desktop 19px question /
+   15.5px answer reads oversized on a narrow column. */
+@media (max-width: 640px) {
+  .faq details { padding: 18px 18px; }
+  .faq summary { font-size: 16px; padding-right: 34px; }
+  .faq p { font-size: 14px; line-height: 1.6; margin-top: 10px; }
 }
 
 /* =========================================================
@@ -501,6 +529,11 @@
 }
 .email-form__error.is-visible { display: block; }
 
+@media (max-width: 640px) {
+  /* Final CTA floor is 96px top + bottom — far too tall on a phone. */
+  .cta-final { padding: 64px 0; }
+  .cta-final p.sub { font-size: 16.5px; margin-bottom: 32px; }
+}
 @media (max-width: 480px) {
   .email-form__row { padding: 4px 18px; }
   .email-form__divider { margin: 6px 10px; }

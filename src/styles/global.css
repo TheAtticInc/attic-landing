@@ -166,6 +166,12 @@ a:hover { color: var(--terracotta-deep); }
     padding-left: 8px;
     padding-right: 8px;
   }
+  /* Tighten the global vertical rhythm on phones. The .stripe clamp floor
+     of 72px leaves ~144px of dead space between every section on small
+     screens; pull section padding and side insets in for a calmer, less
+     spaced-out mobile read. */
+  .stripe { padding: 48px 0; }
+  .wrap, .wrap-narrow { padding-left: 20px; padding-right: 20px; }
 }
 
 /* =========================================================
