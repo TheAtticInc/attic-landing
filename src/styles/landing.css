@@ -148,9 +148,10 @@
   .hero__label { font-size: 10px; letter-spacing: 0.4px; padding: 5px 11px 5px 8px; margin-bottom: 22px; max-width: 100%; }
   .hero__figure { aspect-ratio: 3 / 2; border-radius: 18px; }
   .hero__figure-mark svg { width: 56px; height: 56px; }
-  /* Keep the two hero CTAs side by side instead of wrapping to a stack. */
-  .hero__cta { flex-wrap: nowrap; gap: 10px; }
-  .hero__cta .btn { flex: 1 1 0; min-width: 0; padding: 14px 14px; font-size: 13.5px; white-space: nowrap; }
+  /* Stack the two hero CTAs full-width on phones. Side-by-side truncated the
+     secondary label ("See what you g…") and gave small tap targets. */
+  .hero__cta { flex-direction: column; align-items: stretch; gap: 10px; }
+  .hero__cta .btn { width: 100%; padding: 15px 20px; font-size: 15px; }
 }
 
 /* =========================================================
@@ -222,6 +223,14 @@
 
 @media (max-width: 900px) {
   .value__grid { grid-template-columns: 1fr; gap: 18px; }
+  /* On the stacked layout, sit the icon inline with the title (instead of
+     stacked above it) so each card stays compact rather than running tall.
+     Grid: row 1 = icon + title, row 2 = body copy spanning full width. */
+  .value__card { display: grid; grid-template-columns: auto 1fr; column-gap: 13px; align-items: center; }
+  .value__card-icon { margin-bottom: 0; grid-row: 1; grid-column: 1; }
+  .value__card-icon svg { width: 26px; height: 26px; }
+  .value__card h3 { grid-row: 1; grid-column: 2; margin: 0; }
+  .value__card p { grid-row: 2; grid-column: 1 / -1; margin-top: 9px; }
 }
 @media (max-width: 640px) {
   /* Stack the loop vertically so the three beats never wrap mid-row;
@@ -229,7 +238,7 @@
   .value__loop { flex-direction: column; gap: 10px; margin-bottom: 44px; }
   .value__loop-step { font-size: 11px; padding: 8px 14px; }
   .value__loop-arrow { transform: rotate(90deg); }
-  .value__card { padding: 26px 22px; }
+  .value__card { padding: 22px 20px; }
   .value__gone { margin-top: 48px; padding-top: 36px; }
 }
 
@@ -335,6 +344,9 @@
 .founder__role { font-size: 13px; color: var(--ink-3); }
 
 @media (max-width: 720px) { .founder__grid { grid-template-columns: 1fr; gap: 36px; } .founder__photo { max-width: 300px; margin: 0 auto; } }
+/* Trim the founder note on phones — four stacked paragraphs reads as a wall;
+   drop the most skippable beat so the story stays tight on mobile. */
+@media (max-width: 640px) { .founder__quote--mobile-hide { display: none; } }
 
 /* =========================================================
    FAQ
@@ -409,7 +421,21 @@
   color: #F5EADB;
 }
 .cta-final h2 em { font-style: italic; color: var(--mustard); font-weight: 500; }
-.cta-final p.sub { font-size: 18px; color: #C8B9A1; max-width: 480px; margin: 0 auto 40px; }
+.cta-final p.sub { font-size: 18px; color: #C8B9A1; max-width: 480px; margin: 0 auto 28px; }
+
+/* Trust chips — scannable reassurance at the conversion moment, just above
+   the form. Cream pills on the dark CTA. */
+.trust-chips {
+  list-style: none; padding: 0;
+  display: flex; flex-wrap: wrap; justify-content: center; gap: 10px;
+  max-width: 520px; margin: 0 auto 36px;
+}
+.trust-chips li {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.6px;
+  text-transform: uppercase; color: rgba(245, 234, 219, 0.85);
+  border: 1px solid rgba(245, 234, 219, 0.22);
+  border-radius: var(--r-pill); padding: 7px 13px;
+}
 
 /* Denver fold-in link under the final form. Subtle — the form is the
    primary action, this is the secondary path for "I want to see your
@@ -539,4 +565,29 @@
   .email-form__divider { margin: 6px 10px; }
   .email-form__zip { flex: 0 0 82px; }
   .email-form__submit { padding: 15px 20px; font-size: 15px; }
+}
+
+/* =========================================================
+   STICKY MOBILE CTA — phones only, toggled by motion.js
+   ========================================================= */
+.mobile-cta {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 60;
+  display: none;
+  padding: 11px 16px calc(11px + env(safe-area-inset-bottom, 0px));
+  background: rgba(245, 234, 219, 0.92);
+  backdrop-filter: blur(12px) saturate(1.2);
+  -webkit-backdrop-filter: blur(12px) saturate(1.2);
+  border-top: 1px solid var(--border);
+  box-shadow: 0 -6px 24px -12px rgba(80, 52, 28, 0.35);
+  transform: translateY(115%);
+  transition: transform 280ms var(--ease);
+}
+.mobile-cta.is-visible { transform: none; }
+.mobile-cta .btn { width: 100%; }
+/* Show only where the nav menu is collapsed (phones). */
+@media (max-width: 720px) {
+  .mobile-cta { display: block; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .mobile-cta { transition: none; }
 }

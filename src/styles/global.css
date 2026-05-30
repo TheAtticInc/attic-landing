@@ -148,28 +148,15 @@ a:hover { color: var(--terracotta-deep); }
   transition: background 160ms var(--ease), color 160ms var(--ease);
 }
 .nav__links a:hover { background: rgba(255, 250, 241, 0.7); color: var(--ink); }
-.nav__signin {
-  font-size: 14px; font-weight: 500; color: var(--ink);
-  padding: 9px 16px; border-radius: var(--r-pill);
-  border: 1px solid var(--border-2);
-  transition: background 160ms var(--ease), border-color 160ms var(--ease);
-}
-.nav__signin:hover { background: var(--surface); border-color: var(--ink-4); color: var(--ink); }
 @media (max-width: 720px) {
   .nav__links { display: none; }
 }
 @media (max-width: 640px) {
-  /* Default .wrap padding is 28px — on narrow phones the brand and
-     sign-in pill end up visually butted against the viewport edge.
-     Add extra inset specifically for the nav row. */
-  .nav .nav__inner {
-    padding-left: 8px;
-    padding-right: 8px;
-  }
   /* Tighten the global vertical rhythm on phones. The .stripe clamp floor
      of 72px leaves ~144px of dead space between every section on small
      screens; pull section padding and side insets in for a calmer, less
-     spaced-out mobile read. */
+     spaced-out mobile read. The nav uses the same .wrap inset below, so the
+     brand logo lines up flush with the page content. */
   .stripe { padding: 48px 0; }
   .wrap, .wrap-narrow { padding-left: 20px; padding-right: 20px; }
 }

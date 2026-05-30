@@ -14,6 +14,27 @@
     window.addEventListener('scroll', onScroll, { passive: true });
   }
 
+  // ---------- sticky mobile CTA ----------
+  // Slides up once the hero has scrolled out of view, and hides again when
+  // the waitlist form is on screen so it never shadows the live form.
+  const mobileCta = document.querySelector('[data-mobile-cta]');
+  if (mobileCta) {
+    const hero = document.querySelector('.hero');
+    const waitlist = document.querySelector('#waitlist');
+    const update = () => {
+      const pastHero = hero
+        ? hero.getBoundingClientRect().bottom < 0
+        : window.scrollY > 400;
+      const waitlistVisible = waitlist
+        ? waitlist.getBoundingClientRect().top < window.innerHeight
+        : false;
+      mobileCta.classList.toggle('is-visible', pastHero && !waitlistVisible);
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
+    window.addEventListener('resize', update, { passive: true });
+  }
+
   // ---------- reveal on scroll ----------
   if (!prefersReduced && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {

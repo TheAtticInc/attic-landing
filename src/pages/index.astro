@@ -231,7 +231,7 @@ import '../styles/landing.css';
         <p class="eyebrow">How Attic started</p>
         <p class="founder__quote">Attic started with an idea from my cofounder Ali.</p>
         <p class="founder__quote">She asked a simple question: if there's DoorDash for food, Uber for rides, and Amazon for just about everything else, why is storage still such a frustrating experience?</p>
-        <p class="founder__quote">That idea stuck with us. With my background in development and product building, we set out to create something better.</p>
+        <p class="founder__quote founder__quote--mobile-hide">That idea stuck with us. With my background in development and product building, we set out to create something better.</p>
         <p class="founder__quote">We wanted storage to feel simple, instant, and invisible, not something that wastes your entire weekend. So we built Attic.</p>
         <div class="founder__sign">
           <span class="founder__sig">Luke Bashford</span>
@@ -283,6 +283,12 @@ import '../styles/landing.css';
       Attic is opening Denver in small batches, from Highland to Cherry Creek and growing.
       Drop your email and zip. We'll send your invite when we reach your neighborhood.
     </p>
+    <ul class="trust-chips reveal" data-delay="1" aria-label="What's included">
+      <li>Climate-controlled</li>
+      <li>Every crate insured</li>
+      <li>No contract</li>
+      <li>Cancel anytime</li>
+    </ul>
     <form class="email-form reveal" data-delay="2" data-email-form novalidate>
       <div data-email-fields>
         <div class="email-form__row">
@@ -327,5 +333,15 @@ import '../styles/landing.css';
 </section>
 
 </main>
+
+<!-- ===================================================================
+     STICKY MOBILE CTA — phones only. Slides up once the hero scrolls out
+     and hides again when the waitlist form enters view, so it never
+     duplicates the visible form. Restores a persistent action on mobile,
+     where the nav menu is collapsed. Toggled by motion.js.
+     =================================================================== -->
+<div class="mobile-cta" data-mobile-cta aria-hidden="true">
+  <a class="btn btn-primary" href="#waitlist">Request an invite</a>
+</div>
 
 </BaseLayout>
