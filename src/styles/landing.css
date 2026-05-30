@@ -439,23 +439,6 @@
   border-radius: var(--r-pill); padding: 7px 13px;
 }
 
-/* Denver fold-in link under the final form. Subtle — the form is the
-   primary action, this is the secondary path for "I want to see your
-   coverage area first" visitors. */
-.cta-final__denver {
-  margin: 32px auto 0;
-  font-size: 14px;
-  text-align: center;
-}
-.cta-final__denver a {
-  color: rgba(245, 234, 219, 0.72);
-  text-decoration: underline;
-  text-underline-offset: 5px;
-  text-decoration-thickness: 1px;
-  transition: color 160ms var(--ease);
-}
-.cta-final__denver a:hover { color: var(--mustard); }
-
 .email-form {
   max-width: 460px; margin: 0 auto;
 }

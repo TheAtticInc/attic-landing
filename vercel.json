@@ -5,5 +5,8 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "cleanUrls": true,
-  "trailingSlash": false
+  "trailingSlash": false,
+  "redirects": [
+    { "source": "/denver", "destination": "/", "permanent": true }
+  ]
 }
