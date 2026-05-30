@@ -137,9 +137,13 @@
      display:contents) so the photo sits *between* the headline and the
      supporting copy — the words hook first, the image pays them off — while
      desktop keeps its two-column grid untouched. */
-  .hero__grid { display: flex; flex-direction: column; gap: 0; }
+  /* align-items: stretch (not the base grid's `center`) keeps every item
+     full-width and left-aligned; the eyebrow pill opts out so it stays
+     content-width. Without this the ticker shrinks + squishes and the CTAs
+     center. */
+  .hero__grid { display: flex; flex-direction: column; gap: 0; align-items: stretch; }
   .hero__grid > div:first-child { display: contents; }
-  .hero__label  { order: 1; }
+  .hero__label  { order: 1; align-self: flex-start; }
   .hero__h1     { order: 2; }
   .hero__stage  { order: 3; max-width: 560px; margin: 0 auto 24px; }
   .hero__lede   { order: 4; }
