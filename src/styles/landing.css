@@ -133,19 +133,24 @@
 }
 
 @media (max-width: 900px) {
-  .hero__grid { grid-template-columns: 1fr; gap: 36px; }
-  /* Stacked layout: the figure follows the copy + CTA so the primary action
-     stays high on the fold, and re-crops from the tall 4:5 portrait to a
-     calmer landscape banner so the visual anchors without dominating. */
-  /* Lead the stacked hero with the photo (above the heading) so it anchors
-     the section instead of floating below the CTA. Safe for conversion now
-     that a sticky CTA keeps the primary action reachable while scrolling. */
-  .hero__stage { order: -1; max-width: 560px; margin: 0 auto; }
+  /* Stacked hero. Promote the copy block's children to flex items (via
+     display:contents) so the photo sits *between* the headline and the
+     supporting copy — the words hook first, the image pays them off — while
+     desktop keeps its two-column grid untouched. */
+  .hero__grid { display: flex; flex-direction: column; gap: 0; }
+  .hero__grid > div:first-child { display: contents; }
+  .hero__label  { order: 1; }
+  .hero__h1     { order: 2; }
+  .hero__stage  { order: 3; max-width: 560px; margin: 0 auto 24px; }
+  .hero__lede   { order: 4; }
+  .hero__sub    { order: 5; }
+  .hero__cta    { order: 6; }
+  .hero__ticker { order: 7; }
   .hero__figure { aspect-ratio: 16 / 10; border-radius: 22px; }
 }
 @media (max-width: 640px) {
   .hero { padding: 28px 0 44px; }
-  .hero__grid { min-height: 0; gap: 26px; }
+  .hero__grid { min-height: 0; }
   /* The location pill runs off the right edge at phone widths — shrink the
      mono type + letter-spacing so the full line fits inside the viewport. */
   .hero__label { font-size: 10px; letter-spacing: 0.4px; padding: 5px 11px 5px 8px; margin-bottom: 22px; max-width: 100%; }
