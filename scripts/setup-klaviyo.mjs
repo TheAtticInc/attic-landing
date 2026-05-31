@@ -436,7 +436,11 @@ async function main() {
       triggerListId: results.list_unconfirmed.id,
       template: results.tpl_confirm,
       delayHours: 0,
-      transactional: true, // opt-in email → Primary inbox (needs account transactional sending)
+      // TODO(F&F launch): flip to true once Klaviyo is on a paid plan with
+      // transactional sending enabled — that lands the opt-in in Primary
+      // instead of Promotions. Kept false now so the confirm flow stays
+      // marketing and works on the current (free) tier. Tracked in Asana.
+      transactional: false,
       previewText: PREVIEW_TEXT.confirm,
     },
     {
