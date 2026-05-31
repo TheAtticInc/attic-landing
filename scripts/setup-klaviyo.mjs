@@ -35,8 +35,18 @@ const REVISION = '2025-10-15';
 
 // Klaviyo creates a per-flow draft email with this from address by default;
 // keep it consistent across the 3 flows so they look like one sender.
-const FROM_EMAIL = 'lukebashford@attic.it.com';
+// hello@ is a real configured Google Workspace alias/group (not the orphaned
+// hi@), and matches the branded sending domain set up in Klaviyo 2026-05-31.
+const FROM_EMAIL = 'hello@attic.it.com';
 const FROM_LABEL = 'Attic';
+
+// Inbox-placement preview text per flow (empty preview text renders a raw
+// HTML snippet in the inbox, which reads as spam). Keep these short + plain.
+const PREVIEW_TEXT = {
+  confirm:  'One tap to confirm your spot — takes a second.',
+  welcome:  'Your space back, $15 a crate. Here is what happens next.',
+  referral: 'A neighbor on the list moves you both up the line.',
+};
 
 const LIST_NAMES = {
   unconfirmed: 'Waitlist - Unconfirmed',
@@ -137,8 +147,16 @@ async function findOrCreateList(name) {
 async function findOrCreateTemplate(name, html, subject) {
   const filter = encodeURIComponent(`equals(name,"${name.replace(/"/g, '\\"')}")`);
   const existing = await klaviyo(`/templates/?filter=${filter}`);
+  const plainText = html.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim();
   if (existing?.data?.[0]?.id) {
-    return { id: existing.data[0].id, created: false };
+    const id = existing.data[0].id;
+    // Upsert: push the current HTML so edits in this file actually take
+    // effect on re-run (the flow rebuild below re-clones the updated template).
+    await klaviyo(`/templates/${id}/`, {
+      method: 'PATCH',
+      body: { data: { type: 'template', id, attributes: { html, text: plainText } } },
+    });
+    return { id, created: false, updated: true, subject };
   }
   const created = await klaviyo('/templates/', {
     method: 'POST',
@@ -203,7 +221,7 @@ async function wipeWaitlistFlows() {
  * action wired to the send-email action. Klaviyo wants `temporary_id`s for
  * each action and an `entry_action_id` pointing at the first one.
  */
-function buildActions({ template, subject, delayHours }) {
+function buildActions({ template, subject, delayHours, transactional, previewText }) {
   const emailAction = {
     temporary_id: 'email',
     type: 'send-email',
@@ -213,10 +231,15 @@ function buildActions({ template, subject, delayHours }) {
         from_email: FROM_EMAIL,
         from_label: FROM_LABEL,
         subject_line: subject,
-        preview_text: '',
+        preview_text: previewText || '',
         template_id: template.id,
-        smart_sending_enabled: true,
-        transactional: false,
+        // Confirm = a genuine double-opt-in (transactional): bypasses the
+        // marketing/Promotions treatment + List-Unsubscribe, sends regardless
+        // of consent, and is built to land in Primary. REQUIRES transactional
+        // sending enabled on the Klaviyo account, else the flow stays draft.
+        // Welcome/referral stay marketing (transactional must NOT carry promo).
+        smart_sending_enabled: !transactional,
+        transactional: !!transactional,
         name: 'Email #1',
       },
     },
@@ -236,11 +259,13 @@ function buildActions({ template, subject, delayHours }) {
   return { actions: [delayAction, emailAction], entry: 'delay' };
 }
 
-async function createFlow({ name, triggerListId, template, delayHours }) {
+async function createFlow({ name, triggerListId, template, delayHours, transactional, previewText }) {
   const { actions, entry } = buildActions({
     template,
     subject: template.subject,
     delayHours,
+    transactional,
+    previewText,
   });
 
   const created = await klaviyo('/flows/', {
@@ -411,6 +436,8 @@ async function main() {
       triggerListId: results.list_unconfirmed.id,
       template: results.tpl_confirm,
       delayHours: 0,
+      transactional: true, // opt-in email → Primary inbox (needs account transactional sending)
+      previewText: PREVIEW_TEXT.confirm,
     },
     {
       key: 'welcome',
@@ -418,6 +445,7 @@ async function main() {
       triggerListId: results.list_confirmed.id,
       template: results.tpl_welcome,
       delayHours: 0,
+      previewText: PREVIEW_TEXT.welcome,
     },
     {
       key: 'referral',
@@ -425,6 +453,7 @@ async function main() {
       triggerListId: results.list_confirmed.id,
       template: results.tpl_referral,
       delayHours: 48,
+      previewText: PREVIEW_TEXT.referral,
     },
   ];
 
