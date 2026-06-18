@@ -551,27 +551,16 @@
 .email-form__success svg { color: var(--moss); flex-shrink: 0; }
 .email-form__fine { margin-top: 18px; font-size: 13px; color: #A89580; }
 
-/* Coming-soon app badges — disabled teaser under the waitlist form. Styled
-   to the dark CTA palette; .is-soon dims them and kills the pointer. */
+/* Coming-soon app badges — official App Store / Google Play artwork under
+   the waitlist form. .is-soon dims them slightly to read as not-yet-live. */
 .app-soon { margin-top: 44px; text-align: center; }
 .app-soon__label {
   font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.8px;
   text-transform: uppercase; color: rgba(245, 234, 219, 0.55); margin: 0 0 16px;
 }
-.app-soon__badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
-.app-badge {
-  display: inline-flex; align-items: center; gap: 11px;
-  padding: 9px 18px; border-radius: 13px;
-  border: 1px solid rgba(245, 234, 219, 0.22);
-  background: rgba(245, 234, 219, 0.06);
-  color: rgba(245, 234, 219, 0.6);
-}
-.app-badge.is-soon { cursor: default; }
-.app-badge__logo { line-height: 0; }
-.app-badge__logo svg { width: 22px; height: 22px; display: block; }
-.app-badge__text { display: flex; flex-direction: column; line-height: 1.15; text-align: left; }
-.app-badge__text small { font-size: 9px; letter-spacing: 0.6px; text-transform: uppercase; opacity: 0.75; }
-.app-badge__text strong { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: rgba(245, 234, 219, 0.82); }
+.app-soon__badges { display: flex; justify-content: center; align-items: center; gap: 14px; flex-wrap: wrap; }
+.app-soon__badges.is-soon { opacity: 0.6; }
+.app-badge-img { height: 46px; width: auto; display: block; }
 
 /* Honeypot — hidden from real users and assistive tech. Bots scribble in
    every text field they find; we drop submissions where this is non-empty. */
