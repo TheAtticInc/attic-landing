@@ -201,13 +201,6 @@
 }
 .value__loop-arrow { color: var(--terracotta); font-size: 15px; font-weight: 600; }
 
-/* Neighborhood illustration band — contained (not full-bleed) so the whole
-   folk scene shows and blends into the cream page. */
-.hood__img {
-  display: block; width: 100%; max-width: 760px; height: auto;
-  margin: 0 auto; border-radius: 20px;
-}
-
 .value__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .value__card {
   background: var(--surface);
