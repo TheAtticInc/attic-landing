@@ -61,19 +61,23 @@
 
 .hero__cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: flex-start; }
 
-/* 3-step mechanic strip — left-aligned in the hero, visible on mobile.
-   Mirrors the value__loop pills lower down for consistency. */
+/* 3-step "how it works" cards — three beats left-to-right on every screen.
+   The icon shows the step; the lede above stays a tight positioning line. */
 .hero__steps {
-  display: flex; align-items: center; flex-wrap: wrap;
-  gap: 8px 12px; margin: 0 0 34px;
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 10px; margin: 0 0 34px;
 }
-.hero__steps-step {
-  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.6px;
-  text-transform: uppercase; color: var(--ink-2);
+.hero__step {
+  display: flex; flex-direction: column; align-items: flex-start; gap: 9px;
   background: var(--surface); border: 1px solid var(--border);
-  border-radius: var(--r-pill); padding: 8px 14px; box-shadow: var(--sh-1);
+  border-radius: var(--r-md); padding: 14px 14px 15px; box-shadow: var(--sh-1);
 }
-.hero__steps-arrow { color: var(--terracotta); font-size: 14px; font-weight: 600; }
+.hero__step-icon { color: var(--terracotta); line-height: 0; }
+.hero__step-icon svg { width: 22px; height: 22px; display: block; }
+.hero__step-label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.4px;
+  text-transform: uppercase; color: var(--ink-2); line-height: 1.35;
+}
 
 /* ticker under CTA */
 .hero__ticker {
@@ -182,12 +186,11 @@
      secondary label ("See what you g…") and gave small tap targets. */
   .hero__cta { flex-direction: column; align-items: stretch; gap: 10px; }
   .hero__cta .btn { width: 100%; padding: 15px 20px; font-size: 15px; }
-  /* The 3-step flow can't fit on one phone line ("Stored safe in Denver" is
-     too wide), so a horizontal row wrapped into a ragged 2 + 1 with an
-     orphaned arrow. Stack it vertically with the arrows turned to point down
-     — reads as a clean, deliberate top-to-bottom sequence. */
-  .hero__steps { flex-direction: column; align-items: flex-start; gap: 7px; margin-bottom: 30px; }
-  .hero__steps-arrow { transform: rotate(90deg); margin-left: 18px; }
+  /* Keep the three step cards as a 3-up row on phones, just tighter. */
+  .hero__steps { gap: 7px; margin-bottom: 30px; }
+  .hero__step { padding: 12px 10px 13px; gap: 7px; }
+  .hero__step-icon svg { width: 20px; height: 20px; }
+  .hero__step-label { font-size: 10px; letter-spacing: 0.2px; }
 }
 
 /* =========================================================
@@ -547,6 +550,28 @@
 }
 .email-form__success svg { color: var(--moss); flex-shrink: 0; }
 .email-form__fine { margin-top: 18px; font-size: 13px; color: #A89580; }
+
+/* Coming-soon app badges — disabled teaser under the waitlist form. Styled
+   to the dark CTA palette; .is-soon dims them and kills the pointer. */
+.app-soon { margin-top: 44px; text-align: center; }
+.app-soon__label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.8px;
+  text-transform: uppercase; color: rgba(245, 234, 219, 0.55); margin: 0 0 16px;
+}
+.app-soon__badges { display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+.app-badge {
+  display: inline-flex; align-items: center; gap: 11px;
+  padding: 9px 18px; border-radius: 13px;
+  border: 1px solid rgba(245, 234, 219, 0.22);
+  background: rgba(245, 234, 219, 0.06);
+  color: rgba(245, 234, 219, 0.6);
+}
+.app-badge.is-soon { cursor: default; }
+.app-badge__logo { line-height: 0; }
+.app-badge__logo svg { width: 22px; height: 22px; display: block; }
+.app-badge__text { display: flex; flex-direction: column; line-height: 1.15; text-align: left; }
+.app-badge__text small { font-size: 9px; letter-spacing: 0.6px; text-transform: uppercase; opacity: 0.75; }
+.app-badge__text strong { font-family: var(--font-display); font-weight: 600; font-size: 15px; color: rgba(245, 234, 219, 0.82); }
 
 /* Honeypot — hidden from real users and assistive tech. Bots scribble in
    every text field they find; we drop submissions where this is non-empty. */
