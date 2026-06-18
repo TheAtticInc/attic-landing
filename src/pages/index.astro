@@ -25,11 +25,19 @@ import '../styles/landing.css';
           Opening Denver, neighborhood by neighborhood
         </span>
         <h1 class="hero__h1">More room<br/><em>for your life.</em></h1>
-        <p class="hero__lede">You work hard. Your space should work for you.</p>
+        <p class="hero__lede">Attic is valet storage, by the crate. We bring the crates, do the heavy lifting, and keep it safe in Denver — tap to get any of it back.</p>
+        <!-- 3-step mechanic strip: makes "what is this" legible above the fold,
+             on mobile too (unlike the value__loop lower down, which hides on phones). -->
+        <div class="hero__steps" aria-label="How Attic works">
+          <span class="hero__steps-step">We come to you</span>
+          <span class="hero__steps-arrow" aria-hidden="true">→</span>
+          <span class="hero__steps-step">Stored safe in Denver</span>
+          <span class="hero__steps-arrow" aria-hidden="true">→</span>
+          <span class="hero__steps-step">Back in a tap</span>
+        </div>
         <p class="hero__sub">
-          We come to you, pick up the holiday decor, off-season coats, and the
-          craft stash crowding your closet, store it safe in Denver, and bring
-          it back in a tap. Flat $15 a crate, a month.
+          The holiday decor, off-season coats, and the craft stash crowding your
+          closet — out of the way, back whenever you want. Flat $15 a crate, a month.
         </p>
 
         <div class="hero__cta">
@@ -188,7 +196,7 @@ import '../styles/landing.css';
       <article class="value__card reveal" data-delay="1" data-tone="moss">
         <div class="value__card-icon"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6 L39 12 V23 C39 33 32 39 24 42 C16 39 9 33 9 23 V12 Z"/><polyline points="18 24 22 28 30 18"/></svg></div>
         <h3>Nothing to worry about</h3>
-        <p>Climate-controlled, insured, and scanned at every handoff. We've got it from here.</p>
+        <p>Insured, scanned at every handoff, and stored safe in our Denver facility. We've got it from here.</p>
       </article>
 
       <article class="value__card reveal" data-delay="2" data-tone="t">
@@ -273,6 +281,22 @@ import '../styles/landing.css';
 </section>
 
 <!-- ===================================================================
+     NEIGHBORHOOD BAND — folk illustration; a calm visual lead-in to the
+     Denver waitlist below. Hand-illustrated (with a tiny hidden detail).
+     =================================================================== -->
+<section class="stripe hood">
+  <div class="wrap">
+    <img
+      src="/images/section-accent.png"
+      alt="A quiet, tree-lined Denver neighborhood with an Attic van at the curb"
+      class="hood__img"
+      loading="lazy"
+      decoding="async"
+    />
+  </div>
+</section>
+
+<!-- ===================================================================
      FINAL CTA / WAITLIST. Last conversion shot. The Denver geography
      pitch is folded into the sub-copy rather than a separate section.
      =================================================================== -->
@@ -284,7 +308,7 @@ import '../styles/landing.css';
       Drop your email and zip. We'll send your invite when we reach your neighborhood.
     </p>
     <ul class="trust-chips reveal" data-delay="1" aria-label="What's included">
-      <li>Climate-controlled</li>
+      <li>Picked up &amp; delivered</li>
       <li>Every crate insured</li>
       <li>No contract</li>
       <li>Cancel anytime</li>

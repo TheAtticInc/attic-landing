@@ -61,6 +61,20 @@
 
 .hero__cta { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; justify-content: flex-start; }
 
+/* 3-step mechanic strip — left-aligned in the hero, visible on mobile.
+   Mirrors the value__loop pills lower down for consistency. */
+.hero__steps {
+  display: flex; align-items: center; flex-wrap: wrap;
+  gap: 8px 12px; margin: 0 0 34px;
+}
+.hero__steps-step {
+  font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.6px;
+  text-transform: uppercase; color: var(--ink-2);
+  background: var(--surface); border: 1px solid var(--border);
+  border-radius: var(--r-pill); padding: 8px 14px; box-shadow: var(--sh-1);
+}
+.hero__steps-arrow { color: var(--terracotta); font-size: 14px; font-weight: 600; }
+
 /* ticker under CTA */
 .hero__ticker {
   margin-top: 36px; display: flex; align-items: center; gap: 14px;
@@ -147,9 +161,10 @@
   .hero__h1     { order: 2; }
   .hero__stage  { order: 3; max-width: 560px; margin: 0 auto 24px; }
   .hero__lede   { order: 4; }
-  .hero__sub    { order: 5; }
-  .hero__cta    { order: 6; }
-  .hero__ticker { order: 7; }
+  .hero__steps  { order: 5; }
+  .hero__sub    { order: 6; }
+  .hero__cta    { order: 7; }
+  .hero__ticker { order: 8; }
   .hero__figure { aspect-ratio: 16 / 10; border-radius: 22px; }
 }
 @media (max-width: 640px) {
@@ -185,6 +200,13 @@
   border-radius: var(--r-pill); padding: 9px 16px; box-shadow: var(--sh-1);
 }
 .value__loop-arrow { color: var(--terracotta); font-size: 15px; font-weight: 600; }
+
+/* Neighborhood illustration band — contained (not full-bleed) so the whole
+   folk scene shows and blends into the cream page. */
+.hood__img {
+  display: block; width: 100%; max-width: 760px; height: auto;
+  margin: 0 auto; border-radius: 20px;
+}
 
 .value__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
 .value__card {
