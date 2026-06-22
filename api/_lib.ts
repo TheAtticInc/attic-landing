@@ -14,6 +14,10 @@ export interface Env {
   klaviyoUnconfirmedListId: string;
   klaviyoConfirmedListId: string;
   marketingSiteUrl: string;
+  // Friends & Family tester lists — optional so the waitlist endpoint never
+  // fails if they're not configured. The /api/beta endpoint validates its own.
+  klaviyoFfListId?: string;
+  klaviyoIosListId?: string;
 }
 
 export function readEnv(): Env {
@@ -22,6 +26,8 @@ export function readEnv(): Env {
   const klaviyoUnconfirmedListId = process.env.KLAVIYO_UNCONFIRMED_LIST_ID;
   const klaviyoConfirmedListId = process.env.KLAVIYO_CONFIRMED_LIST_ID;
   const marketingSiteUrl = process.env.MARKETING_SITE_URL ?? 'https://attic.it.com';
+  const klaviyoFfListId = process.env.KLAVIYO_FF_LIST_ID;
+  const klaviyoIosListId = process.env.KLAVIYO_IOS_LIST_ID;
 
   // Surface a clear server-config error if anything's missing — better than a
   // mysterious 500 from a downstream call with an undefined Authorization
@@ -38,6 +44,8 @@ export function readEnv(): Env {
     klaviyoUnconfirmedListId,
     klaviyoConfirmedListId,
     marketingSiteUrl,
+    klaviyoFfListId,
+    klaviyoIosListId,
   };
 }
 

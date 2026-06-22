@@ -16,6 +16,8 @@ interface Props {
   canonical?: string;
   /** Extra <link rel="stylesheet"> hrefs to inject. Page-specific CSS. */
   stylesheets?: string[];
+  /** Set true for private pages (e.g. /beta invite link) to keep them out of search. */
+  noindex?: boolean;
 }
 
 // Default canonical strips `.html` so we advertise clean URLs like
@@ -33,6 +35,7 @@ const {
   ogImage = 'https://attic.it.com/og-image.png',
   canonical = cleanCanonical(Astro.url.pathname),
   stylesheets = [],
+  noindex = false,
 } = Astro.props;
 ---
 
@@ -42,7 +45,7 @@ const {
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="theme-color" content="#C65D3C" />
-  <meta name="robots" content="index, follow" />
+  <meta name="robots" content={noindex ? 'noindex, nofollow' : 'index, follow'} />
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
