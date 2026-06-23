@@ -13,7 +13,7 @@
  * no write so bots learn nothing.
  */
 
-import { readEnv, json, validateEmail, callKlaviyo, type Env } from './_lib';
+import { readEnv, json, validateEmail, callKlaviyo, klaviyoAddToList, type Env } from './_lib';
 
 export const config = { runtime: 'edge' };
 
@@ -66,9 +66,12 @@ export default async function handler(req: Request): Promise<Response> {
   const source = platform === 'android' ? 'ff_tester' : 'ios_interest';
   const now = new Date().toISOString();
 
+  // Required path: upsert the profile (+ F&F properties) and add to the list.
+  // The list-add triggers the "you're on the list" welcome flow (same mechanism
+  // as the waitlist confirm flow). If this fails we fail the request so the user
+  // retries rather than silently dropping.
   try {
-    // 1. Upsert the profile + stamp our F&F properties (idempotent on email).
-    await callKlaviyo(env, '/profile-import/', {
+    const profileRes = await callKlaviyo<{ data: { id: string } }>(env, '/profile-import/', {
       method: 'POST',
       body: {
         data: {
@@ -81,10 +84,16 @@ export default async function handler(req: Request): Promise<Response> {
         },
       },
     });
+    await klaviyoAddToList(env, listId, profileRes.data.id);
+  } catch (err) {
+    console.error('[beta] Klaviyo write failed:', err);
+    return json({ error: 'save_failed' }, 502);
+  }
 
-    // 2. Subscribe (single opt-in — they consented on the form) AND add to the
-    // list in one call. The marketing email consent is what lets the "you're on
-    // the list" welcome flow actually deliver; a bare list-add wouldn't.
+  // Best-effort: record single-opt-in marketing consent (they consented on the
+  // form). Non-fatal — the list-add above already triggers the welcome email,
+  // so a consent-API hiccup must never fail the signup.
+  try {
     await callKlaviyo(env, '/profile-subscription-bulk-create-jobs/', {
       method: 'POST',
       body: {
@@ -92,20 +101,14 @@ export default async function handler(req: Request): Promise<Response> {
           type: 'profile-subscription-bulk-create-job',
           attributes: {
             custom_source: source === 'ff_tester' ? 'F&F tester signup' : 'iOS interest signup',
-            profiles: {
-              data: [{
-                type: 'profile',
-                attributes: { email, subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } } } },
-              }],
-            },
+            profiles: { data: [{ type: 'profile', attributes: { email, subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } } } } }] },
           },
           relationships: { list: { data: { type: 'list', id: listId } } },
         },
       },
     });
   } catch (err) {
-    console.error('[beta] Klaviyo write failed:', err);
-    return json({ error: 'save_failed' }, 502);
+    console.error('[beta] Klaviyo subscribe (non-fatal) failed:', err);
   }
 
   return json({ ok: true });
