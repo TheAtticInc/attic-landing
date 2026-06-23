@@ -32,7 +32,7 @@ const {
   description,
   ogTitle = title,
   ogDescription = description,
-  ogImage = 'https://attic.it.com/og-image.png',
+  ogImage = 'https://attic.it.com/og-cover.png',
   canonical = cleanCanonical(Astro.url.pathname),
   stylesheets = [],
   noindex = false,
@@ -61,6 +61,7 @@ const {
   <meta name="twitter:title" content={ogTitle} />
   <meta name="twitter:description" content={ogDescription} />
   <meta name="twitter:image" content={ogImage} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <link rel="icon" href="/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
