@@ -82,7 +82,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         </p>
         <p>
           There's a <strong>feedback button right inside the app</strong> — tap it anytime to
-          send a thought, a screenshot, or a "this broke." No bug too small, no opinion too blunt.
+          send a thought, a bug, or a "this broke." No bug too small, no opinion too blunt.
         </p>
       </div>
     </section>
@@ -172,7 +172,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .beta-submit:hover { background: var(--terra-deep); }
     .beta-help { font-size: 13px; line-height: 1.5; color: var(--soft); margin: 10px 2px 0; }
     .beta-help strong { color: var(--muted); }
-    .beta-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    /* display:none (not off-screen) so browser/password-manager autofill skips
+       it — an autofilled honeypot was silently dropping real signups. */
+    .beta-honeypot { display: none; }
     .beta-error { margin-top: 14px; padding: 12px 14px; background: #F7E6E0; border: 1px solid #E3B8AB; border-radius: 10px; color: #9A4B36; font-size: 14px; }
     .beta-success { margin-top: 14px; padding: 16px 18px; background: #E7F0E2; border: 1px solid #BBD3AC; border-radius: 12px; color: #3F5A33; font-size: 15px; line-height: 1.5; display: flex; flex-direction: column; gap: 4px; }
     .beta-success[hidden], .beta-error[hidden] { display: none; } /* [hidden] must beat display:flex */
