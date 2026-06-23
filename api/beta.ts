@@ -91,12 +91,20 @@ export default async function handler(req: Request): Promise<Response> {
   }
 
   // Best-effort: record single-opt-in marketing consent (they consented on the
-  // form). Non-fatal — the list-add above already triggers the welcome email,
-  // so a consent-API hiccup must never fail the signup.
+  // form) so the marketing welcome flow can deliver. Non-fatal. The revision is
+  // PINNED to 2024-10-15 here (not env-driven) because the subscription-bulk
+  // endpoint is revision-sensitive and a stale KLAVIYO_API_REVISION env was
+  // silently failing this call in production.
   try {
-    await callKlaviyo(env, '/profile-subscription-bulk-create-jobs/', {
+    const subRes = await fetch('https://a.klaviyo.com/api/profile-subscription-bulk-create-jobs/', {
       method: 'POST',
-      body: {
+      headers: {
+        Authorization: `Klaviyo-API-Key ${env.klaviyoApiKey}`,
+        revision: '2024-10-15',
+        accept: 'application/json',
+        'content-type': 'application/json',
+      },
+      body: JSON.stringify({
         data: {
           type: 'profile-subscription-bulk-create-job',
           attributes: {
@@ -105,8 +113,9 @@ export default async function handler(req: Request): Promise<Response> {
           },
           relationships: { list: { data: { type: 'list', id: listId } } },
         },
-      },
+      }),
     });
+    if (!subRes.ok) throw new Error(`subscribe ${subRes.status}: ${(await subRes.text()).slice(0, 200)}`);
   } catch (err) {
     console.error('[beta] Klaviyo subscribe (non-fatal) failed:', err);
   }
