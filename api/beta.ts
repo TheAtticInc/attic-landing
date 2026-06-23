@@ -13,7 +13,7 @@
  * no write so bots learn nothing.
  */
 
-import { readEnv, json, validateEmail, callKlaviyo, klaviyoAddToList, type Env } from './_lib';
+import { readEnv, json, validateEmail, callKlaviyo, type Env } from './_lib';
 
 export const config = { runtime: 'edge' };
 
@@ -66,10 +66,9 @@ export default async function handler(req: Request): Promise<Response> {
   const source = platform === 'android' ? 'ff_tester' : 'ios_interest';
   const now = new Date().toISOString();
 
-  // Upsert the Klaviyo profile (idempotent on email) + add to the right list.
-  // Klaviyo list-add triggers any "added to list" welcome flow wired in the UI.
   try {
-    const profileRes = await callKlaviyo<{ data: { id: string } }>(env, '/profile-import/', {
+    // 1. Upsert the profile + stamp our F&F properties (idempotent on email).
+    await callKlaviyo(env, '/profile-import/', {
       method: 'POST',
       body: {
         data: {
@@ -77,17 +76,33 @@ export default async function handler(req: Request): Promise<Response> {
           attributes: {
             email,
             ...(name ? { first_name: name } : {}),
-            properties: {
-              ff_name: name,
-              ff_platform: platform,
-              ff_source: source,
-              ff_signup_at: now,
-            },
+            properties: { ff_name: name, ff_platform: platform, ff_source: source, ff_signup_at: now },
           },
         },
       },
     });
-    await klaviyoAddToList(env, listId, profileRes.data.id);
+
+    // 2. Subscribe (single opt-in — they consented on the form) AND add to the
+    // list in one call. The marketing email consent is what lets the "you're on
+    // the list" welcome flow actually deliver; a bare list-add wouldn't.
+    await callKlaviyo(env, '/profile-subscription-bulk-create-jobs/', {
+      method: 'POST',
+      body: {
+        data: {
+          type: 'profile-subscription-bulk-create-job',
+          attributes: {
+            custom_source: source === 'ff_tester' ? 'F&F tester signup' : 'iOS interest signup',
+            profiles: {
+              data: [{
+                type: 'profile',
+                attributes: { email, subscriptions: { email: { marketing: { consent: 'SUBSCRIBED' } } } },
+              }],
+            },
+          },
+          relationships: { list: { data: { type: 'list', id: listId } } },
+        },
+      },
+    });
   } catch (err) {
     console.error('[beta] Klaviyo write failed:', err);
     return json({ error: 'save_failed' }, 502);

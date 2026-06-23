@@ -88,15 +88,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <section class="beta-band beta-band--paper">
       <div class="beta-wrap">
         <div class="beta-perk">
-          <div class="beta-perk__num">$50</div>
-          <div>
-            <h3 class="beta-perk__title">Storage credit, on us.</h3>
-            <p class="beta-perk__sub">
-              As a thank-you for helping us test, every Friends &amp; Family tester gets a
-              <strong>$50 Attic storage credit</strong> when we officially launch — over three
-              months of storage on a crate, free.
-            </p>
-          </div>
+          <h3 class="beta-perk__title"><span class="beta-perk__num">$50</span> storage credit, on us.</h3>
+          <p class="beta-perk__sub">
+            As a thank-you for helping us test, every Friends &amp; Family tester gets a
+            <strong>$50 Attic storage credit</strong> when we officially launch — over three
+            months of storage on a crate, free.
+          </p>
         </div>
       </div>
     </section>
@@ -185,9 +182,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .beta-prose p { font-size: 16px; line-height: 1.65; color: var(--muted); margin: 0 0 16px; }
     .beta-prose strong { color: var(--ink); }
 
-    .beta-perk { display: flex; gap: 20px; align-items: flex-start; background: var(--cream); border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
-    .beta-perk__num { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 44px; color: var(--terra); line-height: 1; flex-shrink: 0; }
-    .beta-perk__title { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 21px; margin: 0 0 8px; }
+    .beta-perk { background: var(--cream); border: 1px solid var(--line); border-radius: 18px; padding: 22px 24px; }
+    .beta-perk__title { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 21px; margin: 0 0 8px; display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .beta-perk__num { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 38px; color: var(--terra); line-height: 1; }
     .beta-perk__sub { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0; }
     .beta-perk__sub strong { color: var(--ink); }
 
