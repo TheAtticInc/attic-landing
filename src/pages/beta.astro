@@ -15,6 +15,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- HERO -->
     <section class="beta-hero">
       <div class="beta-wrap">
+        <img src="/images/beta-hero.png" alt="" class="beta-hero-img" loading="eager" decoding="async" />
         <p class="beta-eyebrow">Friends &amp; Family · Early access</p>
         <h1 class="beta-h1">Help us test Attic<br/><em>before anyone else.</em></h1>
         <p class="beta-lede">
@@ -205,7 +206,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .beta-lede { font-size: 18px; line-height: 1.6; color: var(--muted); margin: 0 0 28px; max-width: 600px; }
     .beta-sub { font-size: 16px; color: var(--muted); margin: 0 auto 26px; max-width: 460px; }
 
-    .beta-hero { padding: 64px 0 52px; background: var(--cream); }
+    .beta-hero { padding: 48px 0 52px; background: var(--cream); }
+    .beta-hero-img { display: block; width: clamp(220px, 46vw, 300px); height: auto; margin: 0 0 26px; border-radius: 20px; }
     .beta-band { padding: 52px 0; background: var(--cream); border-top: 1px solid var(--line); }
     .beta-band--paper { background: var(--paper); }
     .beta-prose p { font-size: 16.5px; line-height: 1.65; color: var(--muted); margin: 0 0 18px; }
