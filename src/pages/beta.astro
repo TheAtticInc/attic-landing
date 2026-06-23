@@ -263,7 +263,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           if (!res.ok) throw new Error('bad_status');
           if (platform === 'android') {
             okTitle.textContent = "You're in. 🎉";
-            okBody.textContent = "We'll email your Google Play test invite once everyone's gathered. Watch your inbox (and spam) — see you in the app.";
+            okBody.textContent = "We just sent a confirmation to your email — check your inbox, and if it landed in spam or promotions, mark it ‘Not spam’ so your Google Play invite lands where you’ll see it. See you in the app!";
           } else {
             okTitle.textContent = "You're on the iOS list. 👍";
             okBody.textContent = "We'll email you the moment the iPhone version is ready to test.";

@@ -138,7 +138,7 @@ const FF_HTML = wrap(`
   <h1>You're <em>in</em>.</h1>
   <p>Thanks for signing up to help test the Attic app — you're officially on the Friends &amp; Family list.</p>
   <p><strong>What happens next:</strong> once we've gathered everyone, you'll get a separate email from <strong>Google Play</strong> with your invite to the test. That's the email that gets you into the app.</p>
-  <div class="callout"><strong>Important — watch your inbox.</strong> Check your spam and promotions folders too, so the Google Play invite doesn't slip past you.</div>
+  <div class="callout"><strong>Important — find this email &amp; mark it safe.</strong> If it landed in your <strong>spam or promotions</strong> folder, mark it <strong>"Not spam"</strong> and drag it to your inbox. That tells your email Attic is safe — so the Google Play invite (the one that gets you into the app) lands where you'll actually see it.</div>
   <p>As a thank-you for testing, you'll get a <strong>$50 Attic storage credit</strong> when we officially launch.</p>
   <hr>
   <p class="fine">Questions, or hit a snag? Just reply to this email — it comes to a real person.</p>
