@@ -1,136 +1,51 @@
 ---
-// /beta — Friends & Family tester signup. Private invite link (noindex);
-// Luke texts this to friends & family. Android testers get a Google Play
-// closed-test invite; iPhone folks get notified when iOS is ready. Collects
-// into Klaviyo via /api/beta (no Harper — testers have no ZIP).
+// /beta — Friends & Family tester signup. Private invite link (noindex) Luke
+// texts to friends & family. Mobile-first: brief intro → simple email signup →
+// details below. Android testers → Klaviyo "F&F Testers" list (exported into
+// Play Console's closed test); iPhone folks → "iOS Interest" for later. Collects
+// via /api/beta (Klaviyo-only — testers have no ZIP for the Harper waitlist).
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout
-  title="Friends & Family Test — Attic"
-  description="You're invited to test the Attic app before launch. Help us find bugs and shape the experience — and get a $50 storage credit when we launch."
+  title="Test the Attic app — Friends & Family"
+  description="Be one of the first to try Attic on Android before launch. Help us find the rough edges — and get a $50 storage credit as a thank-you."
+  ogTitle="You're invited to test the Attic app"
+  ogDescription="Be one of the first to try Attic on Android before launch. Help us find the rough edges — and get a $50 storage credit as a thank-you."
   noindex={true}
 >
   <main class="beta">
-    <!-- HERO -->
-    <section class="beta-hero">
-      <div class="beta-hero-inner">
-        <div class="beta-hero-text">
-          <p class="beta-eyebrow">Friends &amp; Family · Early access</p>
-          <h1 class="beta-h1">Help us test Attic<br/><em>before anyone else.</em></h1>
-          <p class="beta-lede">
-            We're about to put the Attic app in real hands for the first time, and we want
-            yours. You'll get early access on Android, a direct line to tell us what's broken
-            or confusing, and a <strong>$50 storage credit</strong> as a thank-you when we launch.
-          </p>
-          <a href="#signup" class="beta-cta">Count me in →</a>
-        </div>
-        <img src="/images/beta-hero.png" alt="" class="beta-hero-img" loading="eager" decoding="async" />
-      </div>
-    </section>
-
-    <!-- WHAT IT IS -->
-    <section class="beta-band">
-      <div class="beta-wrap beta-prose">
-        <h2 class="beta-h2">What's the Friends &amp; Family test?</h2>
-        <p>
-          It's a small, hand-picked group — that's you — getting the Attic app early, before
-          it's public. You install it on your phone, use it like a real customer would, and
-          tell us what works, what doesn't, and what just feels off.
-        </p>
-        <p>
-          <strong>Why it matters to us:</strong> there's no substitute for real people on real
-          phones. Your testing is how we catch the bugs, rough edges, and confusing moments
-          before the whole world sees them — and your feedback genuinely shapes what Attic
-          becomes. Every bug you hit is valid. Every "wait, this is weird" is valid. That's
-          exactly what we need to hear.
-        </p>
-        <p>
-          There's a <strong>feedback button right inside the app</strong> — tap it anytime to
-          send a thought, a screenshot, or a "this broke." No bug too small, no opinion too
-          blunt.
-        </p>
-      </div>
-    </section>
-
-    <!-- THANK YOU / CREDIT -->
-    <section class="beta-band beta-band--paper">
+    <!-- TOP: brief intro + signup (above the fold on mobile) -->
+    <section class="beta-top">
       <div class="beta-wrap">
-        <div class="beta-perk">
-          <div class="beta-perk__num">$50</div>
-          <div>
-            <h3 class="beta-perk__title">Storage credit, on us.</h3>
-            <p class="beta-perk__sub">
-              As a thank-you for helping us test, every Friends &amp; Family tester gets a
-              <strong>$50 Attic storage credit</strong> when we officially launch — that's over
-              three months of storage on a crate, free. Our way of saying we couldn't do this
-              without you.
-            </p>
-          </div>
+        <div class="beta-banner">
+          <img src="/images/beta-hero.png" alt="" loading="eager" decoding="async" />
         </div>
-      </div>
-    </section>
 
-    <!-- SIGNUP -->
-    <section id="signup" class="beta-band">
-      <div class="beta-wrap">
-        <h2 class="beta-h2" style="text-align:center;">Get on the list</h2>
-        <p class="beta-sub" style="text-align:center;">
-          Drop your email below and we'll send your invite. Pick your phone first.
+        <p class="beta-eyebrow">Friends &amp; Family · Early access</p>
+        <h1 class="beta-h1">Be one of the first<br/>to try Attic.</h1>
+        <p class="beta-lede">
+          We're opening the Attic app to a small group of friends and family on Android,
+          before anyone else. Give it a spin, tell us what's clunky or broken, and get a
+          <strong>$50 storage credit</strong> when we launch — our way of saying thanks.
         </p>
-
-        <!-- Platform toggle -->
-        <div class="beta-toggle" role="tablist" aria-label="Choose your phone">
-          <button type="button" class="beta-toggle__btn is-active" data-platform-btn="android" role="tab" aria-selected="true">
-            I'm on Android
-          </button>
-          <button type="button" class="beta-toggle__btn" data-platform-btn="ios" role="tab" aria-selected="false">
-            I'm on iPhone
-          </button>
-        </div>
 
         <form class="beta-form" data-beta-form novalidate>
           <input type="hidden" name="platform" value="android" data-platform-input />
 
-          <!-- ANDROID copy -->
-          <div data-when="android">
-            <div class="beta-field">
-              <label class="beta-label" for="ff-name">First name</label>
-              <input id="ff-name" class="beta-input" type="text" name="name" placeholder="Jordan" autocomplete="given-name" />
-            </div>
-            <div class="beta-field">
-              <label class="beta-label" for="ff-email">Your Google account email <span class="beta-req">(important)</span></label>
-              <input id="ff-email" class="beta-input" type="email" name="email" placeholder="you@gmail.com" autocomplete="email" inputmode="email" required />
-              <p class="beta-help">
-                This <strong>must be the Google / Gmail account signed in to the Play Store on
-                your Android phone</strong> — that's the only address a Play Store test invite can
-                reach. If you're not sure, it's the email you see in the Play Store app under your
-                profile.
-              </p>
-            </div>
+          <div class="beta-toggle" role="tablist" aria-label="Choose your phone">
+            <button type="button" class="beta-toggle__btn is-active" data-platform-btn="android" role="tab" aria-selected="true">I'm on Android</button>
+            <button type="button" class="beta-toggle__btn" data-platform-btn="ios" role="tab" aria-selected="false">I'm on iPhone</button>
           </div>
 
-          <!-- iOS copy -->
-          <div data-when="ios" hidden>
-            <div class="beta-field">
-              <label class="beta-label" for="ff-name-ios">First name</label>
-              <input id="ff-name-ios" class="beta-input" type="text" name="name-ios" placeholder="Jordan" autocomplete="given-name" />
-            </div>
-            <div class="beta-field">
-              <label class="beta-label" for="ff-email-ios">Your email</label>
-              <input id="ff-email-ios" class="beta-input" type="email" name="email-ios" placeholder="you@email.com" autocomplete="email" inputmode="email" />
-              <p class="beta-help">
-                This first round is <strong>Android only</strong> — Apple's testing works
-                differently and we're not there quite yet. Leave your email and you'll be the
-                first to know the moment the iPhone version is ready.
-              </p>
-            </div>
-          </div>
-
-          <!-- honeypot -->
-          <input type="text" name="_h" tabindex="-1" autocomplete="off" aria-hidden="true" class="beta-honeypot" />
-
+          <label class="beta-srlabel" for="ff-email">Email address</label>
+          <input id="ff-email" class="beta-input" type="email" name="email" placeholder="you@gmail.com" autocomplete="email" inputmode="email" required />
           <button type="submit" class="beta-submit" data-submit-label>Count me in</button>
+
+          <p class="beta-help" data-help="android">Use the <strong>Google account email on your Android phone</strong> — that's the only place a Play Store test invite can land.</p>
+          <p class="beta-help" data-help="ios" hidden>This first round is <strong>Android only</strong>. Drop your email and you'll be first to know when the iPhone version is ready.</p>
+
+          <input type="text" name="_h" tabindex="-1" autocomplete="off" aria-hidden="true" class="beta-honeypot" />
 
           <div class="beta-error" data-beta-error role="alert" hidden></div>
           <div class="beta-success" data-beta-success role="status" hidden>
@@ -139,15 +54,55 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
 
           <p class="beta-fine">
-            We'll only use your email for the test and Attic updates. Unsubscribe anytime.
-            See our <a href="/privacy">Privacy Policy</a>.
+            You'll get a Google Play test invite and the occasional Attic update by email.
+            The $50 credit lands when we launch. Unsubscribe anytime — see our
+            <a href="/privacy">Privacy Policy</a>.
           </p>
         </form>
       </div>
     </section>
 
-    <!-- WHAT TO EXPECT -->
+    <!-- WHAT IT IS -->
+    <section class="beta-band">
+      <div class="beta-wrap beta-prose">
+        <h2 class="beta-h2">What is the Friends &amp; Family test?</h2>
+        <p>
+          It's a small, hand-picked group — that's you — getting the Attic app early, before
+          it's public. You install it on your phone, use it like a real customer would, and
+          tell us what works, what doesn't, and what feels off.
+        </p>
+        <p>
+          <strong>Why it matters:</strong> there's no substitute for real people on real
+          phones. Your testing is how we catch the bugs and confusing moments before everyone
+          sees them — and your feedback genuinely shapes what Attic becomes. Every bug you hit
+          is valid. Every "wait, this is weird" is valid. That's exactly what we want to hear.
+        </p>
+        <p>
+          There's a <strong>feedback button right inside the app</strong> — tap it anytime to
+          send a thought, a screenshot, or a "this broke." No bug too small, no opinion too blunt.
+        </p>
+      </div>
+    </section>
+
+    <!-- $50 CREDIT -->
     <section class="beta-band beta-band--paper">
+      <div class="beta-wrap">
+        <div class="beta-perk">
+          <div class="beta-perk__num">$50</div>
+          <div>
+            <h3 class="beta-perk__title">Storage credit, on us.</h3>
+            <p class="beta-perk__sub">
+              As a thank-you for helping us test, every Friends &amp; Family tester gets a
+              <strong>$50 Attic storage credit</strong> when we officially launch — over three
+              months of storage on a crate, free.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHAT HAPPENS NEXT -->
+    <section class="beta-band">
       <div class="beta-wrap">
         <h2 class="beta-h2" style="text-align:center;">What happens next</h2>
         <ol class="beta-steps">
@@ -155,7 +110,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <span class="beta-steps__n">1</span>
             <div>
               <h4>We send your invite</h4>
-              <p>Once we've gathered everyone, you'll get an email from <strong>Google Play</strong>
+              <p>Once everyone's gathered, you'll get an email from <strong>Google Play</strong>
               inviting you to the Attic test. Keep an eye out — and check spam just in case.</p>
             </div>
           </li>
@@ -172,108 +127,88 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <div>
               <h4>Use it &amp; tell us everything</h4>
               <p>Order a crate, poke around, try to break it. Tap the in-app feedback button
-              whenever something's off. All feedback is valid — that's the whole point.</p>
+              whenever something's off.</p>
             </div>
           </li>
         </ol>
-        <p class="beta-req-line">
-          <strong>You'll need:</strong> an Android phone and a Google account. That's it.
-        </p>
+        <p class="beta-req-line"><strong>You'll need:</strong> an Android phone and a Google account. That's it.</p>
+        <a href="#top" class="beta-bottomcta" data-scroll-top>Count me in →</a>
       </div>
     </section>
 
-    <div class="beta-foot">
-      <a href="/">← Back to attic.it.com</a>
-    </div>
+    <div class="beta-foot"><a href="/">← Back to attic.it.com</a></div>
   </main>
 
   <style>
     .beta {
-      --ink: #23180F;
-      --muted: #5A4A3C;
-      --soft: #8C7A68;
-      --cream: #FFF8EE;
-      --paper: #FBF1E2;
-      --terra: #C65D3C;
-      --terra-deep: #B14F32;
-      --line: #E4DCC9;
+      --ink: #23180F; --muted: #5A4A3C; --soft: #8C7A68;
+      --cream: #FFF8EE; --paper: #FBF1E2; --terra: #C65D3C; --terra-deep: #B14F32; --line: #E4DCC9;
       color: var(--ink);
       font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Helvetica, Arial, sans-serif;
     }
-    .beta-wrap { max-width: 660px; margin: 0 auto; padding: 0 22px; }
-    .beta-eyebrow { font-size: 12px; letter-spacing: 1.4px; text-transform: uppercase; font-weight: 600; color: var(--terra); margin: 0 0 16px; }
-    .beta-h1 { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: clamp(34px, 6vw, 52px); line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 22px; }
+    .beta-wrap { max-width: 600px; margin: 0 auto; padding: 0 20px; }
+
+    /* TOP — compact so the signup is near the top on mobile */
+    .beta-top { padding: 20px 0 8px; background: var(--cream); text-align: center; }
+    .beta-banner { width: 100%; aspect-ratio: 16 / 7; border-radius: 18px; overflow: hidden; background: var(--paper); margin: 0 0 20px; }
+    .beta-banner img { width: 100%; height: 100%; object-fit: cover; object-position: center; display: block; }
+
+    .beta-eyebrow { font-size: 12px; letter-spacing: 1.3px; text-transform: uppercase; font-weight: 600; color: var(--terra); margin: 0 0 12px; }
+    .beta-h1 { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: clamp(30px, 8vw, 44px); line-height: 1.08; letter-spacing: -0.015em; margin: 0 0 16px; }
     .beta-h1 em { font-style: italic; color: var(--terra); }
-    .beta-h2 { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: clamp(24px, 4vw, 32px); line-height: 1.15; margin: 0 0 18px; letter-spacing: -0.01em; }
-    .beta-lede { font-size: 18px; line-height: 1.6; color: var(--muted); margin: 0 0 28px; max-width: 600px; }
-    .beta-sub { font-size: 16px; color: var(--muted); margin: 0 auto 26px; max-width: 460px; }
+    .beta-lede { font-size: 16.5px; line-height: 1.6; color: var(--muted); margin: 0 auto 26px; max-width: 480px; }
+    .beta-lede strong { color: var(--ink); }
 
-    .beta-hero { padding: 56px 0; background: var(--cream); }
-    .beta-hero-inner { max-width: 1000px; margin: 0 auto; padding: 0 22px; display: flex; align-items: center; gap: 44px; }
-    .beta-hero-text { flex: 1 1 auto; min-width: 0; }
-    .beta-hero-img { flex: 0 0 auto; width: clamp(260px, 36vw, 400px); height: auto; border-radius: 22px; }
-    @media (max-width: 760px) {
-      .beta-hero-inner { flex-direction: column; gap: 28px; text-align: center; }
-      .beta-hero-img { order: -1; width: min(78vw, 340px); }
-      .beta-hero-text .beta-lede { margin-left: auto; margin-right: auto; }
-    }
-    .beta-band { padding: 52px 0; background: var(--cream); border-top: 1px solid var(--line); }
-    .beta-band--paper { background: var(--paper); }
-    .beta-prose p { font-size: 16.5px; line-height: 1.65; color: var(--muted); margin: 0 0 18px; }
-    .beta-prose strong { color: var(--ink); }
-
-    .beta-cta, .beta-submit {
-      display: inline-block; background: var(--terra); color: var(--cream);
-      font-weight: 600; font-size: 16px; text-decoration: none; cursor: pointer;
-      padding: 15px 30px; border-radius: 999px; border: none; transition: background .15s ease;
-    }
-    .beta-cta:hover, .beta-submit:hover { background: var(--terra-deep); }
-
-    .beta-perk {
-      display: flex; gap: 22px; align-items: flex-start;
-      background: var(--cream); border: 1px solid var(--line); border-radius: 18px; padding: 26px 28px;
-    }
-    .beta-perk__num { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 48px; color: var(--terra); line-height: 1; flex-shrink: 0; }
-    .beta-perk__title { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 22px; margin: 0 0 8px; }
-    .beta-perk__sub { font-size: 15.5px; line-height: 1.6; color: var(--muted); margin: 0; }
-    .beta-perk__sub strong { color: var(--ink); }
-
-    /* Toggle */
-    .beta-toggle { display: flex; gap: 8px; max-width: 460px; margin: 0 auto 18px; background: var(--paper); padding: 5px; border-radius: 999px; border: 1px solid var(--line); }
-    .beta-toggle__btn { flex: 1; padding: 11px 14px; border: none; background: transparent; border-radius: 999px; font: inherit; font-weight: 600; font-size: 14.5px; color: var(--muted); cursor: pointer; transition: all .15s ease; }
+    /* FORM — email-first, full-width controls */
+    .beta-form { max-width: 420px; margin: 0 auto; text-align: left; }
+    .beta-toggle { display: flex; gap: 6px; background: var(--paper); padding: 5px; border-radius: 999px; border: 1px solid var(--line); margin-bottom: 12px; }
+    .beta-toggle__btn { flex: 1; padding: 11px 10px; border: none; background: transparent; border-radius: 999px; font: inherit; font-weight: 600; font-size: 14px; color: var(--muted); cursor: pointer; transition: all .15s ease; }
     .beta-toggle__btn.is-active { background: var(--terra); color: var(--cream); }
-
-    /* Form */
-    .beta-form { max-width: 460px; margin: 0 auto; }
-    .beta-field { margin-bottom: 16px; }
-    .beta-label { display: block; font-size: 13.5px; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
-    .beta-req { color: var(--terra); font-weight: 600; }
-    .beta-input { width: 100%; box-sizing: border-box; padding: 13px 15px; font: inherit; font-size: 16px; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 12px; }
+    .beta-srlabel { position: absolute; left: -9999px; }
+    .beta-input { width: 100%; box-sizing: border-box; padding: 14px 16px; font: inherit; font-size: 16px; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 12px; }
     .beta-input:focus { outline: none; border-color: var(--terra); box-shadow: 0 0 0 3px rgba(198,93,60,.15); }
-    .beta-help { font-size: 13px; line-height: 1.5; color: var(--soft); margin: 8px 2px 0; }
+    .beta-submit { width: 100%; margin-top: 10px; padding: 15px 24px; background: var(--terra); color: var(--cream); font: inherit; font-weight: 600; font-size: 16px; border: none; border-radius: 999px; cursor: pointer; transition: background .15s ease; }
+    .beta-submit:hover { background: var(--terra-deep); }
+    .beta-help { font-size: 13px; line-height: 1.5; color: var(--soft); margin: 10px 2px 0; }
     .beta-help strong { color: var(--muted); }
-    .beta-submit { width: 100%; margin-top: 6px; }
     .beta-honeypot { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
     .beta-error { margin-top: 14px; padding: 12px 14px; background: #F7E6E0; border: 1px solid #E3B8AB; border-radius: 10px; color: #9A4B36; font-size: 14px; }
     .beta-success { margin-top: 14px; padding: 16px 18px; background: #E7F0E2; border: 1px solid #BBD3AC; border-radius: 12px; color: #3F5A33; font-size: 15px; line-height: 1.5; display: flex; flex-direction: column; gap: 4px; }
-    /* [hidden] must beat the explicit display:flex/block above, else the
-       success/error blocks render before submit. */
-    .beta-success[hidden], .beta-error[hidden] { display: none; }
-    .beta-fine { font-size: 12.5px; color: var(--soft); text-align: center; margin: 16px auto 0; max-width: 420px; line-height: 1.5; }
+    .beta-success[hidden], .beta-error[hidden] { display: none; } /* [hidden] must beat display:flex */
+    .beta-fine { font-size: 12.5px; color: var(--soft); margin: 16px 2px 0; line-height: 1.55; }
     .beta-fine a { color: var(--soft); }
 
-    /* Steps */
-    .beta-steps { list-style: none; padding: 0; margin: 0 auto; max-width: 520px; display: flex; flex-direction: column; gap: 18px; }
-    .beta-steps li { display: flex; gap: 16px; align-items: flex-start; }
-    .beta-steps__n { flex-shrink: 0; width: 34px; height: 34px; border-radius: 50%; background: var(--terra); color: var(--cream); font-family: Fraunces, serif; font-weight: 600; display: flex; align-items: center; justify-content: center; }
-    .beta-steps h4 { margin: 4px 0 4px; font-size: 16px; font-weight: 600; }
-    .beta-steps p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--muted); }
-    .beta-req-line { text-align: center; margin: 28px auto 0; font-size: 15px; color: var(--muted); }
-    .beta-req-line strong { color: var(--ink); }
+    /* DETAIL BANDS */
+    .beta-band { padding: 44px 0; background: var(--cream); border-top: 1px solid var(--line); }
+    .beta-band--paper { background: var(--paper); }
+    .beta-h2 { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: clamp(23px, 5vw, 30px); line-height: 1.15; margin: 0 0 16px; letter-spacing: -0.01em; }
+    .beta-prose p { font-size: 16px; line-height: 1.65; color: var(--muted); margin: 0 0 16px; }
+    .beta-prose strong { color: var(--ink); }
 
-    .beta-foot { text-align: center; padding: 32px 0 48px; background: var(--cream); }
+    .beta-perk { display: flex; gap: 20px; align-items: flex-start; background: var(--cream); border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
+    .beta-perk__num { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 44px; color: var(--terra); line-height: 1; flex-shrink: 0; }
+    .beta-perk__title { font-family: Fraunces, Georgia, serif; font-weight: 600; font-size: 21px; margin: 0 0 8px; }
+    .beta-perk__sub { font-size: 15px; line-height: 1.6; color: var(--muted); margin: 0; }
+    .beta-perk__sub strong { color: var(--ink); }
+
+    .beta-steps { list-style: none; padding: 0; margin: 0 auto; max-width: 460px; display: flex; flex-direction: column; gap: 16px; }
+    .beta-steps li { display: flex; gap: 14px; align-items: flex-start; }
+    .beta-steps__n { flex-shrink: 0; width: 32px; height: 32px; border-radius: 50%; background: var(--terra); color: var(--cream); font-family: Fraunces, serif; font-weight: 600; display: flex; align-items: center; justify-content: center; }
+    .beta-steps h4 { margin: 3px 0 4px; font-size: 15.5px; font-weight: 600; }
+    .beta-steps p { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--muted); }
+    .beta-req-line { text-align: center; margin: 26px auto 22px; font-size: 15px; color: var(--muted); }
+    .beta-req-line strong { color: var(--ink); }
+    .beta-bottomcta { display: block; max-width: 420px; margin: 0 auto; text-align: center; background: var(--terra); color: var(--cream); font-weight: 600; font-size: 16px; text-decoration: none; padding: 15px 24px; border-radius: 999px; }
+    .beta-bottomcta:hover { background: var(--terra-deep); }
+
+    .beta-foot { text-align: center; padding: 30px 0 44px; background: var(--cream); }
     .beta-foot a { color: var(--soft); font-size: 14px; text-decoration: none; }
-    .beta-foot a:hover { color: var(--terra); }
+
+    /* Desktop: a touch more room, banner slightly shorter+wider */
+    @media (min-width: 720px) {
+      .beta-top { padding: 36px 0 8px; }
+      .beta-banner { aspect-ratio: 22 / 7; border-radius: 22px; }
+    }
   </style>
 
   <script is:inline>
@@ -282,41 +217,42 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       if (!form) return;
       const platformInput = form.querySelector('[data-platform-input]');
       const toggles = document.querySelectorAll('[data-platform-btn]');
-      const panels = { android: form.querySelector('[data-when="android"]'), ios: form.querySelector('[data-when="ios"]') };
       const submitBtn = form.querySelector('[data-submit-label]');
       const errEl = form.querySelector('[data-beta-error]');
       const okEl = form.querySelector('[data-beta-success]');
       const okTitle = form.querySelector('[data-success-title]');
       const okBody = form.querySelector('[data-success-body]');
-
+      const emailEl = form.querySelector('#ff-email');
+      const helpAndroid = form.querySelector('[data-help="android"]');
+      const helpIos = form.querySelector('[data-help="ios"]');
       let platform = 'android';
 
       function setPlatform(p) {
         platform = p;
         platformInput.value = p;
-        panels.android.hidden = p !== 'android';
-        panels.ios.hidden = p !== 'ios';
+        helpAndroid.hidden = p !== 'android';
+        helpIos.hidden = p !== 'ios';
+        emailEl.placeholder = p === 'android' ? 'you@gmail.com' : 'you@email.com';
+        submitBtn.textContent = p === 'android' ? 'Count me in' : 'Notify me when iOS is ready';
         toggles.forEach((b) => {
           const on = b.getAttribute('data-platform-btn') === p;
           b.classList.toggle('is-active', on);
           b.setAttribute('aria-selected', on ? 'true' : 'false');
         });
-        submitBtn.textContent = p === 'android' ? 'Count me in' : 'Notify me when iOS is ready';
         errEl.hidden = true;
       }
       toggles.forEach((b) => b.addEventListener('click', () => setPlatform(b.getAttribute('data-platform-btn'))));
 
+      const topCta = document.querySelector('[data-scroll-top]');
+      if (topCta) topCta.addEventListener('click', (e) => { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); emailEl.focus(); });
+
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         errEl.hidden = true;
-        const emailEl = platform === 'android' ? form.querySelector('#ff-email') : form.querySelector('#ff-email-ios');
-        const nameEl = platform === 'android' ? form.querySelector('#ff-name') : form.querySelector('#ff-name-ios');
         const email = (emailEl.value || '').trim();
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
           errEl.textContent = 'Please enter a valid email address.';
-          errEl.hidden = false;
-          emailEl.focus();
-          return;
+          errEl.hidden = false; emailEl.focus(); return;
         }
         submitBtn.disabled = true;
         const original = submitBtn.textContent;
@@ -325,12 +261,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           const res = await fetch('/api/beta', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({
-              email,
-              name: (nameEl.value || '').trim(),
-              platform,
-              _h: form.querySelector('[name="_h"]').value,
-            }),
+            body: JSON.stringify({ email, platform, _h: form.querySelector('[name="_h"]').value }),
           });
           if (!res.ok) throw new Error('bad_status');
           if (platform === 'android') {
@@ -340,7 +271,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             okTitle.textContent = "You're on the iOS list. 👍";
             okBody.textContent = "We'll email you the moment the iPhone version is ready to test.";
           }
-          form.querySelectorAll('.beta-field, .beta-toggle, [data-submit-label]').forEach((el) => { el.style.display = 'none'; });
+          form.querySelectorAll('.beta-toggle, .beta-input, [data-submit-label], .beta-help').forEach((el) => { el.style.display = 'none'; });
           okEl.hidden = false;
         } catch (err) {
           errEl.textContent = "Couldn't save that — please try again in a moment.";
