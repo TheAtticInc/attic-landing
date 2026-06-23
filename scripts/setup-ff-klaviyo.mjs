@@ -136,7 +136,7 @@ const wrap = (inner) => `<!doctype html><html><head><meta charset="utf-8"><meta 
 const FF_HTML = wrap(`
   <p class="eyebrow">Attic — Friends &amp; Family</p>
   <h1>You're <em>in</em>.</h1>
-  <p>Thanks for signing up to help test the Attic app — you're officially on the Friends &amp; Family list.</p>
+  <p>Hi {{ first_name|default:'there' }}, thanks for signing up to help test the Attic app — you're officially on the Friends &amp; Family list.</p>
   <p><strong>What happens next:</strong> once we've gathered everyone, you'll get a separate email from <strong>Google Play</strong> with your invite to the test. That's the email that gets you into the app.</p>
   <div class="callout"><strong>Important — find this email &amp; mark it safe.</strong> If it landed in your <strong>spam or promotions</strong> folder, mark it <strong>"Not spam"</strong> and drag it to your inbox. That tells your email Attic is safe — so the Google Play invite (the one that gets you into the app) lands where you'll actually see it.</div>
   <p>As a thank-you for testing, you'll get a <strong>$50 Attic storage credit</strong> when we officially launch.</p>
@@ -147,7 +147,7 @@ const FF_HTML = wrap(`
 const IOS_HTML = wrap(`
   <p class="eyebrow">Attic — iOS</p>
   <h1>You're on the <em>list</em>.</h1>
-  <p>Thanks! The Attic app is Android-only for this first round of testing — but you're on the iOS list.</p>
+  <p>Hi {{ first_name|default:'there' }}, thanks! The Attic app is Android-only for this first round of testing — but you're on the iOS list.</p>
   <p>We'll email you the moment the iPhone version is ready to test, and you'll be among the first to know.</p>
   <hr>
   <p class="fine">Questions? Just reply — it comes to a real person.</p>

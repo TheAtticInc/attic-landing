@@ -38,6 +38,9 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <button type="button" class="beta-toggle__btn" data-platform-btn="ios" role="tab" aria-selected="false">I'm on iPhone</button>
           </div>
 
+          <label class="beta-srlabel" for="ff-name">First name</label>
+          <input id="ff-name" class="beta-input beta-input--name" type="text" name="name" placeholder="First name" autocomplete="given-name" required />
+
           <label class="beta-srlabel" for="ff-email">Email address</label>
           <input id="ff-email" class="beta-input" type="email" name="email" placeholder="you@gmail.com" autocomplete="email" inputmode="email" required />
           <button type="submit" class="beta-submit" data-submit-label>Count me in</button>
@@ -163,6 +166,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     .beta-toggle__btn.is-active { background: var(--terra); color: var(--cream); }
     .beta-srlabel { position: absolute; left: -9999px; }
     .beta-input { width: 100%; box-sizing: border-box; padding: 14px 16px; font: inherit; font-size: 16px; color: var(--ink); background: #fff; border: 1px solid var(--line); border-radius: 12px; }
+    .beta-input--name { margin-bottom: 10px; }
     .beta-input:focus { outline: none; border-color: var(--terra); box-shadow: 0 0 0 3px rgba(198,93,60,.15); }
     .beta-submit { width: 100%; margin-top: 10px; padding: 15px 24px; background: var(--terra); color: var(--cream); font: inherit; font-weight: 600; font-size: 16px; border: none; border-radius: 999px; cursor: pointer; transition: background .15s ease; }
     .beta-submit:hover { background: var(--terra-deep); }
@@ -219,6 +223,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       const okEl = form.querySelector('[data-beta-success]');
       const okTitle = form.querySelector('[data-success-title]');
       const okBody = form.querySelector('[data-success-body]');
+      const nameEl = form.querySelector('#ff-name');
       const emailEl = form.querySelector('#ff-email');
       const helpAndroid = form.querySelector('[data-help="android"]');
       const helpIos = form.querySelector('[data-help="ios"]');
@@ -246,7 +251,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         errEl.hidden = true;
+        const name = (nameEl.value || '').trim();
         const email = (emailEl.value || '').trim();
+        if (!name) {
+          errEl.textContent = 'Please enter your first name.';
+          errEl.hidden = false; nameEl.focus(); return;
+        }
         if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
           errEl.textContent = 'Please enter a valid email address.';
           errEl.hidden = false; emailEl.focus(); return;
@@ -258,7 +268,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           const res = await fetch('/api/beta', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify({ email, platform, _h: form.querySelector('[name="_h"]').value }),
+            body: JSON.stringify({ email, name, platform, _h: form.querySelector('[name="_h"]').value }),
           });
           if (!res.ok) throw new Error('bad_status');
           if (platform === 'android') {
@@ -268,7 +278,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             okTitle.textContent = "You're on the iOS list. 👍";
             okBody.textContent = "We'll email you the moment the iPhone version is ready to test.";
           }
-          form.querySelectorAll('.beta-toggle, .beta-input, [data-submit-label], .beta-help').forEach((el) => { el.style.display = 'none'; });
+          form.querySelectorAll('.beta-toggle, .beta-input, .beta-input--name, [data-submit-label], .beta-help').forEach((el) => { el.style.display = 'none'; });
           okEl.hidden = false;
         } catch (err) {
           errEl.textContent = "Couldn't save that — please try again in a moment.";
