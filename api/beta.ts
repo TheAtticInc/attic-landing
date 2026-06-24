@@ -44,9 +44,12 @@ function buildWelcomeEmail(platform: 'android' | 'ios', name: string): { subject
   const hi = name ? escapeHtml(name) : 'there';
   const hiText = name || 'there';
   const wrap = (paras: string[]) =>
-    `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#23180F;max-width:560px">`
-    + paras.map((p) => `<p style="margin:0 0 16px">${p}</p>`).join('')
-    + `</div>`;
+    `<div style="background:#ffffff;margin:0;padding:0">`
+    + `<div style="max-width:520px;margin:0 auto;padding:30px 26px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">`
+    + `<div style="font-family:Georgia,'Times New Roman',serif;font-size:23px;font-weight:bold;color:#1C3A5E;letter-spacing:0.3px;padding-bottom:14px;border-bottom:1px solid #ECE3D2;margin-bottom:22px">Attic</div>`
+    + paras.map((p) => `<p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#3A2E22">${p}</p>`).join('')
+    + `<div style="margin-top:26px;padding-top:16px;border-top:1px solid #ECE3D2;font-size:13px;line-height:1.5;color:#8C7A68">You&rsquo;re getting this because you signed up to test the Attic app at attic.it.com. Just reply if you&rsquo;d like off the list.</div>`
+    + `</div></div>`;
 
   if (platform === 'android') {
     return {
@@ -60,8 +63,8 @@ function buildWelcomeEmail(platform: 'android' | 'ios', name: string): { subject
       html: wrap([
         `Hi ${hi},`,
         `Thanks for signing up to help test the Attic app — you're on the Friends &amp; Family list.`,
-        `<strong>What happens next:</strong> once we've gathered everyone, you'll get a separate email from <strong>Google Play</strong> with your invite to install the app. That's the one that gets you in, so keep an eye out — and if it lands in spam or the Promotions tab, drag it to your inbox so you don't miss it.`,
-        `As a thank-you for testing, you'll get a <strong>$50 Attic storage credit</strong> when we launch.`,
+        `<strong>What happens next:</strong> once we've gathered everyone, you'll get a separate email from <strong style="color:#1C3A5E">Google Play</strong> with your invite to install the app. That's the one that gets you in, so keep an eye out — and if it lands in spam or the Promotions tab, drag it to your inbox so you don't miss it.`,
+        `As a thank-you for testing, you'll get a <strong style="color:#C65D3C">$50 Attic storage credit</strong> when we launch.`,
         `Any questions, just reply — this comes straight to me.`,
         `— Luke<br>Attic`,
       ]),
