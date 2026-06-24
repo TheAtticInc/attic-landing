@@ -4,16 +4,18 @@
  * POST /api/beta
  *   { email, name?, platform: 'android' | 'ios', _h? }
  *
- * Single opt-in, Klaviyo-only (no Harper — the waitlist's WaitlistSignup
- * resource hard-requires a ZIP, which F&F testers don't have). Android testers
+ * Klaviyo holds the LIST (profile + list membership + marketing consent); the
+ * welcome email goes out via RESEND as a plain, personal transactional message
+ * so it lands in Gmail's Primary tab instead of Promotions. Android testers
  * land on the "F&F Testers" list (their email is exported into Play Console's
- * closed test); iPhone folks land on "iOS Interest" to be notified at iOS launch.
+ * closed test); iPhone folks land on "iOS Interest". The Klaviyo welcome FLOW
+ * is disabled — Resend is the only sender now.
  *
  * The `_h` honeypot mirrors /api/waitlist: a filled value returns 200 ok with
  * no write so bots learn nothing.
  */
 
-import { readEnv, json, validateEmail, callKlaviyo, klaviyoAddToList, type Env } from './_lib';
+import { readEnv, json, validateEmail, callKlaviyo, klaviyoAddToList, sendResendEmail, type Env } from './_lib';
 
 export const config = { runtime: 'edge' };
 
@@ -26,6 +28,58 @@ interface FormBody {
 
 function clip(value: unknown, max: number): string {
   return typeof value === 'string' ? value.trim().slice(0, max) : '';
+}
+
+function escapeHtml(s: string): string {
+  return s.replace(/[&<>"']/g, (c) => (
+    { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c] as string
+  ));
+}
+
+/**
+ * Plain, personal welcome email — deliberately not a marketing template (no
+ * images, no buttons, signed by a person) so Gmail keeps it in Primary.
+ */
+function buildWelcomeEmail(platform: 'android' | 'ios', name: string): { subject: string; html: string; text: string } {
+  const hi = name ? escapeHtml(name) : 'there';
+  const hiText = name || 'there';
+  const wrap = (paras: string[]) =>
+    `<div style="font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif;font-size:16px;line-height:1.55;color:#23180F;max-width:560px">`
+    + paras.map((p) => `<p style="margin:0 0 16px">${p}</p>`).join('')
+    + `</div>`;
+
+  if (platform === 'android') {
+    return {
+      subject: "You're on the Attic Friends & Family list",
+      text:
+        `Hi ${hiText},\n\n`
+        + `Thanks for signing up to help test the Attic app — you're on the Friends & Family list.\n\n`
+        + `What happens next: once we've gathered everyone, you'll get a separate email from Google Play with your invite to install the app. That's the one that gets you in, so keep an eye out — and if it lands in spam or the Promotions tab, drag it to your inbox so you don't miss it.\n\n`
+        + `As a thank-you for testing, you'll get a $50 Attic storage credit when we launch.\n\n`
+        + `Any questions, just reply — this comes straight to me.\n\n— Luke\nAttic`,
+      html: wrap([
+        `Hi ${hi},`,
+        `Thanks for signing up to help test the Attic app — you're on the Friends &amp; Family list.`,
+        `<strong>What happens next:</strong> once we've gathered everyone, you'll get a separate email from <strong>Google Play</strong> with your invite to install the app. That's the one that gets you in, so keep an eye out — and if it lands in spam or the Promotions tab, drag it to your inbox so you don't miss it.`,
+        `As a thank-you for testing, you'll get a <strong>$50 Attic storage credit</strong> when we launch.`,
+        `Any questions, just reply — this comes straight to me.`,
+        `— Luke<br>Attic`,
+      ]),
+    };
+  }
+  return {
+    subject: "You're on the Attic iOS list",
+    text:
+      `Hi ${hiText},\n\n`
+      + `Thanks! The Attic app is Android-only for this first round of testing, but you're on the iOS list — I'll email you the moment the iPhone version is ready to try.\n\n`
+      + `Any questions, just reply.\n\n— Luke\nAttic`,
+    html: wrap([
+      `Hi ${hi},`,
+      `Thanks! The Attic app is Android-only for this first round of testing, but you're on the iOS list — I'll email you the moment the iPhone version is ready to try.`,
+      `Any questions, just reply.`,
+      `— Luke<br>Attic`,
+    ]),
+  };
 }
 
 export default async function handler(req: Request): Promise<Response> {
@@ -118,6 +172,16 @@ export default async function handler(req: Request): Promise<Response> {
     if (!subRes.ok) throw new Error(`subscribe ${subRes.status}: ${(await subRes.text()).slice(0, 200)}`);
   } catch (err) {
     console.error('[beta] Klaviyo subscribe (non-fatal) failed:', err);
+  }
+
+  // Welcome email via Resend (transactional + personal → Primary tab). Replaces
+  // the Klaviyo marketing flow. Best-effort: they're already on the list, so a
+  // send hiccup shouldn't fail the signup.
+  try {
+    const mail = buildWelcomeEmail(platform, name);
+    await sendResendEmail(env, { to: email, ...mail });
+  } catch (err) {
+    console.error('[beta] Resend welcome email (non-fatal) failed:', err);
   }
 
   return json({ ok: true });

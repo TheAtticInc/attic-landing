@@ -18,6 +18,9 @@ export interface Env {
   // fails if they're not configured. The /api/beta endpoint validates its own.
   klaviyoFfListId?: string;
   klaviyoIosListId?: string;
+  // Resend — transactional welcome email for F&F signups. Optional so the
+  // waitlist endpoint never fails if it isn't configured.
+  resendApiKey?: string;
 }
 
 export function readEnv(): Env {
@@ -28,6 +31,7 @@ export function readEnv(): Env {
   const marketingSiteUrl = process.env.MARKETING_SITE_URL ?? 'https://attic.it.com';
   const klaviyoFfListId = process.env.KLAVIYO_FF_LIST_ID;
   const klaviyoIosListId = process.env.KLAVIYO_IOS_LIST_ID;
+  const resendApiKey = process.env.RESEND_API_KEY;
 
   // Surface a clear server-config error if anything's missing — better than a
   // mysterious 500 from a downstream call with an undefined Authorization
@@ -46,7 +50,45 @@ export function readEnv(): Env {
     marketingSiteUrl,
     klaviyoFfListId,
     klaviyoIosListId,
+    resendApiKey,
   };
+}
+
+/**
+ * Send a transactional email through Resend. Plain + personal on purpose —
+ * transactional sends from our own domain land in the Primary tab, unlike the
+ * Klaviyo marketing flow which Gmail files under Promotions. Best-effort:
+ * callers log + swallow failures so a send hiccup never fails the signup.
+ *
+ * `from` is a person-style display name on our verified domain (DKIM signs as
+ * attic.it.com; Return-Path is rp.attic.it.com → SPF+DKIM both align).
+ */
+export async function sendResendEmail(
+  env: Env,
+  msg: { to: string; subject: string; html: string; text: string },
+): Promise<void> {
+  if (!env.resendApiKey) {
+    console.error('[resend] RESEND_API_KEY not set — skipping welcome email to', msg.to);
+    return;
+  }
+  const res = await fetch('https://api.resend.com/emails', {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${env.resendApiKey}`,
+      'content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      from: 'Luke at Attic <hello@attic.it.com>',
+      reply_to: 'hello@attic.it.com',
+      to: [msg.to],
+      subject: msg.subject,
+      html: msg.html,
+      text: msg.text,
+    }),
+  });
+  if (!res.ok) {
+    throw new Error(`Resend ${res.status}: ${(await res.text()).slice(0, 200)}`);
+  }
 }
 
 export function json(body: unknown, status = 200): Response {
