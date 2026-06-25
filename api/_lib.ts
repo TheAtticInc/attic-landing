@@ -91,6 +91,36 @@ export async function sendResendEmail(
   }
 }
 
+/**
+ * Render the waitlist double-opt-in confirm email. Kept plain + text-forward on
+ * purpose: a transactional, single-CTA email from our own domain lands in the
+ * Primary inbox, whereas the same thing sent as a Klaviyo marketing flow gets
+ * filed under Promotions. One terracotta button + the raw link as a fallback.
+ */
+export function renderWaitlistConfirmEmail(confirmUrl: string): { subject: string; html: string; text: string } {
+  const subject = 'Confirm your spot on the Attic waitlist';
+  const html = `<!doctype html><html><body style="margin:0;padding:0;background:#faf7f2;font-family:-apple-system,'Segoe UI',Roboto,sans-serif;color:#2b2b2b;">
+  <div style="max-width:480px;margin:0 auto;padding:32px 24px;">
+    <p style="font-size:16px;line-height:1.6;margin:0 0 16px;">Hi there,</p>
+    <p style="font-size:16px;line-height:1.6;margin:0 0 24px;">Thanks for joining the Attic waitlist — you're almost in. Just confirm your email to lock in your spot:</p>
+    <p style="margin:0 0 24px;"><a href="${confirmUrl}" style="display:inline-block;background:#C65D3C;color:#ffffff;text-decoration:none;padding:12px 24px;border-radius:8px;font-size:16px;font-weight:600;">Confirm my spot</a></p>
+    <p style="font-size:14px;line-height:1.6;color:#666666;margin:0 0 24px;">Or paste this link into your browser:<br><a href="${confirmUrl}" style="color:#C65D3C;">${confirmUrl}</a></p>
+    <p style="font-size:14px;line-height:1.6;color:#666666;margin:0;">Didn't sign up? You can safely ignore this email.</p>
+    <p style="font-size:14px;line-height:1.6;color:#666666;margin:24px 0 0;">— The Attic team · <a href="mailto:hello@heyattic.com" style="color:#C65D3C;">hello@heyattic.com</a></p>
+  </div>
+</body></html>`;
+  const text = `Hi there,
+
+Thanks for joining the Attic waitlist — you're almost in. Confirm your email to lock in your spot:
+
+${confirmUrl}
+
+Didn't sign up? You can safely ignore this email.
+
+— The Attic team · hello@heyattic.com`;
+  return { subject, html, text };
+}
+
 export function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
     status,

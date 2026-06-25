@@ -16,7 +16,7 @@
  * than to fail the form because a third party hiccuped.
  */
 
-import { readEnv, json, validateEmail, validateZip, hashIp, callHarper, klaviyoUpsertProfile, klaviyoAddToList, klaviyoTrackEvent } from './_lib';
+import { readEnv, json, validateEmail, validateZip, hashIp, callHarper, klaviyoUpsertProfile, klaviyoAddToList, klaviyoTrackEvent, sendResendEmail, renderWaitlistConfirmEmail } from './_lib';
 
 export const config = { runtime: 'edge' };
 
@@ -96,6 +96,21 @@ export default async function handler(req: Request): Promise<Response> {
   // user still sees a success state even if Klaviyo is having a bad day.
   if (harperResult.confirm_token) {
     const confirm_url = `${env.marketingSiteUrl}/api/confirm?token=${encodeURIComponent(harperResult.confirm_token)}`;
+
+    // The double-opt-in confirm email goes through Resend (transactional → lands
+    // in the Primary inbox). Its own try/catch so a Klaviyo hiccup can never
+    // block a user's confirmation. (Klaviyo files confirm emails under
+    // Promotions, which is why this one path stays on Resend.)
+    try {
+      const { subject, html, text } = renderWaitlistConfirmEmail(confirm_url);
+      await sendResendEmail(env, { to: email, subject, html, text });
+    } catch (err) {
+      console.error('[waitlist] Resend confirm send failed:', err);
+    }
+
+    // Klaviyo profile + list + event — data + marketing segmentation only
+    // (best-effort). The "Waitlist Signed Up" event powers analytics/segments;
+    // the confirm email itself no longer depends on it.
     try {
       const profileId = await klaviyoUpsertProfile(env, {
         email,
@@ -105,8 +120,6 @@ export default async function handler(req: Request): Promise<Response> {
         source,
       });
       await klaviyoAddToList(env, env.klaviyoUnconfirmedListId, profileId);
-      // Fire the metric that the transactional, metric-triggered confirm flow
-      // listens for. confirm_url rides along so the flow email can render it.
       await klaviyoTrackEvent(env, 'Waitlist Signed Up', email, {
         confirm_url,
         confirm_token: harperResult.confirm_token,
