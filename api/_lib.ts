@@ -78,8 +78,8 @@ export async function sendResendEmail(
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Luke at Attic <hello@attic.it.com>',
-      reply_to: 'hello@attic.it.com',
+      from: 'Luke at Attic <hello@heyattic.com>',
+      reply_to: 'hello@heyattic.com',
       to: [msg.to],
       subject: msg.subject,
       html: msg.html,
