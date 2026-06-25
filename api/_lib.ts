@@ -234,3 +234,33 @@ export async function klaviyoAddToList(env: Env, listId: string, profileId: stri
     },
   });
 }
+
+/**
+ * Track a custom Klaviyo event (metric) on a profile. We fire this so the
+ * double-opt-in confirm email can run off a METRIC-triggered flow rather than
+ * a list-triggered one — only metric-triggered flow messages can be designated
+ * transactional in Klaviyo, and transactional is what lets the confirm email
+ * send to an as-yet-unconfirmed (i.e. unsubscribed) profile. The `confirm_url`
+ * rides along as an event property so the flow email can render the link via
+ * {{ event.confirm_url }}.
+ */
+export async function klaviyoTrackEvent(
+  env: Env,
+  metricName: string,
+  email: string,
+  properties: Record<string, unknown>,
+): Promise<void> {
+  await callKlaviyo(env, '/events/', {
+    method: 'POST',
+    body: {
+      data: {
+        type: 'event',
+        attributes: {
+          properties,
+          metric: { data: { type: 'metric', attributes: { name: metricName } } },
+          profile: { data: { type: 'profile', attributes: { email } } },
+        },
+      },
+    },
+  });
+}

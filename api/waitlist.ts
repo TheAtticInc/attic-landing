@@ -16,7 +16,7 @@
  * than to fail the form because a third party hiccuped.
  */
 
-import { readEnv, json, validateEmail, validateZip, hashIp, callHarper, klaviyoUpsertProfile, klaviyoAddToList } from './_lib';
+import { readEnv, json, validateEmail, validateZip, hashIp, callHarper, klaviyoUpsertProfile, klaviyoAddToList, klaviyoTrackEvent } from './_lib';
 
 export const config = { runtime: 'edge' };
 
@@ -105,6 +105,14 @@ export default async function handler(req: Request): Promise<Response> {
         source,
       });
       await klaviyoAddToList(env, env.klaviyoUnconfirmedListId, profileId);
+      // Fire the metric that the transactional, metric-triggered confirm flow
+      // listens for. confirm_url rides along so the flow email can render it.
+      await klaviyoTrackEvent(env, 'Waitlist Signed Up', email, {
+        confirm_url,
+        confirm_token: harperResult.confirm_token,
+        zip,
+        source,
+      });
     } catch (err) {
       console.error('[waitlist] Klaviyo write failed (Harper write succeeded):', err);
     }
