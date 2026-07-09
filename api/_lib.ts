@@ -28,7 +28,7 @@ export function readEnv(): Env {
   const klaviyoApiKey = process.env.KLAVIYO_API_KEY;
   const klaviyoUnconfirmedListId = process.env.KLAVIYO_UNCONFIRMED_LIST_ID;
   const klaviyoConfirmedListId = process.env.KLAVIYO_CONFIRMED_LIST_ID;
-  const marketingSiteUrl = process.env.MARKETING_SITE_URL ?? 'https://attic.it.com';
+  const marketingSiteUrl = process.env.MARKETING_SITE_URL ?? 'https://www.heyattic.com';
   const klaviyoFfListId = process.env.KLAVIYO_FF_LIST_ID;
   const klaviyoIosListId = process.env.KLAVIYO_IOS_LIST_ID;
   const resendApiKey = process.env.RESEND_API_KEY;

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://attic.it.com/sitemap.xml
+Sitemap: https://www.heyattic.com/sitemap.xml

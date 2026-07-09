@@ -7,6 +7,18 @@
   "cleanUrls": true,
   "trailingSlash": false,
   "redirects": [
-    { "source": "/denver", "destination": "/", "permanent": true }
+    { "source": "/denver", "destination": "/", "permanent": true },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "attic.it.com" }],
+      "destination": "https://www.heyattic.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/:path*",
+      "has": [{ "type": "host", "value": "www.attic.it.com" }],
+      "destination": "https://www.heyattic.com/:path*",
+      "permanent": true
+    }
   ]
 }

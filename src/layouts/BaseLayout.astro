@@ -21,10 +21,12 @@ interface Props {
 }
 
 // Default canonical strips `.html` so we advertise clean URLs like
-// https://attic.it.com/privacy instead of /privacy.html. Vercel serves both.
+// https://www.heyattic.com/privacy instead of /privacy.html. Vercel serves both.
+// heyattic.com is the canonical public domain (2026-07-09); attic.it.com
+// 308-redirects here via vercel.json.
 function cleanCanonical(pathname: string): string {
   const stripped = pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
-  return new URL(stripped || '/', 'https://attic.it.com').toString();
+  return new URL(stripped || '/', 'https://www.heyattic.com').toString();
 }
 
 const {
@@ -32,7 +34,7 @@ const {
   description,
   ogTitle = title,
   ogDescription = description,
-  ogImage = 'https://attic.it.com/og-cover.png',
+  ogImage = 'https://www.heyattic.com/og-cover.png',
   canonical = cleanCanonical(Astro.url.pathname),
   stylesheets = [],
   noindex = false,
@@ -81,7 +83,7 @@ const {
     '@type': 'LocalBusiness',
     name: 'Attic',
     description: 'Personal storage service with on-demand pickup and delivery. $15 per crate per month, flat.',
-    url: 'https://attic.it.com/',
+    url: 'https://www.heyattic.com/',
     areaServed: { '@type': 'State', name: 'Colorado' },
     address: { '@type': 'PostalAddress', addressRegion: 'CO', addressCountry: 'US' },
     priceRange: '$15/crate/mo',

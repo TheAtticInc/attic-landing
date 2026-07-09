@@ -65,7 +65,7 @@ export default async function handler(req: Request): Promise<Response> {
   const zip = body.zip.trim();
   const source = typeof body.source === 'string' && body.source.length <= 100
     ? body.source
-    : 'attic.it.com';
+    : 'heyattic.com';
   const ip_hash = await hashIp(req);
   const user_agent = req.headers.get('user-agent') ?? '';
 

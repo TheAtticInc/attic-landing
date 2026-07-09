@@ -154,7 +154,9 @@
             email,
             zip,
             _h: honeypot?.value || '',
-            source: 'attic.it.com',
+            // record which domain the signup actually came through
+            // (site serves on heyattic.com and, pre-redirect, attic.it.com)
+            source: window.location.hostname,
           }),
         });
 

@@ -1,6 +1,6 @@
 # attic-landing
 
-Marketing site served at [attic.it.com](https://attic.it.com). The app itself lives at [app.attic.it.com](https://app.attic.it.com).
+Marketing site served at [heyattic.com](https://www.heyattic.com) (canonical since 2026-07-09; attic.it.com 308-redirects here). The app itself lives at [app.attic.it.com](https://app.attic.it.com).
 
 - Built with [Astro](https://astro.build) — `.astro` pages compile to static HTML.
 - Deployed to Vercel automatically on push to `main`.
