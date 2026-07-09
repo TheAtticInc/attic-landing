@@ -48,7 +48,7 @@ function buildWelcomeEmail(platform: 'android' | 'ios', name: string): { subject
     + `<div style="max-width:520px;margin:0 auto;padding:30px 26px;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">`
     + `<div style="font-family:Georgia,'Times New Roman',serif;font-size:23px;font-weight:bold;color:#1C3A5E;letter-spacing:0.3px;padding-bottom:14px;border-bottom:1px solid #ECE3D2;margin-bottom:22px">Attic</div>`
     + paras.map((p) => `<p style="margin:0 0 16px;font-size:16px;line-height:1.6;color:#3A2E22">${p}</p>`).join('')
-    + `<div style="margin-top:26px;padding-top:16px;border-top:1px solid #ECE3D2;font-size:13px;line-height:1.5;color:#8C7A68">You&rsquo;re getting this because you signed up to test the Attic app at attic.it.com. Just reply if you&rsquo;d like off the list.</div>`
+    + `<div style="margin-top:26px;padding-top:16px;border-top:1px solid #ECE3D2;font-size:13px;line-height:1.5;color:#8C7A68">You&rsquo;re getting this because you signed up to test the Attic app at heyattic.com. Just reply if you&rsquo;d like off the list.</div>`
     + `</div></div>`;
 
   if (platform === 'android') {
@@ -59,14 +59,14 @@ function buildWelcomeEmail(platform: 'android' | 'ios', name: string): { subject
         + `Thanks for signing up to help test the Attic app — you're on the Friends & Family list.\n\n`
         + `What happens next: once we've gathered everyone, you'll get a separate email from Google Play with your invite to install the app. That's the one that gets you in, so keep an eye out — and if it lands in spam or the Promotions tab, drag it to your inbox so you don't miss it.\n\n`
         + `As a thank-you for testing, you'll get a $50 Attic storage credit when we launch.\n\n`
-        + `Any questions, just reply — this comes straight to me.\n\n— Luke\nAttic`,
+        + `Any questions, just reply — we read every message.\n\n— The Attic Team`,
       html: wrap([
         `Hi ${hi},`,
         `Thanks for signing up to help test the Attic app — you're on the Friends &amp; Family list.`,
         `<strong>What happens next:</strong> once we've gathered everyone, you'll get a separate email from <strong style="color:#1C3A5E">Google Play</strong> with your invite to install the app. That's the one that gets you in, so keep an eye out — and if it lands in spam or the Promotions tab, drag it to your inbox so you don't miss it.`,
         `As a thank-you for testing, you'll get a <strong style="color:#C65D3C">$50 Attic storage credit</strong> when we launch.`,
-        `Any questions, just reply — this comes straight to me.`,
-        `— Luke<br>Attic`,
+        `Any questions, just reply — we read every message.`,
+        `— The Attic Team`,
       ]),
     };
   }
@@ -74,13 +74,13 @@ function buildWelcomeEmail(platform: 'android' | 'ios', name: string): { subject
     subject: "You're on the Attic iOS list",
     text:
       `Hi ${hiText},\n\n`
-      + `Thanks! The Attic app is Android-only for this first round of testing, but you're on the iOS list — I'll email you the moment the iPhone version is ready to try.\n\n`
-      + `Any questions, just reply.\n\n— Luke\nAttic`,
+      + `Thanks! The Attic app is Android-only for this first round of testing, but you're on the iOS list — we'll email you the moment the iPhone version is ready to try.\n\n`
+      + `Any questions, just reply.\n\n— The Attic Team`,
     html: wrap([
       `Hi ${hi},`,
-      `Thanks! The Attic app is Android-only for this first round of testing, but you're on the iOS list — I'll email you the moment the iPhone version is ready to try.`,
+      `Thanks! The Attic app is Android-only for this first round of testing, but you're on the iOS list — we'll email you the moment the iPhone version is ready to try.`,
       `Any questions, just reply.`,
-      `— Luke<br>Attic`,
+      `— The Attic Team`,
     ]),
   };
 }

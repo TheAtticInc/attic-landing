@@ -60,8 +60,9 @@ export function readEnv(): Env {
  * Klaviyo marketing flow which Gmail files under Promotions. Best-effort:
  * callers log + swallow failures so a send hiccup never fails the signup.
  *
- * `from` is a person-style display name on our verified domain (DKIM signs as
- * attic.it.com; Return-Path is rp.attic.it.com → SPF+DKIM both align).
+ * `from` is the org (not a person — emails come from Attic, per Luke
+ * 2026-07-09) on our verified domain (DKIM signs as attic.it.com;
+ * Return-Path is rp.attic.it.com → SPF+DKIM both align).
  */
 export async function sendResendEmail(
   env: Env,
@@ -78,7 +79,7 @@ export async function sendResendEmail(
       'content-type': 'application/json',
     },
     body: JSON.stringify({
-      from: 'Luke at Attic <hello@heyattic.com>',
+      from: 'Attic <hello@heyattic.com>',
       reply_to: 'hello@heyattic.com',
       to: [msg.to],
       subject: msg.subject,
