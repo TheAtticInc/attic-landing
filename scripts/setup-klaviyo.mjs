@@ -34,10 +34,10 @@ const repoRoot = dirname(__dirname);
 const REVISION = '2025-10-15';
 
 // Klaviyo creates a per-flow draft email with this from address by default;
-// keep it consistent across the 3 flows so they look like one sender.
-// hello@ is a real configured Google Workspace alias/group (not the orphaned
-// hi@), and matches the branded sending domain set up in Klaviyo 2026-05-31.
-const FROM_EMAIL = 'hello@attic.it.com';
+// keep it consistent across the flows so they look like one sender.
+// Org-voice, never a person (Luke 2026-07-09): emails come from Attic.
+// heyattic.com is the customer-facing send domain.
+const FROM_EMAIL = 'hello@heyattic.com';
 const FROM_LABEL = 'Attic';
 
 // Inbox-placement preview text per flow (empty preview text renders a raw
@@ -230,6 +230,9 @@ function buildActions({ template, subject, delayHours, transactional, previewTex
       message: {
         from_email: FROM_EMAIL,
         from_label: FROM_LABEL,
+        // Klaviyo defaults reply-to to the account owner's personal address;
+        // pin it to the org address so replies stay person-ambiguous.
+        reply_to_email: FROM_EMAIL,
         subject_line: subject,
         preview_text: previewText || '',
         template_id: template.id,
@@ -361,7 +364,7 @@ const TEMPLATES = {
       <p class="eyebrow">Attic — referral</p>
       <h1>Fuller blocks <em>open first.</em></h1>
       <p>The way Attic launches is by neighborhood density — when enough people on a block sign up, we open service there. So when a friend in your ZIP joins the list, you <em>both</em> move up.</p>
-      <p style="margin: 24px 0;"><a href="https://attic.it.com/?ref={{ person|lookup:'waitlist_zip'|default:'' }}" class="btn">Share Attic with a neighbor</a></p>
+      <p style="margin: 24px 0;"><a href="https://www.heyattic.com/?ref={{ person|lookup:'waitlist_zip'|default:'' }}" class="btn">Share Attic with a neighbor</a></p>
       <p>If they sign up too, we'll route both your invites together so you don't have to wait for the next round.</p>
       <hr>
       <p class="fine">Three honest sells:<br>— You get your space back, $15 per crate per month, flat.<br>— No driving, no truck, no boxes up the stairs.<br>— On-demand pickup and return — like a normal app, not a storage unit.</p>
@@ -410,7 +413,7 @@ async function main() {
     // Runtime (api/_lib.ts) only does profile + list ops; pin to the stable
     // revision rather than the flow-create one used by this script.
     `KLAVIYO_API_REVISION=2024-10-15`,
-    `MARKETING_SITE_URL=https://attic.it.com`,
+    `MARKETING_SITE_URL=https://www.heyattic.com`,
   ];
   for (const l of lines) console.log(l);
 
@@ -429,20 +432,11 @@ async function main() {
   for (const w of wiped) console.log(`- deleted flow:  ${w.name}  (${w.id})`);
   if (wiped.length === 0) console.log('(no existing waitlist flows found to delete)');
 
+  // NOTE (2026-07-09): the confirm email is sent TRANSACTIONALLY via Resend
+  // (api/waitlist.ts), NOT by a Klaviyo flow. Do not recreate a Klaviyo
+  // confirm flow here — it would double-send. FLOW_NAMES_TO_WIPE still
+  // removes any stray old confirm flow on rebuild.
   const flowSpecs = [
-    {
-      key: 'confirm',
-      name: FLOW_NAMES.confirm,
-      triggerListId: results.list_unconfirmed.id,
-      template: results.tpl_confirm,
-      delayHours: 0,
-      // TODO(F&F launch): flip to true once Klaviyo is on a paid plan with
-      // transactional sending enabled — that lands the opt-in in Primary
-      // instead of Promotions. Kept false now so the confirm flow stays
-      // marketing and works on the current (free) tier. Tracked in Asana.
-      transactional: false,
-      previewText: PREVIEW_TEXT.confirm,
-    },
     {
       key: 'welcome',
       name: FLOW_NAMES.welcome,
@@ -472,7 +466,7 @@ async function main() {
   console.log(`Template ready for when you want it: ${results.tpl_neighborhoodReady.name} (id ${results.tpl_neighborhoodReady.id}).`);
   console.log('Create the segment in Klaviyo (e.g. "Confirmed + zip in [launching zips]") then build a segment-triggered flow using this template.');
 
-  console.log('\nDone. Test by submitting the form at https://www.attic.it.com/#waitlist .');
+  console.log('\nDone. Test by submitting the form at https://www.heyattic.com/#waitlist .');
 }
 
 main().catch((err) => {

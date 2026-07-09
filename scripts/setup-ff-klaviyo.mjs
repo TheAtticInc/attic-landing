@@ -18,7 +18,7 @@ import { dirname, join } from 'node:path';
 
 const repoRoot = dirname(dirname(fileURLToPath(import.meta.url)));
 const REVISION = '2025-10-15'; // POST /flows/ needs 2025-10-15+
-const FROM_EMAIL = 'hello@attic.it.com';
+const FROM_EMAIL = 'hello@heyattic.com';
 const FROM_LABEL = 'Attic';
 
 function loadDotEnv(file) {
