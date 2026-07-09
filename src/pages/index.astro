@@ -5,20 +5,22 @@ import '../styles/landing.css';
 
 <BaseLayout
   title="Attic: Personal storage, on demand in Denver"
-  description="Attic picks up your crates, stores them safely in our Denver facility, and delivers them back when you need them. $15 per crate per month, flat."
+  description="Attic picks up your crates, seals and stores them safely in our Denver facility, and brings them back with a tap in the app. $15 per crate per month, flat."
   ogTitle="Attic: Personal storage, on demand"
   ogDescription="Your things, out of the way and on demand. $15/crate/month."
 >
 
 
 <!-- ===================================================================
-     HERO: value prop + inline waitlist form above the fold.
+     HERO: value prop on the left, the actual app on the right.
+     App-first direction (2026-07-09): the fastest way to explain Attic
+     is to show the product. Two framed screenshots + store badges.
      =================================================================== -->
 <header class="hero">
   <div class="hero-dust" data-dust aria-hidden="true"></div>
   <div class="wrap">
     <div class="hero__grid">
-      <!-- LEFT: copy + form -->
+      <!-- LEFT: copy + CTAs -->
       <div>
         <span class="hero__label">
           <span class="hero__label-dot"></span>
@@ -26,42 +28,36 @@ import '../styles/landing.css';
         </span>
         <h1 class="hero__h1">More room<br/><em>for your life.</em></h1>
         <p class="hero__lede">Attic is valet storage, by the crate. We do the heavy lifting; you get your space back.</p>
-        <!-- 3-step "how it works" cards: the mechanic, shown not narrated, so
-             the lede above can stay a tight positioning line. Reads as three
-             beats left-to-right on every screen (incl. mobile). -->
-        <div class="hero__steps" role="list" aria-label="How Attic works">
-          <div class="hero__step" role="listitem">
-            <span class="hero__step-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7h11v9H2z"/><path d="M13 10h4l4 4v2h-8z"/><circle cx="6.5" cy="18" r="1.7"/><circle cx="17.5" cy="18" r="1.7"/></svg>
-            </span>
-            <span class="hero__step-label">We come to you</span>
-          </div>
-          <div class="hero__step" role="listitem">
-            <span class="hero__step-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5c0 4.5-3 7-7 8.5C8 19 5 16.5 5 11.5V6z"/><polyline points="9 11.5 11 13.5 15 9.5"/></svg>
-            </span>
-            <span class="hero__step-label">Stored safe in Denver</span>
-          </div>
-          <div class="hero__step" role="listitem">
-            <span class="hero__step-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="7" y="3" width="10" height="18" rx="2"/><line x1="10.5" y1="18" x2="13.5" y2="18"/></svg>
-            </span>
-            <span class="hero__step-label">Back in a tap</span>
-          </div>
-        </div>
         <p class="hero__sub">
           The holiday decor, off-season coats, and the craft stash crowding your
-          closet — out of the way, back whenever you want. Flat $15 a crate, a month.
+          closet — out of the way, back whenever you want. Flat $15 a crate, a month,
+          all managed from an app that feels like home.
         </p>
 
         <div class="hero__cta">
           <a class="btn btn-primary btn-lg" href="#waitlist">Request an invite</a>
-          <a class="btn btn-ghost btn-lg" href="#life">See what you get →</a>
+          <a class="btn btn-ghost btn-lg" href="#how">See how it works →</a>
         </div>
+
+        <!-- Store badges: apps aren't public yet, so these funnel to the
+             waitlist. Swap each href for the real listing URL at launch. -->
+        <div class="hero__stores">
+          <div class="store-badges">
+            <a href="#waitlist" aria-label="App Store — coming soon. Join the waitlist for first access.">
+              <img src="/images/appstore-badge.svg" alt="Download on the App Store" width="144" height="48" loading="lazy" decoding="async" />
+            </a>
+            <a href="#waitlist" aria-label="Google Play — coming soon. Join the waitlist for first access.">
+              <img src="/images/googleplay-badge.png" alt="Get it on Google Play" width="124" height="48" loading="lazy" decoding="async" />
+            </a>
+          </div>
+          <p class="store-note">Launching with Denver · Join the waitlist for first access</p>
+        </div>
+
         <div class="hero__ticker" data-ticker aria-live="polite">
           <span class="hero__ticker-dot"></span>
           <div class="hero__ticker-lines">
             <span data-ticker-line>Picked up and delivered to your door</span>
+            <span data-ticker-line>Sealed at your door with <strong>tamper-evident ties</strong></span>
             <span data-ticker-line>Every crate <strong>insured</strong></span>
             <span data-ticker-line>Scanned at <strong>every handoff</strong></span>
             <span data-ticker-line>No contract. Cancel any crate any time.</span>
@@ -69,21 +65,16 @@ import '../styles/landing.css';
         </div>
       </div>
 
-      <!-- RIGHT: hero anchor figure. Placeholder for the post-Maddie
-           lifestyle shoot. Until /images/hero.jpg exists, this renders as a
-           brand-color composition with the attic-window motif; the <img>
-           picks up automatically when the photo is dropped in. -->
-      <div class="hero__stage" aria-hidden="true">
-        <figure class="hero__figure">
-          <img src="/images/hero.jpg?v=1" alt="" class="hero__img" loading="eager" decoding="async" onerror="this.style.display='none'"/>
-          <span class="hero__figure-mark" aria-hidden="true">
-            <svg viewBox="0 0 80 80" width="72" height="72">
-              <circle cx="40" cy="40" r="32" fill="none" stroke="currentColor" stroke-width="2"/>
-              <line x1="8" y1="40" x2="72" y2="40" stroke="currentColor" stroke-width="1.5"/>
-              <line x1="40" y1="8" x2="40" y2="72" stroke="currentColor" stroke-width="1.5"/>
-            </svg>
-          </span>
-        </figure>
+      <!-- RIGHT: the app itself. Home screen front, crate detail behind. -->
+      <div class="hero__stage">
+        <div class="hero__phones">
+          <div class="phone-frame hero__phone hero__phone--back">
+            <img src="/images/app/app-crate.png" alt="Attic app crate detail screen: a Camping Gear crate with photo, category, and a journey tracker from home to storage" width="720" height="1600" loading="eager" decoding="async" />
+          </div>
+          <div class="phone-frame hero__phone hero__phone--front">
+            <img src="/images/app/app-home.png" alt="Attic app home screen: your crates at a glance, each with a photo and live status like 'heading to storage' or 'at home with you'" width="720" height="1600" loading="eager" decoding="async" />
+          </div>
+        </div>
       </div>
 
     </div>
@@ -93,8 +84,167 @@ import '../styles/landing.css';
 <main>
 
 <!-- ===================================================================
+     HOW IT WORKS: the full mechanic in four numbered beats.
+     =================================================================== -->
+<section id="how" class="stripe stripe--paper how">
+  <div class="wrap">
+    <div class="how__head reveal">
+      <p class="eyebrow">How it works</p>
+      <h2 class="h2">Storage that comes<br/><em>to your door.</em></h2>
+      <p class="lede" style="margin-top:20px;">No storage unit across town. No van rental. Four steps, and none of them involve you lifting more than a phone.</p>
+    </div>
+
+    <ol class="how__steps">
+      <li class="how__step reveal" data-delay="1">
+        <span class="how__num" aria-hidden="true">1</span>
+        <h3>Order crates</h3>
+        <p>Pick how many you need in the app. Empty crates arrive at your door — delivery's free.</p>
+      </li>
+      <li class="how__step reveal" data-delay="2">
+        <span class="how__num" aria-hidden="true">2</span>
+        <h3>Pack at your pace</h3>
+        <p>Fill them with whatever's crowding your space. No boxes to buy, no tape, nothing to haul.</p>
+      </li>
+      <li class="how__step reveal" data-delay="3">
+        <span class="how__num" aria-hidden="true">3</span>
+        <h3>We seal, scan &amp; store</h3>
+        <p>Your driver seals each crate at your door and scans it at every handoff on the way to our Denver facility.</p>
+      </li>
+      <li class="how__step reveal" data-delay="4">
+        <span class="how__num" aria-hidden="true">4</span>
+        <h3>Back in a tap</h3>
+        <p>Need something? Tap "send it back" in the app and it's on your porch, usually next day.</p>
+      </li>
+    </ol>
+  </div>
+</section>
+
+<!-- ===================================================================
+     SECURITY: chain of custody. The differentiator, given its own band.
+     Evening-sky navy (same family as the pricing card) so it reads as
+     a serious, load-bearing moment between the lighter sections.
+     =================================================================== -->
+<section id="security" class="security">
+  <div class="wrap">
+    <div class="security__head reveal">
+      <p class="eyebrow">Chain of custody</p>
+      <h2 class="h2">Sealed at your door.<br/><em>Opened only by you.</em></h2>
+      <p class="security__lede">
+        Every crate is closed in front of you with a one-time, QR-coded security seal —
+        and it stays sealed until it's back in your hands.
+      </p>
+    </div>
+
+    <!-- the custody trail, beat by beat -->
+    <div class="security__trail reveal" data-delay="1" role="list" aria-label="Every point where your crate is scanned">
+      <span class="security__trail-step" role="listitem">Your door</span>
+      <span class="security__trail-arrow" aria-hidden="true">→</span>
+      <span class="security__trail-step" role="listitem">The van</span>
+      <span class="security__trail-arrow" aria-hidden="true">→</span>
+      <span class="security__trail-step" role="listitem">The facility</span>
+      <span class="security__trail-arrow" aria-hidden="true">→</span>
+      <span class="security__trail-step" role="listitem">The shelf</span>
+      <span class="security__trail-arrow" aria-hidden="true">→</span>
+      <span class="security__trail-step" role="listitem">Back to you</span>
+    </div>
+    <p class="security__trail-note reveal" data-delay="1">Scanned and logged at every single one.</p>
+
+    <div class="security__grid">
+      <article class="security__card reveal" data-delay="1">
+        <div class="security__card-icon">
+          <svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="10" width="12" height="12" rx="1.5"/><path d="M14 14 h4 v4 h-4 z"/><rect x="26" y="10" width="12" height="12" rx="1.5"/><path d="M30 14 h4 v4 h-4 z"/><rect x="10" y="26" width="12" height="12" rx="1.5"/><path d="M14 30 h4 v4 h-4 z"/><path d="M26 26 h5 v5"/><path d="M38 26 v5"/><path d="M26 38 h5 v-4"/><path d="M35 33 h3 v5 h-4"/></svg>
+        </div>
+        <h3>Tamper-evident seals</h3>
+        <p>A uniquely numbered QR seal locks each crate shut at pickup. It can't be opened and resealed — if anything were off, you'd see it instantly.</p>
+      </article>
+
+      <article class="security__card reveal" data-delay="2">
+        <div class="security__card-icon">
+          <svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M24 13 v11 l7 5"/></svg>
+        </div>
+        <h3>Scanned at every handoff</h3>
+        <p>Every scan is logged with who, where, and when — a complete custody trail for every crate, from your door and back.</p>
+      </article>
+
+      <article class="security__card reveal" data-delay="3">
+        <div class="security__card-icon">
+          <svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 24 C10 15 16.5 10 24 10 C31.5 10 38 15 42 24 C38 33 31.5 38 24 38 C16.5 38 10 33 6 24 Z"/><circle cx="24" cy="24" r="6"/><line x1="9" y1="39" x2="39" y2="9"/></svg>
+        </div>
+        <h3>Private by design</h3>
+        <p>Your crates travel sealed, so drivers never see inside them. What you store is your business, full stop.</p>
+      </article>
+
+      <article class="security__card reveal" data-delay="4">
+        <div class="security__card-icon">
+          <svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6 L39 12 V23 C39 33 32 39 24 42 C16 39 9 33 9 23 V12 Z"/><polyline points="18 24 22 28 30 18"/></svg>
+        </div>
+        <h3>Insured, every crate</h3>
+        <p>Every crate is covered while it's in our care — on the van, on the shelf, and everywhere in between.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
+     APP SHOWCASE: "your attic, in your pocket." Three screens with
+     one-line callouts. The hero teases the app; this section proves it.
+     =================================================================== -->
+<section id="app" class="stripe showcase">
+  <div class="wrap">
+    <div class="showcase__head reveal">
+      <p class="eyebrow">The Attic app</p>
+      <h2 class="h2">Your attic,<br/><em>in your pocket.</em></h2>
+      <p class="lede" style="margin-top:20px;">Every crate gets a name, a photo, and a live journey you can watch. Your stuff is out of the house, never out of reach.</p>
+    </div>
+
+    <div class="showcase__grid">
+      <figure class="showcase__item reveal" data-delay="1">
+        <div class="phone-frame">
+          <img src="/images/app/app-crate.png" alt="Crate detail screen: a Camping Gear crate with cover photo, category, and a live journey tracker between home and storage" width="720" height="1600" loading="lazy" decoding="async" />
+        </div>
+        <figcaption>
+          <h3>Every crate, at a glance</h3>
+          <p>A photo, a name, and a journey tracker that shows exactly where it is — home, on the road, or stored.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="showcase__item reveal" data-delay="2">
+        <div class="phone-frame">
+          <img src="/images/app/app-order.png" alt="Order crates screen: choose a crate count, pick a date on the calendar, and select a morning or afternoon pickup window" width="720" height="1600" loading="lazy" decoding="async" />
+        </div>
+        <figcaption>
+          <h3>Pickup in a few taps</h3>
+          <p>Choose how many crates and when. We handle every step after that.</p>
+        </figcaption>
+      </figure>
+
+      <figure class="showcase__item reveal" data-delay="3">
+        <div class="phone-frame">
+          <img src="/images/app/app-referrals.png" alt="Refer a friend screen: give $20, get $20 when a friend stores their first crate" width="720" height="1600" loading="lazy" decoding="async" />
+        </div>
+        <figcaption>
+          <h3>Give $20, get $20</h3>
+          <p>Share Attic with a friend. When they store a crate, you each earn credit.</p>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="showcase__stores reveal" data-delay="2">
+      <div class="store-badges">
+        <a href="#waitlist" aria-label="App Store — coming soon. Join the waitlist for first access.">
+          <img src="/images/appstore-badge.svg" alt="Download on the App Store" width="144" height="48" loading="lazy" decoding="async" />
+        </a>
+        <a href="#waitlist" aria-label="Google Play — coming soon. Join the waitlist for first access.">
+          <img src="/images/googleplay-badge.png" alt="Get it on Google Play" width="124" height="48" loading="lazy" decoding="async" />
+        </a>
+      </div>
+      <p class="store-note">Launching with Denver · Join the waitlist for first access</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===================================================================
      PRICING: transparent details. One big number + slim inclusion list.
-     Sits right under the hero: the flat $15 crate price is itself a hook.
      =================================================================== -->
 <section id="pricing" class="stripe stripe--paper pricing">
   <div class="wrap">
@@ -142,7 +292,7 @@ import '../styles/landing.css';
           </div>
           <div>
             <h4>Every crate insured</h4>
-            <p>Scanned and tracked at every handoff.</p>
+            <p>Sealed, scanned, and tracked at every handoff.</p>
           </div>
         </div>
         <div class="pricing__item">
@@ -166,10 +316,9 @@ import '../styles/landing.css';
 
 <!-- ===================================================================
      VALUE: "What Attic does for you." Lifestyle benefits, negative-space
-     framing. Replaces the old 3-card compare section + the standalone
-     day-with-Attic timeline (folded into the slim three-beat loop). The
-     payoff, not the comparison; people draw the comparison themselves.
-     Built 2026-05-28.
+     framing. The payoff, not the comparison; people draw the comparison
+     themselves. (The old 3-beat loop was dropped 2026-07-09 — the #how
+     section now tells that story properly.)
      =================================================================== -->
 <section id="life" class="stripe value">
   <div class="wrap">
@@ -177,15 +326,6 @@ import '../styles/landing.css';
       <p class="eyebrow">What Attic does for you</p>
       <h2 class="h2">Less to deal with.<br/><em>More room to live.</em></h2>
       <p class="lede" style="margin-top:20px;">Attic isn't one more thing to manage. It's the clutter, the hauling, and the worry, gone. Here's what you actually get back.</p>
-    </div>
-
-    <!-- the day-with-Attic loop, slimmed to three beats -->
-    <div class="value__loop reveal" data-delay="1">
-      <span class="value__loop-step">We come to you</span>
-      <span class="value__loop-arrow" aria-hidden="true">→</span>
-      <span class="value__loop-step">Stored safe in Denver</span>
-      <span class="value__loop-arrow" aria-hidden="true">→</span>
-      <span class="value__loop-step">Back in a tap</span>
     </div>
 
     <div class="value__grid">
@@ -210,7 +350,7 @@ import '../styles/landing.css';
       <article class="value__card reveal" data-delay="1" data-tone="moss">
         <div class="value__card-icon"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6 L39 12 V23 C39 33 32 39 24 42 C16 39 9 33 9 23 V12 Z"/><polyline points="18 24 22 28 30 18"/></svg></div>
         <h3>Nothing to worry about</h3>
-        <p>Insured, scanned at every handoff, and stored safe in our Denver facility. We've got it from here.</p>
+        <p>Insured, sealed, scanned at every handoff, and stored safe in our Denver facility. We've got it from here.</p>
       </article>
 
       <article class="value__card reveal" data-delay="2" data-tone="t">
@@ -241,30 +381,6 @@ import '../styles/landing.css';
 </section>
 
 <!-- ===================================================================
-     FOUNDER: one trust beat between value and FAQ.
-     =================================================================== -->
-<section class="stripe founder">
-  <div class="wrap">
-    <div class="founder__grid">
-      <figure class="founder__photo reveal">
-        <img src="/images/founder.jpg" alt="Luke Bashford, founder of Attic" class="founder__img" loading="lazy" decoding="async" onerror="this.style.display='none'"/>
-      </figure>
-      <div class="reveal" data-delay="1">
-        <p class="eyebrow">How Attic started</p>
-        <p class="founder__quote">Attic started with an idea from my cofounder Ali.</p>
-        <p class="founder__quote">She asked a simple question: if there's DoorDash for food, Uber for rides, and Amazon for just about everything else, why is storage still such a frustrating experience?</p>
-        <p class="founder__quote founder__quote--mobile-hide">That idea stuck with us. With my background in development and product building, we set out to create something better.</p>
-        <p class="founder__quote">We wanted storage to feel simple, instant, and invisible, not something that wastes your entire weekend. So we built Attic.</p>
-        <div class="founder__sign">
-          <span class="founder__sig">Luke Bashford</span>
-          <span class="founder__role">Co-founder · Denver</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===================================================================
      FAQ: four essential questions before the final CTA.
      =================================================================== -->
 <section id="faq" class="stripe stripe--paper faq">
@@ -276,7 +392,7 @@ import '../styles/landing.css';
     <div class="reveal faq__list" data-delay="1">
       <details>
         <summary>How does the pickup work?</summary>
-        <p>You schedule a window in the app. A driver comes to your door, scans each crate, and loads them onto the truck. You don't haul anything. No trips to a self-storage lot, no rented vans.</p>
+        <p>You schedule a window in the app. A driver comes to your door, seals and scans each crate, and loads them onto the truck. You don't haul anything. No trips to a self-storage lot, no rented vans.</p>
       </details>
       <details>
         <summary>What if I need something back fast?</summary>
@@ -284,7 +400,7 @@ import '../styles/landing.css';
       </details>
       <details>
         <summary>How do you keep my things safe?</summary>
-        <p>Every crate carries a QR plate that's scanned at pickup, on the way into the facility, when it's shelved, and on every return, so there's a full chain of custody. Every crate is insured.</p>
+        <p>Every crate is closed at your door with a one-time, QR-coded security seal that can't be opened and resealed. It's scanned at pickup, on the way into the facility, when it's shelved, and on every return — a full chain of custody. And every crate is insured.</p>
       </details>
       <details>
         <summary>Do I have to commit?</summary>
@@ -350,12 +466,11 @@ import '../styles/landing.css';
     </form>
 
     <!-- Coming-soon app teaser using the official App Store / Google Play
-         badges. Disabled on purpose — the apps aren't public yet, so the
-         waitlist stays the single live action. When the apps ship, wrap each
-         <img> in an <a href> and drop the .is-soon dimming. -->
+         badges. The apps aren't public yet, so the waitlist stays the single
+         live action. When the apps ship, point each badge at its listing. -->
     <div class="app-soon reveal" data-delay="2">
-      <p class="app-soon__label">Native apps coming soon to Denver</p>
-      <div class="app-soon__badges is-soon">
+      <p class="app-soon__label">Native apps launching with Denver</p>
+      <div class="app-soon__badges">
         <img class="app-badge-img" src="/images/appstore-badge.svg" alt="Download on the App Store — coming soon" width="144" height="48" loading="lazy" decoding="async" />
         <img class="app-badge-img" src="/images/googleplay-badge.png" alt="Get it on Google Play — coming soon" width="124" height="48" loading="lazy" decoding="async" />
       </div>
