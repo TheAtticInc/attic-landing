@@ -5,7 +5,7 @@ import '../styles/landing.css';
 
 <BaseLayout
   title="Attic: Personal storage, on demand in Denver"
-  description="Attic picks up your crates, seals and stores them safely in our Denver facility, and brings them back with a tap in the app. $15 per crate per month, flat."
+  description="Attic picks up your sealed crates, stores them safely, and brings them back with a tap in the app. $15 per crate per month, flat."
   ogTitle="Attic: Personal storage, on demand"
   ogDescription="Your things, out of the way and on demand. $15/crate/month."
 >
@@ -57,7 +57,7 @@ import '../styles/landing.css';
           <span class="hero__ticker-dot"></span>
           <div class="hero__ticker-lines">
             <span data-ticker-line>Picked up and delivered to your door</span>
-            <span data-ticker-line>Sealed at your door with <strong>tamper-evident ties</strong></span>
+            <span data-ticker-line>You seal it — <strong>only you</strong> open it</span>
             <span data-ticker-line>Every crate <strong>insured</strong></span>
             <span data-ticker-line>Scanned at <strong>every handoff</strong></span>
             <span data-ticker-line>No contract. Cancel any crate any time.</span>
@@ -102,13 +102,13 @@ import '../styles/landing.css';
       </li>
       <li class="how__step reveal" data-delay="2">
         <span class="how__num" aria-hidden="true">2</span>
-        <h3>Pack at your pace</h3>
-        <p>Fill them with whatever's crowding your space. No boxes to buy, no tape, nothing to haul.</p>
+        <h3>Pack &amp; seal at your pace</h3>
+        <p>Fill them with whatever's crowding your space, then seal each crate shut with its one-time QR security tie. No boxes to buy, nothing to haul.</p>
       </li>
       <li class="how__step reveal" data-delay="3">
         <span class="how__num" aria-hidden="true">3</span>
-        <h3>We seal, scan &amp; store</h3>
-        <p>Your driver seals each crate at your door and scans it at every handoff on the way to our Denver facility.</p>
+        <h3>We scan &amp; store</h3>
+        <p>Your driver scans each sealed crate at pickup and at every handoff on the way to a secure local facility.</p>
       </li>
       <li class="how__step reveal" data-delay="4">
         <span class="how__num" aria-hidden="true">4</span>
@@ -128,9 +128,9 @@ import '../styles/landing.css';
   <div class="wrap">
     <div class="security__head reveal">
       <p class="eyebrow">Chain of custody</p>
-      <h2 class="h2">Sealed at your door.<br/><em>Opened only by you.</em></h2>
+      <h2 class="h2">You seal it.<br/><em>Only you open it.</em></h2>
       <p class="security__lede">
-        Every crate is closed in front of you with a one-time, QR-coded security seal —
+        You seal every crate yourself, in your home, with a one-time QR-coded security tie —
         and it stays sealed until it's back in your hands.
       </p>
     </div>
@@ -155,7 +155,7 @@ import '../styles/landing.css';
           <svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="10" y="10" width="12" height="12" rx="1.5"/><path d="M14 14 h4 v4 h-4 z"/><rect x="26" y="10" width="12" height="12" rx="1.5"/><path d="M30 14 h4 v4 h-4 z"/><rect x="10" y="26" width="12" height="12" rx="1.5"/><path d="M14 30 h4 v4 h-4 z"/><path d="M26 26 h5 v5"/><path d="M38 26 v5"/><path d="M26 38 h5 v-4"/><path d="M35 33 h3 v5 h-4"/></svg>
         </div>
         <h3>Tamper-evident seals</h3>
-        <p>A uniquely numbered QR seal locks each crate shut at pickup. It can't be opened and resealed — if anything were off, you'd see it instantly.</p>
+        <p>You lock each crate shut with a uniquely numbered QR tie before we ever touch it. Seals can't be opened and reclosed — if one is ever broken in transit, we report it to you.</p>
       </article>
 
       <article class="security__card reveal" data-delay="2">
@@ -163,7 +163,7 @@ import '../styles/landing.css';
           <svg viewBox="0 0 48 48" width="30" height="30" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="24" cy="24" r="17"/><path d="M24 13 v11 l7 5"/></svg>
         </div>
         <h3>Scanned at every handoff</h3>
-        <p>Every scan is logged with who, where, and when — a complete custody trail for every crate, from your door and back.</p>
+        <p>Your driver scans the crate and its seal every time it changes hands — confirming it was sealed when we picked it up and still sealed when we set it down. Every scan is logged: who, where, when.</p>
       </article>
 
       <article class="security__card reveal" data-delay="3">
@@ -248,22 +248,36 @@ import '../styles/landing.css';
      =================================================================== -->
 <section id="pricing" class="stripe stripe--paper pricing">
   <div class="wrap">
-    <div class="reveal" style="text-align:center;max-width:640px;margin:0 auto 56px;">
+    <div class="reveal" style="text-align:center;max-width:680px;margin:0 auto 56px;">
       <p class="eyebrow">What it costs</p>
-      <h2 class="h2">One price. <em>No surprises.</em></h2>
-      <p class="lede" style="margin-top:20px;">Flat rate per crate. Bundled service. Cancel any crate any time. We pick it up for free.</p>
+      <h2 class="h2">Two numbers. <em>No surprises.</em></h2>
+      <p class="lede" style="margin-top:20px;">$15 a month to store a crate. $15 flat to bring one home — free once it's been stored four months.</p>
     </div>
 
     <div class="pricing__card reveal" data-delay="1">
       <div class="pricing__head">
         <div>
-          <p class="pricing__label">Flat rate · Colorado</p>
-          <h3 class="pricing__title">Per crate, per month.<br/>That's the whole price.</h3>
+          <p class="pricing__label">Storage · flat rate</p>
+          <h3 class="pricing__title">Per crate, per month.<br/>That's the whole storage price.</h3>
         </div>
         <div class="pricing__num">
           <span class="pricing__num-dollar">$</span>
           <span>15</span>
           <span class="pricing__num-per">/ crate / mo</span>
+        </div>
+      </div>
+
+      <!-- Retrieval price — deliberately its OWN sub-card so the two prices
+           never blur together: storage is monthly, retrieval is a one-time
+           flat fee, and the free-after-4-months waiver is the incentive. -->
+      <div class="pricing__retrieval">
+        <div class="pricing__retrieval-main">
+          <p class="pricing__retrieval-label">Bringing a crate home</p>
+          <p class="pricing__retrieval-price">$15 <span>flat, per crate — one-time, whenever you ask</span></p>
+        </div>
+        <div class="pricing__retrieval-free">
+          <span class="pricing__retrieval-badge">Free</span>
+          <p>after a crate has been stored 4 months — store the season, pay nothing to get it back</p>
         </div>
       </div>
 
@@ -273,17 +287,8 @@ import '../styles/landing.css';
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
           <div>
-            <h4>Empty crate delivery</h4>
-            <p>Free, on every order.</p>
-          </div>
-        </div>
-        <div class="pricing__item">
-          <div class="pricing__item-check">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-          </div>
-          <div>
-            <h4>Free retrieval after 4 months</h4>
-            <p>Earlier than that, $15/crate flat.</p>
+            <h4>The crates are on us</h4>
+            <p>We deliver Attic crates to you, free. Nothing to buy, nothing to own, nothing cluttering the garage — done with one, send it back.</p>
           </div>
         </div>
         <div class="pricing__item">
@@ -292,7 +297,7 @@ import '../styles/landing.css';
           </div>
           <div>
             <h4>Every crate insured</h4>
-            <p>Sealed, scanned, and tracked at every handoff.</p>
+            <p>Scanned and tracked at every handoff.</p>
           </div>
         </div>
         <div class="pricing__item">
@@ -301,7 +306,7 @@ import '../styles/landing.css';
           </div>
           <div>
             <h4>Cancel any crate, any time</h4>
-            <p>Send empty crates back. No fee, no contract.</p>
+            <p>Send it back empty, free — that crate's fee stops at the next cycle.</p>
           </div>
         </div>
       </div>
@@ -350,7 +355,7 @@ import '../styles/landing.css';
       <article class="value__card reveal" data-delay="1" data-tone="moss">
         <div class="value__card-icon"><svg viewBox="0 0 48 48" width="34" height="34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M24 6 L39 12 V23 C39 33 32 39 24 42 C16 39 9 33 9 23 V12 Z"/><polyline points="18 24 22 28 30 18"/></svg></div>
         <h3>Nothing to worry about</h3>
-        <p>Insured, sealed, scanned at every handoff, and stored safe in our Denver facility. We've got it from here.</p>
+        <p>Insured, scanned at every handoff, and stored safe in a secure local facility. We've got it from here.</p>
       </article>
 
       <article class="value__card reveal" data-delay="2" data-tone="t">
@@ -392,7 +397,7 @@ import '../styles/landing.css';
     <div class="reveal faq__list" data-delay="1">
       <details>
         <summary>How does the pickup work?</summary>
-        <p>You schedule a window in the app. A driver comes to your door, seals and scans each crate, and loads them onto the truck. You don't haul anything. No trips to a self-storage lot, no rented vans.</p>
+        <p>You schedule a window in the app. A driver comes to your door, scans each of your sealed crates, and loads them onto the truck. You don't haul anything. No trips to a self-storage lot, no rented vans.</p>
       </details>
       <details>
         <summary>What if I need something back fast?</summary>
@@ -400,7 +405,7 @@ import '../styles/landing.css';
       </details>
       <details>
         <summary>How do you keep my things safe?</summary>
-        <p>Every crate is closed at your door with a one-time, QR-coded security seal that can't be opened and resealed. It's scanned at pickup, on the way into the facility, when it's shelved, and on every return — a full chain of custody. And every crate is insured.</p>
+        <p>You seal every crate yourself, in your home, with a one-time QR-coded security tie that can't be opened and reclosed. From there it stays sealed until it's back with you: your driver scans the crate and its seal every time it changes hands — confirming it was sealed when we picked it up and still sealed when we set it down. Only you open your crates. If a seal is ever broken in transit, we report it to you right away. And every crate is insured.</p>
       </details>
       <details>
         <summary>Do I have to commit?</summary>

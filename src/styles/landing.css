@@ -294,6 +294,52 @@
 }
 .pricing__num-dollar { font-size: 0.5em; opacity: 0.7; margin-top: 0.2em; }
 .pricing__num-per { font-family: var(--font-body); font-weight: 400; font-size: 16px; letter-spacing: normal; opacity: 0.75; align-self: flex-end; padding-bottom: 14px; white-space: nowrap; flex-shrink: 0; }
+/* Retrieval sub-card — the SECOND price, deliberately visually distinct
+   (terracotta on the navy card) so storage-per-month and one-time retrieval
+   never read as the same number. The FREE waiver is the incentive beat. */
+.pricing__retrieval {
+  display: flex; align-items: stretch; gap: 0;
+  margin-top: 40px;
+  border: 1px solid rgba(198, 93, 60, 0.55);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  position: relative;
+}
+.pricing__retrieval-main {
+  flex: 1 1 55%;
+  padding: 20px 24px;
+  background: rgba(198, 93, 60, 0.16);
+}
+.pricing__retrieval-label {
+  font-family: var(--font-mono); font-size: 11px; letter-spacing: 1.2px;
+  text-transform: uppercase; color: #F0B396; margin: 0 0 6px;
+}
+.pricing__retrieval-price {
+  font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em;
+  color: #F5EADB; margin: 0; line-height: 1.15;
+}
+.pricing__retrieval-price span {
+  font-family: var(--font-body); font-weight: 400; font-size: 13.5px;
+  letter-spacing: normal; color: rgba(245, 234, 219, 0.75);
+  display: block; margin-top: 4px;
+}
+.pricing__retrieval-free {
+  flex: 1 1 45%;
+  padding: 20px 24px;
+  display: flex; align-items: center; gap: 14px;
+  background: rgba(232, 184, 74, 0.10);
+  border-left: 1px dashed rgba(232, 184, 74, 0.45);
+}
+.pricing__retrieval-badge {
+  flex-shrink: 0;
+  font-family: var(--font-display); font-weight: 600; font-size: 18px;
+  text-transform: uppercase; letter-spacing: 0.5px;
+  color: var(--ink); background: var(--mustard);
+  padding: 6px 14px; border-radius: var(--r-pill);
+}
+.pricing__retrieval-free p { font-size: 13.5px; line-height: 1.5; color: rgba(245, 234, 219, 0.85); margin: 0; }
+
 .pricing__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 40px; margin-top: 48px; position: relative; }
 .pricing__item { display: flex; gap: 14px; }
 .pricing__item-check {
@@ -310,10 +356,14 @@
 
 @media (max-width: 720px) {
   .pricing__card { padding: 40px 26px; }
-  /* Two-up inclusion grid keeps the card from running long on phones. */
-  .pricing__grid { grid-template-columns: 1fr 1fr; gap: 22px 20px; margin-top: 32px; }
+  /* Single-column inclusion list on phones (3 items now, each wordier). */
+  .pricing__grid { grid-template-columns: 1fr; gap: 20px; margin-top: 32px; }
   .pricing__head { gap: 20px; }
   .pricing__foot { margin-top: 32px; padding-top: 24px; }
+  /* Retrieval sub-card stacks: price beat on top, FREE waiver below. */
+  .pricing__retrieval { flex-direction: column; margin-top: 28px; }
+  .pricing__retrieval-main, .pricing__retrieval-free { padding: 16px 18px; }
+  .pricing__retrieval-free { border-left: none; border-top: 1px dashed rgba(232, 184, 74, 0.45); }
 }
 @media (max-width: 480px) {
   .pricing__card { padding: 32px 22px; }
