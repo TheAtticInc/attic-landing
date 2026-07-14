@@ -269,11 +269,12 @@
 .pricing {}
 .pricing__card {
   position: relative;
-  /* Evening-sky dusty navy. Replaces the prior moss-green gradient
-     (per Ali feedback 2026-05-19). Anchors to --sky #5A7FA3, darkened
-     to maintain the same contrast with cream text + mustard accents. */
-  background: linear-gradient(135deg, #1D2A3C 0%, #2D4159 55%, #42597A 100%);
-  color: #F5EADB;
+  /* The "dusk" band — Ali's evening-sky look (2026-05-19), now built from
+     brand tokens instead of forked hexes: navy-deep → navy → sky-deep.
+     Visually ~identical to the old #1D2A3C/#2D4159/#42597A trio. Navy =
+     the attic / secure; the sky-deep highlight keeps it dusky, not corporate. */
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--sky-deep) 100%);
+  color: var(--ondark-ink);
   border-radius: var(--r-xl);
   padding: 72px 56px;
   box-shadow: var(--sh-4);
@@ -332,14 +333,15 @@
   flex: 1 1 45%;
   padding: 20px 24px;
   display: flex; align-items: center; gap: 14px;
-  background: rgba(232, 184, 74, 0.10);
-  border-left: 1px dashed rgba(232, 184, 74, 0.45);
+  /* Free retrieval = a promise kept → moss carries it (was mustard) */
+  background: rgba(107, 142, 90, 0.14);
+  border-left: 1px dashed rgba(170, 210, 160, 0.45);
 }
 .pricing__retrieval-badge {
   flex-shrink: 0;
   font-family: var(--font-display); font-weight: 600; font-size: 18px;
   text-transform: uppercase; letter-spacing: 0.5px;
-  color: var(--ink); background: var(--mustard);
+  color: var(--ondark-ink); background: var(--moss-deep);
   padding: 6px 14px; border-radius: var(--r-pill);
 }
 .pricing__retrieval-free p { font-size: 13.5px; line-height: 1.5; color: rgba(245, 234, 219, 0.85); margin: 0; }
@@ -416,6 +418,10 @@
   background: var(--terracotta); color: #FFF8EE;
   font-family: var(--font-display); font-weight: 600; font-size: 15px;
 }
+/* The journey ends on the promise kept — final beat goes moss (mirrors the
+   app's journey tracker: terracotta legs, moss arrival-in-the-attic). */
+.how__step:last-child .how__num { background: var(--moss); }
+.how__step:last-child .how__ghost { color: var(--moss); }
 .how__step h3 {
   font-family: var(--font-display); font-weight: 600; font-size: 18.5px;
   letter-spacing: -0.015em; margin: 0; color: var(--ink);
@@ -432,13 +438,14 @@
 }
 
 /* =========================================================
-   SECURITY — chain of custody. Evening-sky navy band (same
-   family as the pricing card) with cream text.
+   SECURITY — chain of custody. The "dusk" navy band (same
+   token-built gradient as the pricing card); moss carries the
+   safety semantics on it ("your stuff is safe" = promise kept).
    ========================================================= */
 .security {
   padding: clamp(72px, 10vw, 120px) 0;
-  background: linear-gradient(135deg, #1D2A3C 0%, #2D4159 55%, #42597A 100%);
-  color: #F5EADB;
+  background: linear-gradient(135deg, var(--navy-deep) 0%, var(--navy) 55%, var(--sky-deep) 100%);
+  color: var(--ondark-ink);
   position: relative;
   overflow: hidden;
 }
@@ -472,7 +479,7 @@
   border-radius: var(--r-pill); padding: 8px 15px;
   background: rgba(245, 234, 219, 0.06);
 }
-.security__trail-arrow { color: var(--mustard); font-size: 14px; font-weight: 600; }
+.security__trail-arrow { color: var(--ondark-moss); font-size: 14px; font-weight: 600; }
 .security__trail-note {
   text-align: center; margin: 0 0 56px;
   font-family: var(--font-mono); font-size: 11px; letter-spacing: 1px;
@@ -490,7 +497,7 @@
   display: grid; grid-template-columns: auto 1fr; column-gap: 12px; align-items: center;
   align-content: start; /* keep title rows top-aligned across the row */
 }
-.security__card-icon { color: var(--mustard); line-height: 0; grid-row: 1; grid-column: 1; }
+.security__card-icon { color: var(--ondark-moss); line-height: 0; grid-row: 1; grid-column: 1; }
 .security__card-icon svg { width: 24px; height: 24px; }
 .security__card h3 {
   font-family: var(--font-display); font-weight: 600; font-size: 17.5px;
@@ -610,10 +617,10 @@
   font-size: clamp(40px, 7vw, 96px);
   letter-spacing: -0.035em; line-height: 1;
   margin: 0 0 24px;
-  color: #F5EADB;
+  color: var(--ondark-ink);
 }
 .cta-final h2 em { font-style: italic; color: var(--mustard); font-weight: 500; }
-.cta-final p.sub { font-size: 18px; color: #C8B9A1; max-width: 480px; margin: 0 auto 28px; }
+.cta-final p.sub { font-size: 18px; color: var(--ondark-ink-3); max-width: 480px; margin: 0 auto 28px; }
 
 /* Trust chips — scannable reassurance at the conversion moment, just above
    the form. Cream pills on the dark CTA. */
@@ -654,11 +661,11 @@
   flex: 1 1 auto; min-width: 0;
   background: transparent; border: none; outline: none;
   font-family: var(--font-body); font-size: 16px;
-  color: #F5EADB; padding: 14px 0;
+  color: var(--ondark-ink); padding: 14px 0;
   text-align: left;
 }
 .email-form__input::placeholder {
-  color: #B5A28C; /* lighter than the prior #8C7A68 — placeholder no longer fades into the bg */
+  color: var(--ondark-ink-3); /* muted-but-legible tier — placeholder must not fade into the bg */
   opacity: 1;     /* Firefox defaults to lower opacity */
 }
 
@@ -703,7 +710,7 @@
   font-weight: 500;
 }
 .email-form__success svg { color: var(--moss); flex-shrink: 0; }
-.email-form__fine { margin-top: 18px; font-size: 13px; color: #A89580; }
+.email-form__fine { margin-top: 18px; font-size: 13px; color: var(--ondark-ink-4); }
 
 /* Coming-soon app badges — official App Store / Google Play artwork under
    the waitlist form. Not links yet; the waitlist is the single live action. */
@@ -733,8 +740,8 @@
   padding: 12px 18px;
   border-radius: var(--r-pill);
   background: rgba(166, 67, 106, 0.18);
-  border: 1px solid rgba(240, 201, 216, 0.3);
-  color: #F0C9D8;
+  border: 1px solid rgba(242, 192, 206, 0.3);
+  color: var(--ondark-berry);
   font-size: 13.5px;
   text-align: center;
 }
