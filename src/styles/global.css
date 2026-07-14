@@ -4,31 +4,52 @@
    ========================================================= */
 
 :root {
-  /* Core palette — matches the product */
+  /* Core palette — canonical values from attic-dev src/styles/tokens.css
+     (★ the single source of truth ★). Deep variants are the WCAG-AA-corrected
+     hexes; do not fork them here again. Semantics: terracotta = with you /
+     action · navy = the attic (place, stored) · moss = the promise kept
+     (safety, success) · mustard = on the move + the warm accent on dark
+     surfaces · sky = scheduled / informational · berry = destructive. */
   --terracotta:       #C65D3C;
-  --terracotta-deep:  #A04528;
+  --terracotta-deep:  #9A4225;
   --terracotta-soft:  #F9DFC8;
   --moss:             #6B8E5A;
-  --moss-deep:        #4E6B41;
+  --moss-deep:        #3E5A30;
   --moss-soft:        #DDE6D0;
   --mustard:          #E8B84A;
-  --mustard-deep:     #B8861F;
+  --mustard-deep:     #6F5212;
   --mustard-soft:     #FBEECB;
+  --navy:             #2E4B66;
+  --navy-deep:        #1E3346;
+  --navy-soft:        #E7EDF3;
   --sky:              #5A7FA3;
+  --sky-deep:         #355877;
   --sky-soft:         #D7E1ED;
   --berry:            #A6436A;
+  --berry-deep:       #8C2F52;
+  --berry-soft:       #F0D6DF;
 
   --ink:              #23180F;
   --ink-2:            #5A4A3C;
-  --ink-3:            #8C7A68;
-  --ink-4:            #B5A389;
+  --ink-3:            #6F5E4C;
+  --ink-4:            #9C8A74;
+
+  /* On-dark ink ramp — canonical text/accent system for BOTH dark canvases
+     (espresso storytelling bands + navy vault bands). Mirrors mobile
+     theme.ts `onDark`. */
+  --ondark-ink:       #FFF8EE;
+  --ondark-ink-2:     #F0E3CC;
+  --ondark-ink-3:     #C8B9A1;
+  --ondark-ink-4:     #9B8670;
+  --ondark-moss:      #AAD2A0;
+  --ondark-berry:     #F2C0CE;
 
   --bg:               #F5EADB;
   --bg-deep:          #ECDEC7;
-  --bg-dark:          #1E150C;    /* deep attic rafters */
+  --bg-dark:          #1E150C;    /* espresso — deep attic rafters (editorial drama) */
   --bg-dark-2:        #2A1D10;
-  --surface:          #FFFAF1;
-  --surface-2:        #FEF5E4;
+  --surface:          #FFFDF9;    /* raised card — synced with product tokens */
+  --surface-2:        #FBF4E8;
   --border:           rgba(35, 24, 15, 0.08);
   --border-2:         rgba(35, 24, 15, 0.14);
 
@@ -113,8 +134,8 @@ a:hover { color: var(--terracotta-deep); }
 .wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
 .wrap-narrow { max-width: 840px; margin: 0 auto; padding: 0 28px; }
 .stripe { padding: clamp(72px, 10vw, 120px) 0; position: relative; }
-.stripe--dark { background: var(--bg-dark); color: #F5EADB; }
-.stripe--dark .body, .stripe--dark .body-lg, .stripe--dark .lede { color: #D4C9B4; }
+.stripe--dark { background: var(--bg-dark); color: var(--ondark-ink); }
+.stripe--dark .body, .stripe--dark .body-lg, .stripe--dark .lede { color: var(--ondark-ink-2); }
 .stripe--dark .eyebrow { color: var(--mustard); }
 .stripe--paper { background: var(--surface); }
 .stripe--cream { background: var(--bg-deep); }
@@ -195,7 +216,7 @@ a:hover { color: var(--terracotta-deep); }
 /* =========================================================
    FOOTER
    ========================================================= */
-.footer { background: var(--bg-dark); color: #C8B9A1; padding: 72px 0 36px; margin-top: 0; }
+.footer { background: var(--bg-dark); color: var(--ondark-ink-3); padding: 72px 0 36px; margin-top: 0; }
 .footer__grid {
   display: grid;
   grid-template-columns: 1.4fr 1fr 1fr 1fr;
@@ -203,19 +224,19 @@ a:hover { color: var(--terracotta-deep); }
   padding-bottom: 56px;
   border-bottom: 1px solid rgba(245, 234, 219, 0.1);
 }
-.footer__brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 600; font-size: 24px; color: #F5EADB; letter-spacing: -0.02em; }
+.footer__brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display); font-weight: 600; font-size: 24px; color: var(--ondark-ink); letter-spacing: -0.02em; }
 .footer__brand svg { color: var(--terracotta); }
-.footer__tag { margin: 18px 0 0; font-size: 14.5px; color: #9B8670; line-height: 1.55; max-width: 340px; }
+.footer__tag { margin: 18px 0 0; font-size: 14.5px; color: var(--ondark-ink-4); line-height: 1.55; max-width: 340px; }
 .footer__col h4 { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 1.4px; text-transform: uppercase; color: var(--mustard); margin: 0 0 16px; }
-.footer__col a { display: block; color: #C8B9A1; font-size: 14.5px; padding: 4px 0; }
+.footer__col a { display: block; color: var(--ondark-ink-3); font-size: 14.5px; padding: 4px 0; }
 .footer__col a:hover { color: var(--mustard); }
 .footer__bot {
   padding-top: 28px;
   display: flex; justify-content: space-between; align-items: center;
   flex-wrap: wrap; gap: 14px;
-  font-size: 13px; color: #7D6E5D;
+  font-size: 13px; color: var(--ondark-ink-4);
 }
-.footer__bot a { color: #9B8670; margin-right: 18px; }
+.footer__bot a { color: var(--ondark-ink-4); margin-right: 18px; }
 .footer__bot a:hover { color: var(--mustard); }
 @media (max-width: 720px) {
   .footer__grid { grid-template-columns: 1fr 1fr; }
