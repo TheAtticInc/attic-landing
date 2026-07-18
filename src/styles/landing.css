@@ -299,9 +299,10 @@
 }
 .pricing__num-dollar { font-size: 0.5em; opacity: 0.7; margin-top: 0.2em; }
 .pricing__num-per { font-family: var(--font-body); font-weight: 400; font-size: 16px; letter-spacing: normal; opacity: 0.75; align-self: flex-end; padding-bottom: 14px; white-space: nowrap; flex-shrink: 0; }
-/* Retrieval sub-card — the SECOND price, deliberately visually distinct
-   (terracotta on the navy card) so storage-per-month and one-time retrieval
-   never read as the same number. The FREE waiver is the incentive beat. */
+/* Delivery sub-card — the SECOND price, deliberately visually distinct
+   (terracotta on the navy card) so storage-per-month and per-visit delivery
+   never read as the same number. The free-after-4-months waiver is the
+   incentive beat. (Class names still say "retrieval" — legacy naming.) */
 .pricing__retrieval {
   display: flex; align-items: stretch; gap: 0;
   margin-top: 40px;
