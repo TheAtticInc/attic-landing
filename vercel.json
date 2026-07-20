@@ -6,6 +6,9 @@
   "installCommand": "npm install",
   "cleanUrls": true,
   "trailingSlash": false,
+  "rewrites": [
+    { "source": "/r/:code", "destination": "/r" }
+  ],
   "redirects": [
     { "source": "/denver", "destination": "/", "permanent": true },
     {
