@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "com.attic.app",
+      "sha256_cert_fingerprints": [
+        "01:1A:26:42:4B:6C:88:5D:12:85:B9:CA:5B:DF:9F:A3:0C:89:1C:20:82:1B:BD:A6:83:BB:4C:5F:05:BE:94:AB"
+      ]
+    }
+  }
+]
