@@ -1,0 +1,125 @@
+---
+// /r — referral invite landing ("Maya gave you $20 off Attic").
+//
+// Served for /r/<code> via a vercel.json rewrite (static site, format:'file' —
+// the code segment is read client-side from the path). Personalization comes
+// from /api/invite (edge proxy → Harper's anonymous /ReferralInvite): only a
+// privacy-preserving short name ever reaches the page. Unknown/missing codes
+// degrade to generic copy — never an error page for a mistyped invite.
+//
+// CTA strategy (pre-launch): "Get the app" routes to /beta (the F&F tester
+// signup) until the public store listing exists; "Open in the app" tries the
+// atticmobile:// scheme for people who already have it installed. Swap the
+// primary CTA to store badges at launch.
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="You've got $20 off Attic"
+  description="A friend gave you $20 in Attic credit. Attic picks up your stuff, stores it, and brings it back whenever you want."
+  ogTitle="You've got $20 off Attic"
+  ogDescription="A friend gave you $20 in Attic credit — storage that comes to your door."
+  noindex={true}
+>
+  <main class="invite">
+    <section class="invite-hero">
+      <div class="invite-wrap">
+        <p class="invite-eyebrow">A gift from a friend</p>
+        <h1 class="invite-h1"><span data-referrer>A friend</span> gave you <em>$20</em> off Attic.</h1>
+        <p class="invite-lede">
+          Attic is storage that comes to your door — we drop off crates, pick them up when
+          they're packed, and bring anything back whenever you want it. Your $20 credit lands
+          once your first crates are tucked away.
+        </p>
+
+        <div class="invite-code" data-code-card hidden>
+          <p class="invite-code__label">Your invite code</p>
+          <p class="invite-code__value" data-code>——————</p>
+          <button type="button" class="invite-code__copy" data-copy>Copy code</button>
+          <p class="invite-code__hint">Enter it when you sign up in the Attic app.</p>
+        </div>
+
+        <div class="invite-ctas">
+          <a class="btn-primary invite-btn" href="/beta">Get the app</a>
+          <a class="invite-open" data-open-app hidden href="#">Already have the app? Open it</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="invite-band">
+      <div class="invite-wrap">
+        <h2 class="invite-h2">How it works</h2>
+        <ol class="invite-steps">
+          <li><strong>Order crates.</strong> We deliver sturdy empty crates to your door, free.</li>
+          <li><strong>Pack &amp; seal.</strong> Fill them, snap a photo of what's inside, seal with a QR tie.</li>
+          <li><strong>We pick up.</strong> A driver collects them — $15/crate a month while stored.</li>
+          <li><strong>Get anything back.</strong> Request a crate in the app and it comes home. Your <strong>$20 credit</strong> applies automatically.</li>
+        </ol>
+        <p class="invite-fine">
+          $20 credit for you and your friend once your first crates are stored and your first bill settles.
+          Credit applies to Attic bills automatically. See <a href="/termsofservice">terms</a>.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <style>
+    .invite-wrap { max-width: 640px; margin: 0 auto; padding: 0 20px; }
+    .invite-hero { padding: 56px 0 40px; text-align: center; }
+    .invite-eyebrow { font-family: var(--font-body, Inter, sans-serif); font-weight: 700; font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--terracotta); margin: 0 0 10px; }
+    .invite-h1 { margin: 0 0 14px; }
+    .invite-lede { font-size: 17px; line-height: 1.6; margin: 0 auto 26px; max-width: 520px; }
+    .invite-code { border: 1px solid rgba(61, 42, 24, 0.14); border-radius: 16px; background: #FFF8EE; padding: 18px 20px; margin: 0 auto 24px; max-width: 380px; }
+    .invite-code__label { font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; opacity: 0.6; margin: 0 0 6px; }
+    .invite-code__value { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 30px; letter-spacing: 0.18em; margin: 0 0 10px; }
+    .invite-code__copy { font: inherit; font-weight: 700; font-size: 14px; color: var(--terracotta); background: none; border: 1px solid var(--terracotta); border-radius: 999px; padding: 7px 18px; cursor: pointer; }
+    .invite-code__copy:hover { background: var(--terracotta-soft); }
+    .invite-code__hint { font-size: 12px; opacity: 0.65; margin: 10px 0 0; }
+    .invite-ctas { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+    .invite-btn { display: inline-block; padding: 14px 34px; border-radius: 999px; font-weight: 700; }
+    .invite-open { font-size: 14px; text-decoration: underline; }
+    .invite-band { padding: 36px 0 64px; }
+    .invite-h2 { text-align: center; margin: 0 0 18px; }
+    .invite-steps { max-width: 520px; margin: 0 auto 20px; padding-left: 22px; display: grid; gap: 10px; line-height: 1.55; }
+    .invite-fine { font-size: 12.5px; line-height: 1.6; opacity: 0.7; text-align: center; max-width: 480px; margin: 0 auto; }
+  </style>
+
+  <script is:inline>
+    (function () {
+      // /r/<code> → the last path segment (the rewrite serves this page for both /r and /r/<code>).
+      var seg = window.location.pathname.split('/').filter(Boolean);
+      var raw = seg.length >= 2 && seg[0].toLowerCase() === 'r' ? seg[seg.length - 1] : '';
+      var code = /^[A-Za-z0-9]{6}$/.test(raw) ? raw.toUpperCase() : null;
+      if (!code) return; // no/malformed code → generic page stays
+
+      var card = document.querySelector('[data-code-card]');
+      var codeEl = document.querySelector('[data-code]');
+      var copyBtn = document.querySelector('[data-copy]');
+      var openApp = document.querySelector('[data-open-app]');
+      if (codeEl) codeEl.textContent = code;
+      if (card) card.hidden = false;
+      if (openApp) { openApp.hidden = false; openApp.setAttribute('href', 'atticmobile://r/' + code); }
+      if (copyBtn) {
+        copyBtn.addEventListener('click', function () {
+          try {
+            navigator.clipboard.writeText(code).then(function () {
+              copyBtn.textContent = 'Copied ✓';
+              setTimeout(function () { copyBtn.textContent = 'Copy code'; }, 2000);
+            });
+          } catch (e) { /* selection fallback: the code text is selectable */ }
+        });
+      }
+
+      // Personalize with the referrer's short name — degrade silently.
+      fetch('/api/invite?code=' + encodeURIComponent(code))
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (data) {
+          if (data && data.ok && data.referrer_name) {
+            var el = document.querySelector('[data-referrer]');
+            if (el) el.textContent = data.referrer_name;
+          }
+        })
+        .catch(function () { /* generic copy stands */ });
+    })();
+  </script>
+</BaseLayout>
